@@ -4,9 +4,10 @@ function Navbar() {
   return (
     <section>
       <section  className='flex justify-between '>
+       
+       <div> <h1>Logo</h1></div>
 
        <div className='flex text-xl gap-4'>
-        <h1>Logo</h1>
       <a href="">Classes</a>
       <a href="">Teachers</a>
       <a href="">Magzine</a>
