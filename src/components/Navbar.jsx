@@ -2,7 +2,25 @@ import React from 'react'
 
 function Navbar() {
   return (
-    <div>Navbar</div>
+    <section>
+      <section  className='flex justify-between '>
+
+       <div className='flex text-xl gap-4'>
+        <h1>Logo</h1>
+      <a href="">Classes</a>
+      <a href="">Teachers</a>
+      <a href="">Magzine</a>
+      <a href="">Academy</a>
+       </div>
+       <div className="flex text-xl gap-4">
+        <select name="" id="">
+          <option className = 'text-sm' value="">English</option>
+          <option className = 'text-sm' value="">Hindi</option>
+        </select>
+        <button>Login</button>
+       </div>
+    </section>
+    </section>
   )
 }
 

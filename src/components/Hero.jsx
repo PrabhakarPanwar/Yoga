@@ -2,7 +2,21 @@ import React from 'react'
 
 function Hero() {
   return (
-    <div>Hero</div>
+    <div>
+   <section>
+      <div>
+        
+         </div>
+      <div>
+        
+        
+         </div>
+
+
+   </section>
+
+
+    </div>
   )
 }
 
