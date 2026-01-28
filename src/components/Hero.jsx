@@ -1,23 +1,26 @@
-import React from 'react'
+// import React, { useContext } from 'react'
+// import { UserContext } from '../context/UserContext'
 
-function Hero() {
-  return (
-    <div>
-   <section>
-      <div>
+// function Hero() {
+//   const {assets} = UserContext(useContext)
+//   return (
+//     <div>
+//    <section>
+//       <div>
         
-         </div>
-      <div>
+//         <video src={assets.heroAbstract}></video>
+//          </div>
+//       <div>
         
         
-         </div>
+//          </div>
 
 
-   </section>
+//    </section>
 
 
-    </div>
-  )
-}
+//     </div>
+//   )
+// }
 
-export default Hero
+// export default Hero
