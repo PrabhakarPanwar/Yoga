@@ -1,5 +1,27 @@
 @tailwind base;
-
 @tailwind components;
-
 @tailwind utilities;
+
+@font-face {
+  font-family: "FrederickaTheGreat";
+  src: url("/fonts/FrederickatheGreat-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "PoiretOne";
+  src: url("/fonts/PoiretOne-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+hr {
+  scale: 0;
+  height: 2px;
+  background-color: aqua;
+  transition: 0.5s;
+}
+.active hr {
+  scale: 1;
+}

@@ -1,21 +1,21 @@
 import React, { useContext } from "react";
-import { assets } from "../assets/product";
 import { UserContext } from "../context/UserContext";
 
 function Card() {
-  const { assets } = useContext(UserContext);
+  const { pic } = useContext(UserContext);
 
   return (
-    <div>
-      <div>
-        <video
-          className="h-[250px] w-[250px] bg-black"
-          src={assets.heroAbstract}
-          alt=""
-        />
-        <p className="bg-black"></p>
-        <button></button>
-      </div>
+    <div className="flex gap-5 py-10">
+      {pic.map((i, index) => (
+        <div
+          key={index}
+          className="w-[250px] text-center shadow-lg rounded-3xl overflow-hidden hover:scale-[1.1] duration-500 cursor-pointer"
+        >
+          <img className="w-[250px] h-[250px]" src={i.image} alt={i.name} />
+          <p className="text-xl py-5">{i.name}</p>
+          <p></p>
+        </div>
+      ))}
     </div>
   );
 }
