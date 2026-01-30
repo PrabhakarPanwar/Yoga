@@ -7,7 +7,7 @@ function Carousal() {
   const { courses } = useContext(UserContext);
   return (
     <Carousel
-      className="font-semibold"
+      className="font-semibold py-10"
       autoPlay
       infiniteLoop
       showThumbs={false}

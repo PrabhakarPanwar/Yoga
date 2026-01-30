@@ -10,7 +10,7 @@ import Academy from "./pages/Academy";
 
 function App() {
   return (
-    <div>
+    <div className="">
       <Navbar />
       <div className="">
         <Routes>
