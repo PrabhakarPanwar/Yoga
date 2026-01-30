@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+
 @font-face {
   font-family: "FrederickaTheGreat";
   src: url("/fonts/FrederickatheGreat-Regular.ttf") format("truetype");
@@ -16,7 +17,7 @@
   font-style: normal;
 }
 
-hr {
+nav hr {
   scale: 0;
   height: 2px;
   background-color: aqua;
@@ -24,4 +25,8 @@ hr {
 }
 .active hr {
   scale: 1;
+}
+
+input,button{
+  outline: none;
 }

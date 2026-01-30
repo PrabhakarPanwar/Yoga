@@ -4,15 +4,21 @@ import Home from "./pages/Home";
 import LogRes from "./pages/LogRes";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import Teacher from "./pages/Teacher";
+import Magazine from "./pages/Magazine";
+import Academy from "./pages/Academy";
 
 function App() {
   return (
     <div>
       <Navbar />
-      <div className="w-[85%] mx-auto">
+      <div className="">
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/reg" element={<LogRes />} />
+          <Route path="/teacher" element={<Teacher />} />
+          <Route path="/magazine" element={<Magazine />} />
+          <Route path="/academy" element={<Academy />} />
+          <Route path="/reglog" element={<LogRes />} />
         </Routes>
       </div>
       <Footer />

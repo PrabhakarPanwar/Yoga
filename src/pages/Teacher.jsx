@@ -1,17 +1,19 @@
 import React, { useContext } from "react";
-import Card from "../components/Card";
 import Half from "../components/Half";
-import Carousal from "../components/Carousal";
 import { UserContext } from "../context/UserContext";
 
-function Home() {
+function Teacher() {
   const { yogaPose } = useContext(UserContext);
+
   return (
     <div>
-      <Carousal />
-
+      <Half
+        image1={yogaPose[0].image}
+        image2={yogaPose[1].image}
+        image3={yogaPose[2].image}
+      />
     </div>
   );
 }
 
-export default Home;
+export default Teacher;

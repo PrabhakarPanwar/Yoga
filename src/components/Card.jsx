@@ -5,7 +5,7 @@ function Card() {
   const { pic } = useContext(UserContext);
 
   return (
-    <div className="flex gap-5 py-10">
+    <div className="flex gap-5 py-10 justify-center">
       {pic.map((i, index) => (
         <div
           key={index}
