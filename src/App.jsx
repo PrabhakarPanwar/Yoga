@@ -10,7 +10,7 @@ import Academy from "./pages/Academy";
 
 function App() {
   return (
-    <div className="">
+    <div className="overflow-hidden">
       <Navbar />
       <div className="">
         <Routes>

@@ -1,8 +1,11 @@
 import React from 'react'
+import Card from '../components/Card'
 
 function Magazine() {
   return (
-    <div>Magazine</div>
+    <div>
+      <Card/>
+    </div>
   )
 }
 

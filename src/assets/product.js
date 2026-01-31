@@ -1,4 +1,6 @@
 import heroAbstract from "../assets/heroAbstract.mp4";
+import cancel from "../assets/cancel.jpg";
+import menu from "../assets/menu.jpg";
 import book1 from "../assets/book1.jpg";
 import book2 from "../assets/book2.jpg";
 import book3 from "../assets/book3.jpg";
@@ -14,6 +16,8 @@ import YogaPose3 from "../assets/YogaPose3.jpg";
 
 export const assets = {
   heroAbstract,
+  cancel,
+  menu,
 };
 
 export const courses = {

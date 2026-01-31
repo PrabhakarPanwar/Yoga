@@ -2,7 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-
 @font-face {
   font-family: "FrederickaTheGreat";
   src: url("/fonts/FrederickatheGreat-Regular.ttf") format("truetype");
@@ -13,6 +12,36 @@
 @font-face {
   font-family: "PoiretOne";
   src: url("/fonts/PoiretOne-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "BungeeInline";
+  src: url("/fonts/BungeeInline-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "IMFellDWPicaSC";
+  src: url("/fonts/IMFellDWPicaSC-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "IMFellEnglishSC";
+  src: url("/fonts/IMFellEnglishSC-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Jersey15Charted";
+  src: url("/fonts/Jersey15Charted-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "PrincessAndTheFrog";
+  src: url("/fonts/PrincessAndTheFrog-XdMd.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
 }
@@ -27,6 +56,20 @@ nav hr {
   scale: 1;
 }
 
-input,button{
+h1 {
+  font-size: 30px;
+  line-height: 36px;
+  font-weight: 700;
+  margin: 32px 0 32px 0;
+}
+
+p {
+  font-size: 20px;
+  line-height: 28px;
+  margin: 20px 0 20px 0;
+}
+
+input,
+button {
   outline: none;
 }
