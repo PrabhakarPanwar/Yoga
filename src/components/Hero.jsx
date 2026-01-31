@@ -7,7 +7,7 @@ function Hero() {
     <div>
       <section className="relative z-0 font-[PoiretOne]">
         <video
-          className="w-screen h-[600px] object-[38%_center] object-cover py-8 "
+          className="w-screen h-[80vh] object-[38%_center] object-cover py-4 "
           autoPlay
           loop
           muted

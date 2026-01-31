@@ -8,11 +8,11 @@ function Carousal() {
   return (
     <Carousel
       className="font-semibold py-10 px-5"
-      // autoPlay
+      autoPlay
       infiniteLoop
       showThumbs={false}
-      showArrows={true}
-      showIndicators={false}
+      showArrows={false}
+      showIndicators={true}
       swipeable={true}
     >
       <div className="sm:flex text-start items-center">

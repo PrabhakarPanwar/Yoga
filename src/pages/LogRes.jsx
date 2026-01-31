@@ -3,8 +3,8 @@ import React, { useState } from "react";
 function LogRes() {
   const [reglog, setReglog] = useState("true");
   return (
-    <main className="md:flex">
-      <div className="flex flex-1 justify-center items-center h-[90vh] ">
+    <main className="md:flex overflow-hidden">
+      <div className="flex flex-1 justify-center items-center  ">
         <div className="flex flex-col gap-5 w-[55%]">
           <h1 className="bg-gradient-to-r bg-clip-text text-transparent from-blue-600 to-red-600 text-5xl ">
             Come On In.
@@ -36,7 +36,7 @@ function LogRes() {
                 </button>
                 <button
                   onClick={() => setReglog(!reglog)}
-                  className="w-[50%] bg-gradient-to-r bg-clip-text text-transparent text-left font-bold from-blue-600 to-red-600"
+                  className="md:w-[50%] w-[100%] bg-gradient-to-r bg-clip-text text-transparent text-left font-bold from-blue-600 to-red-600"
                 >
                   Create an Account
                 </button>
@@ -75,7 +75,7 @@ function LogRes() {
                 </button>
                 <button
                   onClick={() => setReglog(!reglog)}
-                  className="w-[50%] bg-gradient-to-r bg-clip-text text-transparent text-left font-bold from-blue-600 to-red-600"
+                  className="w-[100%] bg-gradient-to-r bg-clip-text text-transparent text-left font-bold from-blue-600 to-red-600"
                 >
                   Have an Account
                 </button>
@@ -84,7 +84,7 @@ function LogRes() {
           )}
         </div>
       </div>
-      <div className="md:flex flex-1 hidden h-[90vh] bg-blue-500 "></div>
+      <div className="md:flex flex-1 hidden h-screen bg-blue-500 "></div>
     </main>
   );
 }

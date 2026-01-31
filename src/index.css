@@ -46,11 +46,22 @@
   font-style: normal;
 }
 
+.carousel .control-dots .dot.selected {
+  background: #f59e0b;
+}
+
 nav hr {
   scale: 0;
   height: 2px;
-  background-color: aqua;
+  background-color: rgb(0, 186, 186);
   transition: 0.5s;
+}
+nav h3:hover {
+  color: aqua;
+}
+
+.active h3 {
+  color: rgb(0, 209, 209);
 }
 .active hr {
   scale: 1;

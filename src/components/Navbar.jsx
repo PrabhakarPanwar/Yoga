@@ -8,30 +8,33 @@ function Navbar() {
 
   return (
     <nav>
-      <main className="flex justify-between p-5 mx-auto ">
+      <main className="flex justify-between items-center p-3 mx-auto ">
         {open ? (
           // True Part
           <section className="md:hidden">
             <img
               className="cursor-pointer ml-[85%]"
-              onClick={()=>setOpen(!open)}
+              onClick={() => setOpen(!open)}
               src={assets.cancel}
               alt=""
             />
-            <div className="w-[100vw] ">
-              <div className="text-xl gap-4 w-fit mx-auto">
+            <div className="w-[100vw] text-center ">
+              <div className="gap-4 w-min mx-auto">
                 <NavLink to="/">
-                  Home <hr />
-                </NavLink>
-                <NavLink to="/teacher">
-                  Teachers
+                  <h3>Home</h3>
                   <hr />
                 </NavLink>
+                <NavLink to="/teacher">
+                  <h3>Teachers</h3> <hr />
+                </NavLink>
                 <NavLink to="/magazine">
-                  Magazine <hr />
+                  <h3>Magazine</h3> <hr />
                 </NavLink>
                 <NavLink to="/academy">
-                  Academy <hr />
+                  <h3>Academy</h3> <hr />
+                </NavLink>
+                <NavLink to="/reglog">
+                  <h3>Login</h3> <hr />
                 </NavLink>
               </div>
             </div>
@@ -54,21 +57,23 @@ function Navbar() {
 
         <div className="md:flex text-xl gap-4 hidden">
           <NavLink to="/">
-            Home <hr />
-          </NavLink>
-          <NavLink to="/teacher">
-            Teachers
+            <h3>Home</h3>
             <hr />
           </NavLink>
+          <NavLink to="/teacher">
+            <h3>Teachers</h3> <hr />
+          </NavLink>
           <NavLink to="/magazine">
-            Magazine <hr />
+            <h3>Magazine</h3> <hr />
           </NavLink>
           <NavLink to="/academy">
-            Academy <hr />
+            <h3>Academy</h3> <hr />
           </NavLink>
         </div>
         <div className="md:flex text-xl gap-4 hidden">
-          <NavLink to="/reglog">Login</NavLink>
+          <NavLink to="/reglog">
+            <h3>Login</h3>
+          </NavLink>
         </div>
       </main>
     </nav>

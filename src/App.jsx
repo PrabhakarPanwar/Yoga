@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useLocation } from "react-router-dom";
 import Home from "./pages/Home";
 import LogRes from "./pages/LogRes";
 import Navbar from "./components/Navbar";
@@ -9,6 +9,7 @@ import Magazine from "./pages/Magazine";
 import Academy from "./pages/Academy";
 
 function App() {
+  const location = useLocation();
   return (
     <div className="overflow-hidden">
       <Navbar />
@@ -21,7 +22,7 @@ function App() {
           <Route path="/reglog" element={<LogRes />} />
         </Routes>
       </div>
-      <Footer />
+      {location.pathname !== "/reglog" && <Footer />}
     </div>
   );
 }
