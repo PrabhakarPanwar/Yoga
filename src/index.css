@@ -81,6 +81,36 @@ p {
 }
 
 input,
-button {
+button,
+a {
   outline: none;
+}
+
+a{
+  width: fit-content;
+  height: fit-content;
+}
+
+footer {
+  background: hsla(192, 81%, 48%, 1);
+
+  background: linear-gradient(
+    90deg,
+    hsla(192, 81%, 48%, 1) 20%,
+    hsla(131, 65%, 73%, 1) 70%
+  );
+
+  background: -moz-linear-gradient(
+    90deg,
+    hsla(192, 81%, 48%, 1) 20%,
+    hsla(131, 65%, 73%, 1) 70%
+  );
+
+  background: -webkit-linear-gradient(
+    90deg,
+    hsla(192, 81%, 48%, 1) 20%,
+    hsla(131, 65%, 73%, 1) 70%
+  );
+
+  filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#17B8E0", endColorstr="#8DE79D", GradientType=1 );
 }

@@ -113,15 +113,12 @@ function Chakra() {
             <section>
               <h1>Location: Upper abdomen, near the stomach</h1>
               <p>
-                {" "}
                 <strong>Color:</strong> Yellow
               </p>
               <p>
-                {" "}
                 <strong>Element:</strong> Fire
               </p>
               <p>
-                {" "}
                 <strong>Mantra:</strong> Ram
               </p>
               <p>
@@ -146,19 +143,15 @@ function Chakra() {
             <section>
               <h1>Location: Center of the chest</h1>
               <p>
-                {" "}
                 <strong>Color:</strong> Green
               </p>
               <p>
-                {" "}
                 <strong>Element:</strong> Air
               </p>
               <p>
-                {" "}
                 <strong>Mantra:</strong> Yam
               </p>
               <p>
-                {" "}
                 <strong>Function:</strong> Governs love, compassion, and
                 emotional healing.
               </p>
@@ -167,7 +160,6 @@ function Chakra() {
                 and Bridge (Setu Bandhasana).
               </p>
               <p>
-                {" "}
                 <strong>Imbalance Signs:</strong> Loneliness, jealousy,
                 emotional coldness.
               </p>
@@ -181,19 +173,15 @@ function Chakra() {
             <section>
               <h1>Location: Throat</h1>
               <p>
-                {" "}
                 <strong>Color:</strong> Blue
               </p>
               <p>
-                {" "}
                 <strong>Element:</strong> Ether (Space)
               </p>
               <p>
-                {" "}
                 <strong>Mantra:</strong> Ham
               </p>
               <p>
-                {" "}
                 <strong>Function:</strong> Expression, communication, and truth.
               </p>
               <p>
@@ -214,19 +202,15 @@ function Chakra() {
             <section>
               <h1>Location: Between the eyebrows</h1>
               <p>
-                {" "}
                 <strong>Color:</strong> Indigo
               </p>
               <p>
-                {" "}
                 <strong>Element:</strong> Light
               </p>
               <p>
-                {" "}
                 <strong>Mantra:</strong> Om
               </p>
               <p>
-                {" "}
                 <strong>Function:</strong> Intuition, wisdom, and inner vision.
               </p>
               <p>
@@ -234,7 +218,6 @@ function Chakra() {
                 (Balasana), and forward bends.
               </p>
               <p>
-                {" "}
                 <strong>Imbalance Signs:</strong> Confusion, lack of focus,
                 headaches.
               </p>
@@ -248,15 +231,12 @@ function Chakra() {
             <section>
               <h1>Location: Top of the head</h1>
               <p>
-                {" "}
                 <strong>Color:</strong> Violet or White
               </p>
               <p>
-                {" "}
                 <strong>Element:</strong> Cosmic Energy
               </p>
               <p>
-                {" "}
                 <strong>Mantra:</strong> Silence or Om
               </p>
               <p>

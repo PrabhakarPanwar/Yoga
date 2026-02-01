@@ -11,8 +11,8 @@ import Academy from "./pages/Academy";
 function App() {
   const location = useLocation();
   return (
-    <div className="overflow-hidden">
-      <Navbar />
+    <div className="overflow-hidden font-[IMFellEnglishSC]">
+      {location.pathname !== "/reglog" && <Navbar />}
       <div className="">
         <Routes>
           <Route path="/" element={<Home />} />

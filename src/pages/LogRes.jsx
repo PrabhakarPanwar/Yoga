@@ -3,9 +3,9 @@ import React, { useState } from "react";
 function LogRes() {
   const [reglog, setReglog] = useState("true");
   return (
-    <main className="md:flex overflow-hidden">
-      <div className="flex flex-1 justify-center items-center  ">
-        <div className="flex flex-col gap-5 w-[55%]">
+    <main className="md:flex flex-col md:flex-row overflow-hidden">
+      <div className="flex z-10 flex-1 justify-center items-center  ">
+        <div className="flex justify-center h-[80vh] sm:h-[45vh] flex-col gap-5 w-[55%]">
           <h1 className="bg-gradient-to-r bg-clip-text text-transparent from-blue-600 to-red-600 text-5xl ">
             Come On In.
           </h1>
@@ -84,7 +84,12 @@ function LogRes() {
           )}
         </div>
       </div>
-      <div className="md:flex flex-1 hidden h-screen bg-blue-500 "></div>
+      <div className="md:flex hidden md:absolute lg:static flex-1 h-screen ">
+        <img className="w-screen"
+          src="\src\assets\logPose.jpg"
+          alt=""
+        />
+      </div>
     </main>
   );
 }

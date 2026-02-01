@@ -1,6 +1,7 @@
 import heroAbstract from "../assets/heroAbstract.mp4";
 import cancel from "../assets/cancel.jpg";
 import menu from "../assets/menu.jpg";
+import logPose from "../assets/logPose.jpg";
 
 // For card component
 
@@ -37,6 +38,7 @@ export const assets = {
   heroAbstract,
   cancel,
   menu,
+  logPose,
 };
 
 export const courses = {
@@ -88,15 +90,19 @@ export const pic = [
 ];
 
 export const sevenChakra = [
-  { name: "Muladhara(Root Chakra)", color: "red", image: firstChakra },
-  { name: "Svadhisthana(Sacral Chakra)", color: "orange", image: secondChakra },
+  { name: "Muladhara(Root Chakra)", color: "#FF474C", image: firstChakra },
+  {
+    name: "Svadhisthana(Sacral Chakra)",
+    color: "#FDAA48",
+    image: secondChakra,
+  },
   {
     name: "Manipura(Solar Plexus Chakra)",
-    color: "yellow",
+    color: "#FFF44F",
     image: thirdChakra,
   },
-  { name: "Anahata (Heart Chakra)", color: "green", image: fourthChakra },
-  { name: "Vishuddha (Throat Chakra)", color: "blue", image: fifthChakra },
-  { name: "Ajna (Third Eye Chakra)", color: "indigo", image: sixthChakra },
+  { name: "Anahata (Heart Chakra)", color: "lightgreen", image: fourthChakra },
+  { name: "Vishuddha (Throat Chakra)", color: "skyblue", image: fifthChakra },
+  { name: "Ajna (Third Eye Chakra)", color: "#8773C5", image: sixthChakra },
   { name: "Sahasrara (Crown Chakra)", color: "violet", image: seventhChakra },
 ];
