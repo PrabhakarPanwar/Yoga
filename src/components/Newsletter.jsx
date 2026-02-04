@@ -11,7 +11,6 @@ function Newsletter() {
       <input
         className="p-3 shadow-lg lg:w-[20%] mx-auto"
         type="email"
-        to
         placeholder="Email address"
       />
       <button className="p-3 mt-3 lg:w-[20%] mx-auto rounded-full bg-green-200">

@@ -3,6 +3,7 @@ import { UserContext } from "../context/UserContext";
 
 function Hero() {
   const { assets } = useContext(UserContext);
+
   return (
     <div>
       <section className="relative z-0 font-[PoiretOne]">
@@ -14,14 +15,14 @@ function Hero() {
           src={assets.heroAbstract}
         ></video>
 
-        <p className="absolute top-[15%] left-[4%] text-5xl ">
+        <p className="absolute top-[15%] left-[4%] text-5xl hero-text">
           Find Your Inner <br></br>
-          <span className="absolute  top-[90%] left-[15%] text-7xl ">
+          <span className="absolute  top-[90%] left-[15%] text-7xl hero-text">
             Peace
           </span>
         </p>
 
-        <p className="absolute bottom-[45%] right-[6%] text-8xl ">
+        <p className="absolute bottom-[45%] right-[6%] text-8xl hero-text">
           With Yoga
         </p>
       </section>
