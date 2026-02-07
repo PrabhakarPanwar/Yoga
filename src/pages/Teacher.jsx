@@ -7,11 +7,7 @@ function Teacher() {
 
   return (
     <div>
-      <Half
-        image1={yogaPose[0].image}
-        image2={yogaPose[1].image}
-        image3={yogaPose[2].image}
-      />
+      <Half />
     </div>
   );
 }

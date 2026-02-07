@@ -1,9 +1,12 @@
-import React from 'react'
+import React from "react";
+import Chakra from "../components/Chakra";
 
 function Academy() {
   return (
-    <div>Academy</div>
-  )
+    <div>
+      <Chakra />
+    </div>
+  );
 }
 
-export default Academy
+export default Academy;

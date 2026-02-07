@@ -1,12 +1,23 @@
-import React, { useContext } from "react";
-import Card from "../components/Card";
-import Half from "../components/Half";
+
 import Carousal from "../components/Carousal";
-import { UserContext } from "../context/UserContext";
 import Hero from "../components/Hero";
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
 
 function Home() {
-  const { yogaPose } = useContext(UserContext);
+  // useGSAP(() => {
+  //   gsap.to(".card", {
+  //     x: 100,
+  //     y: 100,
+  //     scale: 0,
+  //     rotate: 90,
+  //     repeat: -1,
+  //     yoyo: true,
+  //     duration: 2,
+  //     ease: "power3.inOut",
+  //   });
+  // }, []);
+
   return (
     <div>
       <Hero />

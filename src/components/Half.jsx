@@ -1,18 +1,18 @@
-import React from "react";
+import React, { useContext } from "react";
+import { UserContext } from "../context/UserContext";
 
-function Half({ image1, image2, image3 }) {
+function Half() {
+  const { pose } = useContext(UserContext)
   return (
+
     <main className="py-10">
       <section className="flex flex-col lg:flex-row">
-        <img className="flex-1 h-[90vh] lg:w-[50%] " src={image1} />
+        <img className="flex-1 h-[90vh] lg:w-[50%] " src={pose[0].image} alt={pose[0].name} />
         <div className="flex-1 h-[90vh] flex flex-col justify-center ">
           <div className="w-[70%] mx-auto">
-            <h1>Heading For This Image</h1>
+            <h1>{pose[0].heading}</h1>
             <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum,
-              adipisci! Consectetur, corrupti nesciunt in iure labore laborum
-              temporibus, fugit blanditiis et, recusandae magni nulla ut quaerat
-              expedita adipisci illo velit.
+              {pose[0].para}
             </p>
           </div>
         </div>
@@ -20,32 +20,28 @@ function Half({ image1, image2, image3 }) {
       <section className="flex flex-col-reverse lg:flex-row">
         <div className="flex-1 h-[90vh] flex flex-col justify-center ">
           <div className="w-[70%] mx-auto">
-            <h1>Heading For This Image</h1>
+            <h1>{pose[1].heading}</h1>
             <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum,
-              adipisci! Consectetur, corrupti nesciunt in iure labore laborum
-              temporibus, fugit blanditiis et, recusandae magni nulla ut quaerat
-              expedita adipisci illo velit.
+              {pose[1].para}
             </p>
           </div>
         </div>
-        <img className="flex-1 h-[90vh] bg-black lg:w-[50%]" src={image2} />
+        <img className="flex-1 h-[90vh] lg:w-[50%]" src={pose[1].image} alt={pose[1].name} />
       </section>
       <section className="flex flex-col lg:flex-row">
-        <img className="flex-1 h-[90vh] bg-black lg:w-[50%]" src={image3} />
+        <img className="flex-1 h-[90vh] lg:w-[50%]" src={pose[2].image} alt={pose[2].name} />
         <div className="flex-1 h-[90vh] flex flex-col justify-center ">
           <div className="w-[70%] mx-auto">
-            <h1>Heading For This Image</h1>
+            <h1>{pose[2].heading}</h1>
             <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum,
-              adipisci! Consectetur, corrupti nesciunt in iure labore laborum
-              temporibus, fugit blanditiis et, recusandae magni nulla ut quaerat
-              expedita adipisci illo velit.
+              {pose[2].para}
             </p>
           </div>
         </div>
       </section>
     </main>
+
+
   );
 }
 
