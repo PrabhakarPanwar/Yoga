@@ -30,7 +30,7 @@ function LogRes() {
       }, 2000)
     }
     if (!res.data.success) {
-      toast.error("Invalid Credential")
+      toast.error(res.data.msg)
     }
   }
 

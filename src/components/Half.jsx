@@ -1,21 +1,18 @@
-import React from "react";
+import React, { useContext } from "react";
+import { UserContext } from "../context/UserContext";
 
-function Half({ image1, image2, image3 }) {
+function Half() {
+  const { pose } = useContext(UserContext)
   return (
+
     <main className="py-10">
       <section className="flex flex-col lg:flex-row">
-        <img className="flex-1 h-[90vh] lg:w-[50%] " src={image1} />
+        <img className="flex-1 h-[90vh] lg:w-[50%] " src={pose[0].image} alt={pose[0].name} />
         <div className="flex-1 h-[90vh] flex flex-col justify-center ">
           <div className="w-[70%] mx-auto">
-            <h1>Find Your Inner Balance</h1>
+            <h1>{pose[0].heading}</h1>
             <p>
-              Discover the transformative power of yoga—where movement meets
-              mindfulness. Whether you're a beginner or a seasoned practitioner,
-              each pose invites you to reconnect with your body, calm your mind,
-              and awaken your spirit. Embrace flexibility, build strength, and
-              cultivate inner peace through guided sessions designed to
-              harmonize your physical and emotional well-being. Step onto the
-              mat and begin your journey toward clarity, vitality, and serenity.
+              {pose[0].para}
             </p>
           </div>
         </div>
@@ -23,40 +20,28 @@ function Half({ image1, image2, image3 }) {
       <section className="flex flex-col-reverse lg:flex-row">
         <div className="flex-1 h-[90vh] flex flex-col justify-center ">
           <div className="w-[70%] mx-auto">
-            <h1>Embrace Your Flexibility</h1>
+            <h1>{pose[1].heading}</h1>
             <p>
-              Unfold your body, quiet your mind, and embrace the serenity
-              within. This pose is more than a stretch—it's a moment of
-              connection between breath and movement, strength and surrender.
-              Whether you're easing into your day or winding down from it, let
-              each motion guide you toward clarity, calm, and confidence. Our
-              yoga practice is designed to help you build flexibility, release
-              tension, and cultivate a deeper awareness of your physical and
-              emotional well-being. Step into this space and allow yourself to
-              grow, one breath at a time.
+              {pose[1].para}
             </p>
           </div>
         </div>
-        <img className="flex-1 h-[90vh] lg:w-[50%]" src={image2} />
+        <img className="flex-1 h-[90vh] lg:w-[50%]" src={pose[1].image} alt={pose[1].name} />
       </section>
       <section className="flex flex-col lg:flex-row">
-        <img className="flex-1 h-[90vh] lg:w-[50%]" src={image3} />
+        <img className="flex-1 h-[90vh] lg:w-[50%]" src={pose[2].image} alt={pose[2].name} />
         <div className="flex-1 h-[90vh] flex flex-col justify-center ">
           <div className="w-[70%] mx-auto">
-            <h1>Embrace the Downward Flow</h1>
+            <h1>{pose[2].heading}</h1>
             <p>
-              Step into the classic Downward Dog and allow yourself to feel both
-              grounded and uplifted. This pose is your personal invitation to
-              stretch out the tension of the day, lengthen your spine, and find
-              a moment of peaceful alignment. Here, on the mat, you'll discover
-              how each breath can help you release the old and welcome the new,
-              creating space for both strength and serenity. Let this simple yet
-              powerful posture guide you toward a balanced and centered self.
+              {pose[2].para}
             </p>
           </div>
         </div>
       </section>
     </main>
+
+
   );
 }
 
