@@ -8,7 +8,7 @@ function Carousal() {
   return (
     <Carousel
       className="font-semibold py-10 px-5"
-      // autoPlay
+      autoPlay
       infiniteLoop
       showThumbs={false}
       showArrows={true}
