@@ -1,7 +1,7 @@
 import jwt from "jsonwebtoken";
-function verfifyToken(req, res, next) {
+
+function verifyToken(req, res, next) {
   let token = req.headers.token;
-  //   console.log("middleware ", token);
   if (!token) {
     return res.json({
       msg: "you are not authorised",
@@ -9,10 +9,21 @@ function verfifyToken(req, res, next) {
     });
   }
 
-  let decode = jwt.verify(token, "codeware");
-  console.log(decode);
-  req.user = decode.user1;
+  try {
+    const decoded = jwt.verify(token, "codeware");
+    req.user = decoded.user1; // attach user info to request
+    return res.json({
+      msg: "You are authorised",
+      success: true,
+    });
+  } catch (err) {
+    return res.json({
+      msg: "Token is invalid",
+      success: false,
+    });
+  }
+
   next();
 }
 
-export default verfifyToken;
+export default verifyToken;

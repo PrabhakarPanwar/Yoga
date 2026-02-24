@@ -15,7 +15,7 @@ import YogaRetreat from "./pages/YogaRetreat";
 function App() {
   const location = useLocation();
   return (
-    <div className="overflow-hidden font-[IMFellEnglishSC]">
+    <div className="overflow-hidden">
       {location.pathname !== "/reglog" && <Navbar />}
 
 

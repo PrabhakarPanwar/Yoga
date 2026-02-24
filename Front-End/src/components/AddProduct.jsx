@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { assets } from '../assets/product'
 
-function    AddProduct() {
+function AddProduct() {
 
     //Product Upload Image
 

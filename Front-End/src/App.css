@@ -1,0 +1,116 @@
+.carousel .control-dots .dot.selected {
+  background: #f59e0b;
+}
+
+nav hr {
+  scale: 0;
+  height: 2px;
+  background-color: rgb(0, 186, 186);
+  transition: 0.5s;
+}
+nav h3:hover {
+  color: aqua;
+}
+
+.active h3 {
+  color: rgb(0, 209, 209);
+}
+.active hr {
+  scale: 1;
+}
+
+h1 {
+  font-size: 30px;
+  line-height: 36px;
+  font-weight: 700;
+  margin: 32px 0 32px 0;
+}
+
+p {
+  font-size: 20px;
+  line-height: 28px;
+  margin: 20px 0 20px 0;
+}
+
+input,
+button,
+a {
+  outline: none;
+}
+
+a {
+  width: fit-content;
+  height: fit-content;
+}
+
+/* NavBar Hamburger */
+
+.hamburgerAnimation {
+  text-align: center;
+  transition: 500ms ease-in-out;
+}
+
+/* Half Component  */
+
+.imageDivider {
+  height: 90vh;
+  display: flex;
+  flex: 1 1 0%;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/*Yoga Retreat Component*/
+
+.retreatButton {
+  background-color: #93c5fd;
+  border-radius: 6px;
+  width: 230px;
+  padding: 12px;
+}
+
+.retreatTabs {
+  background-color: white;
+  margin-top: 3rem;
+  border-width: 1px;
+  padding: 2.5rem;
+}
+
+.TabsList {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  font-size: 18px;
+  line-height: 28px;
+}
+
+/* Footer */
+
+.footerSec {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  flex: 1 1 0%;
+}
+
+footer {
+  background: hsla(192, 81%, 48%, 1);
+
+  background: linear-gradient(
+    90deg,
+    hsla(192, 81%, 48%, 1) 20%,
+    hsla(131, 65%, 73%, 1) 70%
+  );
+
+  background: -moz-linear-gradient(
+    90deg,
+    hsla(192, 81%, 48%, 1) 20%,
+    hsla(131, 65%, 73%, 1) 70%
+  );
+
+  background: -webkit-linear-gradient(
+    90deg,
+    hsla(192, 81%, 48%, 1) 20%,
+    hsla(131, 65%, 73%, 1) 70%
+  );
+}

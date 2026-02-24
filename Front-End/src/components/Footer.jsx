@@ -8,13 +8,13 @@ function Footer() {
     <footer className="p-5">
       <p className="text-center">
         At Shubham’s Yoga, we believe that yoga is not just a practice, but a
-        journey back to oneself.<br></br> Join our community to find balance,
+        journey back to oneself.<br /> Join our community to find balance,
         inner peace, and a healthier lifestyle through mindful movement and
         breath.
       </p>
       <Newsletter />
       <div className="flex sm:w-[60%] mx-auto items-center h-[200px]">
-        <section className="flex-1 flex flex-col gap-5 text-bold ">
+        <section className="footerSec text-bold ">
           <div className="flex gap-2 sm:gap-3">
             <a href="/">
               <FaInstagram />
@@ -33,13 +33,13 @@ function Footer() {
 
 
         </section>
-        <section className="flex-1 flex flex-col gap-3">
+        <section className="footerSec">
           <a href="/">Lorem, ipsum.</a>
           <a href="/">Lorem, ipsum.</a>
           <a href="/">Lorem, ipsum.</a>
           <a href="/">Lorem, ipsum.</a>
         </section>
-        <section className="flex-1 flex flex-col gap-3 ">
+        <section className="footerSec ">
           <a href="/">Lorem, ipsum.</a>
           <a href="/">Lorem, ipsum.</a>
           <a href="/">Lorem, ipsum.</a>

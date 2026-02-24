@@ -1,41 +1,43 @@
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-
-let user = [];
+import yogaUser from "../models/yogaSchema.js";
 
 let token;
 
 export const register = async (req, res) => {
-  const { email, pwd } = req.body;
+  const { email, name, pwd } = req.body;
   // console.log("email and password ", email, pwd);
+  let user = await yogaUser.find();
+  //Storing dataBase in user variable
 
   let user1 = user.find((i) => i.email == email);
+  //checking if dataBase contain user email
+
   if (user1) {
     return res.json({
-      msg: "user already there",
+      msg: "User Already Registered",
       success: true,
     });
   }
-
   let hash = await bcrypt.hash(pwd, 10);
-  // console.log(hash);
-  if (hash) {
-    user.push({
-      email,
-      pwd: hash,
-      success: true,
-    });
-  }
+  await yogaUser.create({ pwd: hash, name, email });
+  //Storing hashpassword in pwd
+
   res.json({
-    user1,
+    msg: "Successfully Registered",
+    success: true,
   });
+  //hashing
 };
 
 export const login = async (req, res) => {
   const { email, pwd } = req.body;
 
+  let user = await yogaUser.find();
+  //Storing dataBase in user variable
+
   let user1 = user.find((i) => i.email == email);
-  // console.log(user1);
+  //checking if dataBase contain user email
 
   if (!user1) {
     return res.json({
@@ -45,6 +47,8 @@ export const login = async (req, res) => {
   }
 
   let isMatch = await bcrypt.compare(pwd, user1.pwd);
+  //Using hashpassword(pwd:hash) stored in database
+
   if (!isMatch) {
     return res.json({
       success: false,
@@ -56,14 +60,6 @@ export const login = async (req, res) => {
 
   res.json({
     success: true,
-    user1,
     token,
-  });
-};
-
-export const dashboard = (req, res) => {
-  res.json({
-    msg: "authenticated",
-    success: true,
   });
 };

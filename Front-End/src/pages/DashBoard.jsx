@@ -5,11 +5,21 @@ import { toast } from "react-toastify";
 
 function DashBoard() {
     async function FetchData() {
-        let res = await axios.get('http://localhost:8000/admin/dashboard', { headers: { token: localStorage.getItem("token") } })
+        let token = window.localStorage.getItem("token")
+        let res = await axios.get('http://localhost:8000/admin/dashboard', {
+            headers: { token }
+        })
         if (!res.data.success) {
-            window.location.href = "/reglog"
+            setTimeout(() => {
+                window.location.href = "/reglog"
+            }, 2000)
             toast.error(res.data.msg)
+
         }
+        if (res.data.success) {
+            toast.success(res.data.msg)
+        }
+
     }
     useEffect(() => {
         FetchData()

@@ -15,56 +15,42 @@ function Navbar() {
   return (
     <nav>
       <main className="flex justify-between items-center p-3 mx-auto ">
-        {open ? (
-          // True Part
-          <section className="md:hidden">
-            <img
-              className="cursor-pointer ml-[85%]"
-              onClick={() => setOpen(!open)}
-              src={assets.cancel}
-              alt=""
-            />
-            <div className="w-[100vw] text-center ">
-              <div className="gap-4 w-min mx-auto">
-                <NavLink to="/">
-                  <h3>Home</h3>
-                  <hr />
-                </NavLink>
-                <NavLink to="/teacher">
-                  <h3>Teachers</h3> <hr />
-                </NavLink>
-                <NavLink to="/YogaRetreat"><h3>YogaRetreat</h3></NavLink>
-                <NavLink to="/magazine">
-                  <h3>Magazine</h3> <hr />
-                </NavLink>
-                <NavLink to="/academy">
-                  <h3>Academy</h3> <hr />
-                </NavLink>
-                {logOut ? (
-                  <NavLink onClick={() => setlogOut(!logOut)} to="/reglog">
-                    <h3>Login</h3> <hr />
-                  </NavLink>) :
-                  (<NavLink onClick={logout}>
-                    <h3>Logout</h3> <hr />
-                  </NavLink>)
-                }
-              </div>
+
+
+        <section className="md:hidden overflow-hidden mx-auto">
+          <img
+            className="cursor-pointer ms-[80vw] active:scale-[1.1]"
+            onClick={() => setOpen(!open)}
+            src={open ? `${assets.cancel}` : `${assets.menu}`}
+            alt=""
+          />
+          <div className={open ? "h-[150px] hamburgerAnimation" : "w-full hamburgerAnimation h-0 overflow-hidden "}>
+            <div className="gap-4 w-min mx-auto">
+              <NavLink to="/">
+                <h3>Home</h3>
+                <hr />
+              </NavLink>
+              <NavLink to="/teacher">
+                <h3>Teachers</h3> <hr />
+              </NavLink>
+              <NavLink to="/YogaRetreat"><h3>YogaRetreat</h3><hr /></NavLink>
+              <NavLink to="/magazine">
+                <h3>Magazine</h3> <hr />
+              </NavLink>
+              <NavLink to="/academy">
+                <h3>Academy</h3> <hr />
+              </NavLink>
+              {logOut ? (
+                <NavLink onClick={() => setlogOut(!logOut)} to="/reglog">
+                  <h3>Login</h3> <hr />
+                </NavLink>) :
+                (<NavLink onClick={logout}>
+                  <h3>Logout</h3> <hr />
+                </NavLink>)
+              }
             </div>
-          </section>
-        ) : (
-          <>
-            {/* False Part */}
-            <div>
-              <h3>Logo</h3>
-            </div>
-            <img
-              className="cursor-pointer md:hidden"
-              onClick={() => setOpen(!open)}
-              src={assets.menu}
-              alt=""
-            />
-          </>
-        )}
+          </div>
+        </section>
         {/* Hamburger End */}
 
         <div className="md:flex text-xl gap-4 hidden">
@@ -75,7 +61,7 @@ function Navbar() {
           <NavLink to="/teacher">
             <h3>Teachers</h3> <hr />
           </NavLink>
-          <NavLink to="/YogaRetreat">YogaRetreat</NavLink>
+          <NavLink to="/YogaRetreat"><h3>YogaRetreat</h3><hr /></NavLink>
           <NavLink to="/magazine">
             <h3>Magazine</h3> <hr />
           </NavLink>
