@@ -16,8 +16,8 @@ function YogaRetreat() {
           <div className='z-0 relative border-xl-white'>
             <img className='h-[630px] w-[100%]' src={personSitting} alt='asthanga' />
           </div>
-          <div className='flex flex-col shadow-md z-10 absolute bottom-[90px] start-[120px] border-xl-white text-white'>
-            <p className='text-2xl'>SHUBHYOGSHALA  YOAG VACATION</p>
+          <div className='flex flex-col shadow-md p-2 z-10 absolute bottom-[90px] start-[120px]   shadow-black border-s-teal-400 border-cyan-900 text-white'>
+            <p className='text-2xl '>SHUBHYOGSHALA  YOAG VACATION</p>
             <p className='shadow-xl'>Relax In Nature | Reacharge In Yoga | Grow In Dicipline</p>
           </div>
         </div>
@@ -32,9 +32,9 @@ function YogaRetreat() {
             <p className='hidden lg:flex'>Based on the Five Points of Yoga of Swami Vishnudevananda, the Yoga Vacation promotes radiant health and inner peace. Whether you are a beginner or a seasoned practitioner, you will increase your vitality, positivity, and ease of being as a result of daily yoga practice, a healthy vegetarian diet, silent meditation sessions, and uplifting teachings. You will experience some of the devotional practices, traditional to India, that are an integral part of your stay here. Your mind will expand and your heart will open.</p>
           </div>
 
-          <div className='lg:w-[35%] bg-blue-500 relative flex justify-center items-center'>
-            <div className='sticky top-[200px] flex flex-col w-full max-w-[350px] bg-red-300 h-[260px] items-center justify-center rounded-md shadow-xl p-4 '>
-              <ul className="space-y-2 text-center">
+          <div className='lg:w-[35%] relative flex justify-center items-center'>
+            <div className='sticky top-[200px] flex flex-col w-full max-w-[350px]   h-[300px] items-center justify-center rounded-md shadow-lg p-4   bg-slate-200'>
+              <ul className="space-y-2 text-center flex flex-col list-disc">
                 <li><Link to="" className="hover:underline">What to Expect</Link></li>
                 <li><Link to="" className="hover:underline">Daily Schedule</Link></li>
                 <li><Link to="" className="hover:underline">Accommodations</Link></li>
@@ -48,7 +48,7 @@ function YogaRetreat() {
 
         {/* about part */}
 
-        {/* outside the div*/}
+        {/* outside the div switching part */}
         <div className='flex flex-col lg:flex-row gap-[30px] py-10'>
           <div className='flex flex-col md:flex-row justify-center items-center lg:block'>
             <div className='flex flex-wrap lg:flex-nowrap gap-4'>
@@ -59,61 +59,60 @@ function YogaRetreat() {
             </div>
             {tab == "exp" ? <div className=' retreatTabs'>
               <list className='TabsList' >
-                <li className=''>A regular yoga and meditation routine<br />
-                  Simple practices you can continue at home without special equipment or conditions.</li>
+                <li className=''>Holistic Sanctuary<br />
+                 Escape the digital noise and reconnect with your inner rhythm through daily guided asana, meditation, and restorative silence in a handpicked natural setting.</li>
                 <li className=''>
-                  Better understanding of classical yoga<br />
-                  Clear guidance on postures, breathing, relaxation, and the principles behind them.
-                  Tools to manage stress
+                  Deepened Physical Mastery<br />
+                 Elevate your practice with expert-led workshops that go beyond the studio, focusing on alignment, energy flow, and the subtle art of breathwork.
                 </li>
                 <li className=''>
-                  Tools to manage stress
+                  Curated Soul Nourishment
                   <br />
-                  Practical techniques to calm the breath, relax the body, and steady the mind.
+               Enjoy a balance of structured movement and free exploration, complemented by organic, mindful cuisine designed to energize and heal from the inside out.
                 </li>
-                <li className=''> Clearer daily habits
+                <li className=''>Lasting Mental Clarity
                   <br />
-                  Experience of a structured routine that can be adapted to everyday life.</li>
+                  Return home with more than just memories—gain a practical "inner toolkit" of mindfulness techniques to maintain your peace long after the retreat ends..</li>
               </list>
             </div> : ""}
             {tab == "whyJoin" ? <div className=' retreatTabs'>
               <list className='TabsList' >
-                <li className=''>A regular yoga and meditation routine
+                <li className=''>Expert-Led Transformation
                   <br />
-                  Simple practices you can continue at home without special equipment or conditions.</li>
+                  Join a curriculum designed by a Master of Yoga Science, ensuring every session is technically precise, safe, and tailored to your body's unique needs.</li>
                 <li className=''>
-                  Better understanding of classical yoga<br />
-                  Clear guidance on postures, breathing, relaxation, and the principles behind them.
-                  Tools to manage stress
+                 Deep Mental Detox<br />
+                  Step away from daily burnout to reset your nervous system using advanced pranayama and meditation techniques proven to restore long-term clarity.
                 </li>
                 <li className=''>
-                  Tools to manage stress
-                  <br />
-                  Practical techniques to calm the breath, relax the body, and steady the mind.
+                   Authentic Yogic Wisdom                  <br />
+                  Move beyond physical exercise; join us to explore the profound philosophy and history of yoga taught by a scholar with years of academic and practical mastery.
                 </li>
-                <li className=''> Clearer daily habits
+                <li className=''> A Sustainable Practice
                   <br />
-                  Experience of a structured routine that can be adapted to everyday life.</li>
+                  Gain more than just a vacation—walk away with a personalized wellness blueprint and the confidence to maintain a high-level practice at home..</li>
               </list>
             </div> : ""}
             {tab == "whoFor" ? <div className=' retreatTabs'>
               <list className='TabsList' >
-                <li className=''>A regular yoga and meditation routine
+                <li className=''>The Mindful Youth
                   <br />
-                  Simple practices you can continue at home without special equipment or conditions.</li>
+                  Perfect for teenagers and students looking to manage academic stress, improve focus, and build a healthy body image through mindful movement.</li>
                 <li className=''>
-                  Better understanding of classical yoga<br />
-                  Clear guidance on postures, breathing, relaxation, and the principles behind them.
-                  Tools to manage stress
+                  The Driven Professional<br />
+                  Designed for those facing high-pressure careers who need a digital detox and science-backed tools to reset their nervous system and prevent burnout
                 </li>
                 <li className=''>
-                  Tools to manage stress
+                  The Lifelong Learner
                   <br />
-                  Practical techniques to calm the breath, relax the body, and steady the mind.
+                  Ideal for practitioners of all levels—from beginners to advanced—who want to go beyond the basics and study yoga under a Master’s level expert.
                 </li>
-                <li className=''> Clearer daily habits
+                <li className=''>The Active Senior
                   <br />
-                  Experience of a structured routine that can be adapted to everyday life.</li>
+                  A welcoming space for older adults seeking to improve mobility, bone density, and balance with safe, anatomically-informed guidance.</li>
+                <li className=''>The Soul Seeker
+                  <br />
+                 For anyone, regardless of age, who feels a pull toward deep relaxation and wants to explore the spiritual and philosophical roots of yoga in a peaceful setting.</li>
               </list>
             </div> : ""}
             {tab == "takeAway" ? <div className=' retreatTabs'>
