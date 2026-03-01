@@ -58,7 +58,8 @@ function YogaRetreat() {
               <button onClick={() => setTab("takeAway")} className=' retreatButton'>TAKE AWAY</button>
             </div>
             {tab == "exp" ? <div className=' retreatTabs'>
-              <list className='TabsList' >
+              <list className='
+              ' >
                 <li className=''>Holistic Sanctuary<br />
                  Escape the digital noise and reconnect with your inner rhythm through daily guided asana, meditation, and restorative silence in a handpicked natural setting.</li>
                 <li className=''>
