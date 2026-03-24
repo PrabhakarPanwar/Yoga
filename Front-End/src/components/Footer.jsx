@@ -13,9 +13,9 @@ function Footer() {
         breath.
       </p>
       <Newsletter />
-      <div className="flex sm:w-[60%] mx-auto items-center h-[200px]">
+      <div className="flex items-center sm:w-[60%] pt-3 mx-auto ">
         <section className="footerSec text-bold ">
-          <div className="flex gap-2 sm:gap-3">
+          <div className="flex  gap-2 sm:gap-3">
             <a href="/">
               <FaInstagram />
             </a>

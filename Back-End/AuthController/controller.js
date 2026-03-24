@@ -6,11 +6,11 @@ let token;
 
 export const register = async (req, res) => {
   const { email, name, pwd } = req.body;
-  // console.log("email and password ", email, pwd);
-  let user = await yogaUser.find();
+  
+  // let user = await yogaUser.find();
   //Storing dataBase in user variable
 
-  let user1 = user.find((i) => i.email == email);
+  let user1 = yogaUser.findOne({ email });
   //checking if dataBase contain user email
 
   if (user1) {
@@ -33,10 +33,10 @@ export const register = async (req, res) => {
 export const login = async (req, res) => {
   const { email, pwd } = req.body;
 
-  let user = await yogaUser.find();
+  // let user = await yogaUser.find();
   //Storing dataBase in user variable
 
-  let user1 = user.find((i) => i.email == email);
+  let user1 = yogaUser.findOne({ email });
   //checking if dataBase contain user email
 
   if (!user1) {
@@ -56,10 +56,11 @@ export const login = async (req, res) => {
     });
   }
 
-  token = jwt.sign({ user1 }, "codeware");
+  token = jwt.sign({ user1 }, "codeware", { expiresIn: "10m" });
 
   res.json({
     success: true,
     token,
+    msg: "Successfully Login",
   });
 };

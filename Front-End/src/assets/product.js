@@ -3,6 +3,10 @@ import cancel from "../assets/cancel.jpg";
 import menu from "../assets/menu.jpg";
 import logPose from "../assets/logPose.jpg";
 import uploadImg from "../assets/images.png";
+import profile from "./e-commerce_files/profile_icon.png";
+import cart from "./e-commerce_files/cart_icon.png";
+import search from "./e-commerce_files/search_icon.png";
+import logo from "./e-commerce_files/logo.png";
 
 // For card component
 
@@ -13,17 +17,17 @@ import book4 from "../assets/book4.jpg";
 import book5 from "../assets/book5.jpg";
 import book6 from "../assets/book6.jpg";
 
-
-
-
 export const assets = {
   heroAbstract,
   cancel,
   menu,
   logPose,
-  uploadImg
+  uploadImg,
+  profile,
+  cart,
+  search,
+  logo,
 };
-
 
 export const pic = [
   {
@@ -51,4 +55,3 @@ export const pic = [
     image: book6,
   },
 ];
-
