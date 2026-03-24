@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import personSitting from "../assets/personSitting.jpg"
 import womenYoga from "../assets/womenYoga.jpg"
 import womenYoga2 from "../assets/womenYoga2.jpg"
+import { shubhPics } from '../assets/product'
 
 
 function YogaRetreat() {
@@ -14,7 +15,7 @@ function YogaRetreat() {
         {/* image part */}
         <div className='flex flex-col w-[100%] h-[650px] my-10 relative border-xl-white  '>
           <div className='z-0 relative border-xl-white'>
-            <img className='h-[630px] w-[100%]' src={personSitting} alt='asthanga' />
+            <img className='h-[630px] w-[100%]' src={shubhPics[12].image} alt='asthanga' />
           </div>
           <div className='flex flex-col shadow-md p-2 z-10 absolute bottom-[90px] start-[120px]   shadow-black border-s-teal-400 border-cyan-900 text-white'>
             <p className='text-2xl '>SHUBHYOGSHALA  YOAG VACATION</p>
