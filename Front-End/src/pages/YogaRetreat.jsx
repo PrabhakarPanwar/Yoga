@@ -4,18 +4,23 @@ import { Link } from 'react-router-dom'
 import personSitting from "../assets/personSitting.jpg"
 import womenYoga from "../assets/womenYoga.jpg"
 import womenYoga2 from "../assets/womenYoga2.jpg"
-import { shubhPics } from '../assets/product'
+import { shubhPic } from '../assets/product.js'
 
 
 function YogaRetreat() {
   const [tab, setTab] = useState("exp")
   return (
     <div className='w-[100%] bg-[#f5f3ef] '>
+      {shubhPic.map((i) => (
+        <div>
+          <img className='h-[250px] w-[250px]' src={i} alt="" />
+        </div>
+      ))}
       <div className='w-[92%] mx-auto  p-5 '>
         {/* image part */}
         <div className='flex flex-col w-[100%] h-[650px] my-10 relative border-xl-white  '>
           <div className='z-0 relative border-xl-white'>
-            <img className='h-[630px] w-[100%]' src={shubhPics[12].image} alt='asthanga' />
+            <img className='h-[630px] w-[100%]' src={shubhPic} alt='asthanga' />
           </div>
           <div className='flex flex-col shadow-md p-2 z-10 absolute bottom-[90px] start-[120px]   shadow-black border-s-teal-400 border-cyan-900 text-white'>
             <p className='text-2xl '>SHUBHYOGSHALA  YOAG VACATION</p>
@@ -62,15 +67,15 @@ function YogaRetreat() {
               <list className='
               ' >
                 <li className=''>Holistic Sanctuary<br />
-                 Escape the digital noise and reconnect with your inner rhythm through daily guided asana, meditation, and restorative silence in a handpicked natural setting.</li>
+                  Escape the digital noise and reconnect with your inner rhythm through daily guided asana, meditation, and restorative silence in a handpicked natural setting.</li>
                 <li className=''>
                   Deepened Physical Mastery<br />
-                 Elevate your practice with expert-led workshops that go beyond the studio, focusing on alignment, energy flow, and the subtle art of breathwork.
+                  Elevate your practice with expert-led workshops that go beyond the studio, focusing on alignment, energy flow, and the subtle art of breathwork.
                 </li>
                 <li className=''>
                   Curated Soul Nourishment
                   <br />
-               Enjoy a balance of structured movement and free exploration, complemented by organic, mindful cuisine designed to energize and heal from the inside out.
+                  Enjoy a balance of structured movement and free exploration, complemented by organic, mindful cuisine designed to energize and heal from the inside out.
                 </li>
                 <li className=''>Lasting Mental Clarity
                   <br />
@@ -83,11 +88,11 @@ function YogaRetreat() {
                   <br />
                   Join a curriculum designed by a Master of Yoga Science, ensuring every session is technically precise, safe, and tailored to your body's unique needs.</li>
                 <li className=''>
-                 Deep Mental Detox<br />
+                  Deep Mental Detox<br />
                   Step away from daily burnout to reset your nervous system using advanced pranayama and meditation techniques proven to restore long-term clarity.
                 </li>
                 <li className=''>
-                   Authentic Yogic Wisdom                  <br />
+                  Authentic Yogic Wisdom                  <br />
                   Move beyond physical exercise; join us to explore the profound philosophy and history of yoga taught by a scholar with years of academic and practical mastery.
                 </li>
                 <li className=''> A Sustainable Practice
@@ -114,7 +119,7 @@ function YogaRetreat() {
                   A welcoming space for older adults seeking to improve mobility, bone density, and balance with safe, anatomically-informed guidance.</li>
                 <li className=''>The Soul Seeker
                   <br />
-                 For anyone, regardless of age, who feels a pull toward deep relaxation and wants to explore the spiritual and philosophical roots of yoga in a peaceful setting.</li>
+                  For anyone, regardless of age, who feels a pull toward deep relaxation and wants to explore the spiritual and philosophical roots of yoga in a peaceful setting.</li>
               </list>
             </div> : ""}
             {tab == "takeAway" ? <div className=' retreatTabs'>
