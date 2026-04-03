@@ -4,19 +4,20 @@ import { Link } from 'react-router-dom'
 import personSitting from "../assets/personSitting.jpg"
 import womenYoga from "../assets/womenYoga.jpg"
 import womenYoga2 from "../assets/womenYoga2.jpg"
+import { shubhPic } from '../assets/product.js'
 
 
 function YogaRetreat() {
   const [tab, setTab] = useState("exp")
   return (
     <div className='w-[100%] bg-[#f5f3ef] '>
-      <div className='w-[92%] mx-auto  p-5 '>
+      <div className='w-[92%] mx-auto  p-5 mt-5 '>
         {/* image part */}
-        <div className='flex flex-col w-[100%] h-[650px] my-10 relative border-xl-white  '>
+        <div className='flex flex-col w-[100%] h-[650px] my-10 relative border-xl-white '>
           <div className='z-0 relative border-xl-white'>
-            {/* <img className='h-[630px] w-[100%]' src={cmy  } alt='asthanga' /> */}
+            <img className='h-[630px] w-[100%]' src={shubhPic[1]} alt='asthanga' />
           </div>
-          <div className='flex flex-col shadow-md p-2 z-10 absolute bottom-[90px] start-[120px]   shadow-black border-s-teal-400 border-cyan-900 text-white'>
+          <div className='flex flex-col shadow-md p-2 z-10 absolute top-[40px] end-[40px]   shadow-black border-s-teal-400 border-cyan-900 text-black font-semibold'>
             <p className='text-2xl '>SHUBHYOGSHALA  YOAG VACATION</p>
             <p className='shadow-xl'>Relax In Nature | Reacharge In Yoga | Grow In Dicipline</p>
           </div>
@@ -36,10 +37,10 @@ function YogaRetreat() {
             <div className='sticky top-[200px] flex flex-col w-full max-w-[350px]   h-[300px] items-center justify-center rounded-md shadow-lg p-4   bg-slate-200'>
               <ul className="space-y-2 text-center flex flex-col list-disc">
                 <li><a href="#expectation" className="hover:underline">What to Expect</a></li>
-                <li><a href="" className="hover:underline">Daily Schedule</a></li>
-                <li><a href="" className="hover:underline">Accommodations</a></li>
-                <li><a href="" className="hover:underline">How to Get Here</a></li>
-                <li><a href="" className="hover:underline">Pricing</a></li>
+                <li><a href="#Schedule" className="hover:underline">Daily Schedule</a></li>
+                <li><a href="#Accommodations" className="hover:underline">Accommodations</a></li>
+                {/* <li><a href="#Pricing" className="hover:underline">How to Get Here</a></li> */}
+                <li><a href="#Pricing" className="hover:underline">Pricing</a></li>
               </ul>
             </div>
 
@@ -61,15 +62,15 @@ function YogaRetreat() {
               <list className='
               ' >
                 <li className=''>Holistic Sanctuary<br />
-                 Escape the digital noise and reconnect with your inner rhythm through daily guided asana, meditation, and restorative silence in a handpicked natural setting.</li>
+                  Escape the digital noise and reconnect with your inner rhythm through daily guided asana, meditation, and restorative silence in a handpicked natural setting.</li>
                 <li className=''>
                   Deepened Physical Mastery<br />
-                 Elevate your practice with expert-led workshops that go beyond the studio, focusing on alignment, energy flow, and the subtle art of breathwork.
+                  Elevate your practice with expert-led workshops that go beyond the studio, focusing on alignment, energy flow, and the subtle art of breathwork.
                 </li>
                 <li className=''>
                   Curated Soul Nourishment
                   <br />
-               Enjoy a balance of structured movement and free exploration, complemented by organic, mindful cuisine designed to energize and heal from the inside out.
+                  Enjoy a balance of structured movement and free exploration, complemented by organic, mindful cuisine designed to energize and heal from the inside out.
                 </li>
                 <li className=''>Lasting Mental Clarity
                   <br />
@@ -82,11 +83,11 @@ function YogaRetreat() {
                   <br />
                   Join a curriculum designed by a Master of Yoga Science, ensuring every session is technically precise, safe, and tailored to your body's unique needs.</li>
                 <li className=''>
-                 Deep Mental Detox<br />
+                  Deep Mental Detox<br />
                   Step away from daily burnout to reset your nervous system using advanced pranayama and meditation techniques proven to restore long-term clarity.
                 </li>
                 <li className=''>
-                   Authentic Yogic Wisdom                  <br />
+                  Authentic Yogic Wisdom                  <br />
                   Move beyond physical exercise; join us to explore the profound philosophy and history of yoga taught by a scholar with years of academic and practical mastery.
                 </li>
                 <li className=''> A Sustainable Practice
@@ -113,7 +114,7 @@ function YogaRetreat() {
                   A welcoming space for older adults seeking to improve mobility, bone density, and balance with safe, anatomically-informed guidance.</li>
                 <li className=''>The Soul Seeker
                   <br />
-                 For anyone, regardless of age, who feels a pull toward deep relaxation and wants to explore the spiritual and philosophical roots of yoga in a peaceful setting.</li>
+                  For anyone, regardless of age, who feels a pull toward deep relaxation and wants to explore the spiritual and philosophical roots of yoga in a peaceful setting.</li>
               </list>
             </div> : ""}
             {tab == "takeAway" ? <div className=' retreatTabs'>
@@ -144,11 +145,45 @@ function YogaRetreat() {
 
 
                   {/* redirection part */}
-        <div className='redirection ' id = 'expectation'>
-          <p>
-            hello there i am using this box just to confirm my logic is working or not
-          </p>
-        </div>
+        {/* redirection part - Detailed FAQ */}
+{/* redirection part - Detailed FAQ */}
+<div className='bg-white shadow-xl rounded-2xl p-8 my-16 border-l-8 border-teal-500' id='expectation'>
+  <div className='grid grid-cols-1 md:grid-cols-2 gap-8'>
+    
+    {/* What to Expect */}
+    <div className='flex flex-col gap-1' id='expectation'>
+      <h4 className='font-bold text-teal-800 text-xs uppercase tracking-widest'>What to Expect</h4>
+      <p className='text-gray-600 text-sm leading-relaxed'>
+        A balanced Sattvic lifestyle involving early morning meditation, daily asana, and immersive nature silence to reset your nervous system.
+      </p>
+    </div>
+
+    {/* Daily Schedule - FIXED ID */}
+    <div className='flex flex-col gap-1' id='Schedule'>
+      <h4 className='font-bold text-teal-800 text-xs uppercase tracking-widest'>Daily Schedule</h4>
+      <p className='text-gray-600 text-sm leading-relaxed'>
+        Guided sunrise practice at 6:00 AM, followed by organic brunch, philosophy talks, and restorative evening sessions before 9:00 PM lights-out.
+      </p>
+    </div>
+
+    {/* Accommodations - FIXED ID */}
+    <div className='flex flex-col gap-1' id='Accommodations'>
+      <h4 className='font-bold text-teal-800 text-xs uppercase tracking-widest'>Accommodations</h4>
+      <p className='text-gray-600 text-sm leading-relaxed'>
+        Simple, clean, and eco-friendly shared or private rooms designed for deep rest, located within the peaceful sounds of the Rishikesh hills.
+      </p>
+    </div>
+
+    {/* Pricing - FIXED ID AND TYPO */}
+    <div className='flex flex-col gap-1' id='Pricing'>
+      <h4 className='font-bold text-teal-800 text-xs uppercase tracking-widest'>Pricing</h4>
+      <p className='text-gray-600 text-sm leading-relaxed'>
+        Transparent all-inclusive rates covering your stay, twice-daily organic meals, study materials, and expert-led tuition for the 14-day cycle.
+      </p>
+    </div>
+
+  </div>
+</div>
         {/* date and price part */}
         <div className='mt-[30px] flex flex-col bg-white p-5'>
           <div className='flex flex-col items-center justify-center gap-[20px]'>

@@ -1,6 +1,5 @@
 import React, { createContext } from "react";
-import { assets, pic } from "../assets/product";
-import { courses, pose, sevenChakra } from "../assets/text";
+import { assets, pic, pose, sevenChakra, courses } from "../assets/product";
 
 export const UserContext = createContext();
 function UserProvider({ children }) {

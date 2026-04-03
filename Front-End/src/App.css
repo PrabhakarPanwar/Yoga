@@ -48,6 +48,14 @@ a {
 .hamburgerAnimation {
   text-align: center;
   transition: 500ms ease-in-out;
+  padding: 10px;
+  border-radius: 5px;
+  overflow: hidden;
+  background-color: black;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
 }
 
 /* Half Component  */

@@ -13,42 +13,41 @@ function Navbar() {
   }
 
   return (
-    <nav>
-      <main className="flex justify-between items-center p-3 mx-auto ">
-
-
-        <section className="md:hidden overflow-hidden mx-auto">
+    <nav >
+      <main className="flex justify-between items-center p-2 ">
+        <NavLink to="/">
+          <h3>Logo</h3>
+        </NavLink>
+        <section className="md:hidden flex flex-col items-end z-10 absolute top-2 right-2">
           <img
-            className="cursor-pointer ms-[80vw] active:scale-[1.1]"
+            className="h-7 w-7 transition-transform cursor-pointer active:scale-[1.1] invert"
             onClick={() => setOpen(!open)}
             src={open ? `${assets.cancel}` : `${assets.menu}`}
             alt=""
           />
-          <div className={open ? "h-[150px] hamburgerAnimation" : "w-full hamburgerAnimation h-0 overflow-hidden "}>
-            <div className="gap-4 w-min mx-auto">
-              <NavLink to="/">
-                <h3>Home</h3>
-                <hr />
-              </NavLink>
-              <NavLink to="/teacher">
-                <h3>Teachers</h3> <hr />
-              </NavLink>
-              <NavLink to="/YogaRetreat"><h3>YogaRetreat</h3><hr /></NavLink>
-              <NavLink to="/magazine">
-                <h3>Magazine</h3> <hr />
-              </NavLink>
-              <NavLink to="/academy">
-                <h3>Academy</h3> <hr />
-              </NavLink>
-              {logOut ? (
-                <NavLink onClick={() => setlogOut(!logOut)} to="/reglog">
-                  <h3>Login</h3> <hr />
-                </NavLink>) :
-                (<NavLink onClick={logout}>
-                  <h3>Logout</h3> <hr />
-                </NavLink>)
-              }
-            </div>
+          <div className={open ? "h-52 hamburgerAnimation" : " hamburgerAnimation h-0 invisible"}>
+            <NavLink to="/">
+              <h3>Home</h3>
+              <hr />
+            </NavLink>
+            <NavLink to="/teacher">
+              <h3>Teachers</h3> <hr />
+            </NavLink>
+            <NavLink to="/YogaRetreat"><h3>YogaRetreat</h3><hr /></NavLink>
+            <NavLink to="/magazine">
+              <h3>Magazine</h3> <hr />
+            </NavLink>
+            <NavLink to="/academy">
+              <h3>Academy</h3> <hr />
+            </NavLink>
+            {logOut ? (
+              <NavLink onClick={() => setlogOut(!logOut)} to="/reglog">
+                <h3>Login</h3> <hr />
+              </NavLink>) :
+              (<NavLink onClick={logout}>
+                <h3>Logout</h3> <hr />
+              </NavLink>)
+            }
           </div>
         </section>
         {/* Hamburger End */}
