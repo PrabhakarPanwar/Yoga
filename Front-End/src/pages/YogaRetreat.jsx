@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom'
 import personSitting from "../assets/personSitting.jpg"
 import womenYoga from "../assets/womenYoga.jpg"
 import womenYoga2 from "../assets/womenYoga2.jpg"
-import { shubhPics } from '../assets/product'
 
 
 function YogaRetreat() {
@@ -15,7 +14,7 @@ function YogaRetreat() {
         {/* image part */}
         <div className='flex flex-col w-[100%] h-[650px] my-10 relative border-xl-white  '>
           <div className='z-0 relative border-xl-white'>
-            <img className='h-[630px] w-[100%]' src={shubhPics[12].image} alt='asthanga' />
+            {/* <img className='h-[630px] w-[100%]' src={cmy  } alt='asthanga' /> */}
           </div>
           <div className='flex flex-col shadow-md p-2 z-10 absolute bottom-[90px] start-[120px]   shadow-black border-s-teal-400 border-cyan-900 text-white'>
             <p className='text-2xl '>SHUBHYOGSHALA  YOAG VACATION</p>
@@ -36,11 +35,11 @@ function YogaRetreat() {
           <div className='lg:w-[35%] relative flex justify-center items-center'>
             <div className='sticky top-[200px] flex flex-col w-full max-w-[350px]   h-[300px] items-center justify-center rounded-md shadow-lg p-4   bg-slate-200'>
               <ul className="space-y-2 text-center flex flex-col list-disc">
-                <li><Link to="" className="hover:underline">What to Expect</Link></li>
-                <li><Link to="" className="hover:underline">Daily Schedule</Link></li>
-                <li><Link to="" className="hover:underline">Accommodations</Link></li>
-                <li><Link to="" className="hover:underline">How to Get Here</Link></li>
-                <li><Link to="" className="hover:underline">Pricing</Link></li>
+                <li><a href="#expectation" className="hover:underline">What to Expect</a></li>
+                <li><a href="" className="hover:underline">Daily Schedule</a></li>
+                <li><a href="" className="hover:underline">Accommodations</a></li>
+                <li><a href="" className="hover:underline">How to Get Here</a></li>
+                <li><a href="" className="hover:underline">Pricing</a></li>
               </ul>
             </div>
 
@@ -141,6 +140,14 @@ function YogaRetreat() {
           <div className='mx-auto'>
             <img className='' src={womenYoga} alt='Yoga' />
           </div>
+        </div>
+
+
+                  {/* redirection part */}
+        <div className='redirection ' id = 'expectation'>
+          <p>
+            hello there i am using this box just to confirm my logic is working or not
+          </p>
         </div>
         {/* date and price part */}
         <div className='mt-[30px] flex flex-col bg-white p-5'>
