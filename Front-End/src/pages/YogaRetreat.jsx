@@ -15,7 +15,7 @@ function YogaRetreat() {
         {/* image part */}
         <div className='flex flex-col w-[100%] h-[650px] my-10 relative border-xl-white '>
           <div className='z-0 relative border-xl-white'>
-            <img className='h-[630px] w-[100%]' src={shubhPic[1]} alt='asthanga' />
+            <img className='h-[630px] w-[100%]' src={shubhPic[6]} alt='asthanga' />
           </div>
           <div className='flex flex-col shadow-md p-2 z-10 absolute top-[40px] end-[40px]   shadow-black border-s-teal-400 border-cyan-900 text-black font-semibold'>
             <p className='text-2xl '>SHUBHYOGSHALA  YOAG VACATION</p>

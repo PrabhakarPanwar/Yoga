@@ -59,7 +59,6 @@ import shubh12 from "../assets/shubh12.jpeg";
 import shubh13 from "../assets/shubh13.jpeg";
 import shubh14 from "../assets/shubh14.jpeg";
 import shubh15 from "../assets/shubh15.jpeg";
-
 export const assets = {
   heroAbstract,
   cancel,
@@ -203,4 +202,5 @@ export const shubhPic = [
   shubh13,
   shubh14,
   shubh15,
+ 
 ];
