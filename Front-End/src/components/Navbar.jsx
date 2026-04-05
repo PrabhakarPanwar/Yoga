@@ -40,6 +40,9 @@ function Navbar() {
             <NavLink to="/academy">
               <h3>Academy</h3> <hr />
             </NavLink>
+            <NavLink to="/about">
+              <h3>About</h3>
+            </NavLink>
             {logOut ? (
               <NavLink onClick={() => setlogOut(!logOut)} to="/reglog">
                 <h3>Login</h3> <hr />
@@ -66,6 +69,9 @@ function Navbar() {
           </NavLink>
           <NavLink to="/academy">
             <h3>Academy</h3> <hr />
+          </NavLink>
+          <NavLink to= "/about">
+           <h3>About</h3>
           </NavLink>
         </div>
         <div className="md:flex text-xl gap-4 hidden">

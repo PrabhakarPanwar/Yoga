@@ -11,6 +11,7 @@ import { ToastContainer } from "react-toastify";
 import DashBoard from "./pages/DashBoard";
 import PageNotFound from "./pages/PageNotFound";
 import YogaRetreat from "./pages/YogaRetreat";
+import About from "./pages/About";
 
 function App() {
   const location = useLocation();
@@ -26,6 +27,7 @@ function App() {
           <Route path = "/YogaRetreat"  element ={<YogaRetreat />}/>
           <Route path="/magazine" element={<Magazine />} />
           <Route path="/academy" element={<Academy />} />
+          <Route path="/about" element= {<About />} />
           <Route path="/reglog" element={<LogRes />} />
           <Route path="/admin/dashboard" element={<DashBoard />} />
           <Route path="*" element={<PageNotFound />} />
