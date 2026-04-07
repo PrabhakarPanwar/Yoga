@@ -4,7 +4,7 @@ import { shubhPic } from "../assets/product";
 
 const About = () => {
   return (
-    <div className="w-[90%] mx-auto mt-5">
+    <div className="w-[90%] mx-auto mt-[50px]">
 
 
 
