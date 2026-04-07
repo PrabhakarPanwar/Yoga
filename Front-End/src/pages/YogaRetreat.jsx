@@ -8,7 +8,7 @@ import { shubhPic } from '../assets/product.js'
 
 function YogaRetreat() {
   const [tab, setTab] = useState("exp")
-  
+
   return (
     <div className='w-full bg-[#f5f3ef] overflow-x-hidden relative scroll-smooth'>
       
@@ -18,7 +18,7 @@ function YogaRetreat() {
           Book Your Spot
         </button>
       </div>
-
+         
       <div className='w-full max-w-[1440px] mx-auto'>
         
         {/* image part */}

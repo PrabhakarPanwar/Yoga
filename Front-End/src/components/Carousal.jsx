@@ -19,10 +19,11 @@ function Carousal() {
 
         <div key={index} className="sm:flex text-start items-center">
           <img
-            className=" flex-1 h-[50vh] object-cover overflow-hidden"
+            className="flex-1 h-[50vh] object-cover object-[center_80%]"
             src={i.image}
             alt={i.name}
           />
+
           <section className="flex-1">
             <div className="list-disc mx-auto w-[70%]">
               <h1>{i.heading}</h1>

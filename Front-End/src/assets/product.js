@@ -1,5 +1,4 @@
 // For Basic Assets
-
 import heroAbstract from "../assets/heroAbstract.mp4";
 import cancel from "../assets/cancel.jpg";
 import menu from "../assets/menu.jpg";
