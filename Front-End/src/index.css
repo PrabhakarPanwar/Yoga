@@ -14,3 +14,11 @@
 html {
   scroll-behavior: smooth;
 }
+
+* {
+  scroll-behavior: smooth;
+}
+
+.carousel .slide {
+  transition: all 0.8s ease-in-out !important;
+}

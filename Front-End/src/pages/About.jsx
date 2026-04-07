@@ -34,7 +34,7 @@ const About = () => {
         {/* LEFT TEXT */}
         <div>
           <h1 className="text-2xl font-semibold mb-4">
-            Hey! My name is Vanessa
+            Hey! My name is Shubham Pundir
           </h1>
 
           <p className="text-gray-600 leading-relaxed mb-4">
