@@ -1,6 +1,7 @@
 {
   "name": "yogaweb",
   "private": true,
+  "homepage":"SHubhYogShala.surge.sh",
   "version": "0.0.0",
   "type": "module",
   "scripts": {
@@ -8,6 +9,7 @@
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview"
+    
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",
