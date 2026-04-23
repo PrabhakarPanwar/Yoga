@@ -48,8 +48,8 @@ function Navbar() {
               <hr />
             </NavLink>
 
-            <NavLink to="/teacher" onClick={handleClose}>
-              <h3>Teachers</h3>
+            <NavLink to="/YogaPrograms" onClick={handleClose}>
+              <h3>Yoga Programs</h3>
               <hr />
             </NavLink>
 
@@ -58,15 +58,6 @@ function Navbar() {
               <hr />
             </NavLink>
 
-            <NavLink to="/magazine" onClick={handleClose}>
-              <h3>Magazine</h3>
-              <hr />
-            </NavLink>
-
-            <NavLink to="/academy" onClick={handleClose}>
-              <h3>Academy</h3>
-              <hr />
-            </NavLink>
 
             <NavLink to="/about" onClick={handleClose}>
               <h3>About</h3>
@@ -104,20 +95,13 @@ function Navbar() {
           </NavLink>
 
           <NavLink to="/teacher">
-            <h3 className="hover:text-orange-300 transition">Teachers</h3>
+            <h3 className="hover:text-orange-300 transition">Yoga Programs</h3>
           </NavLink>
 
           <NavLink to="/YogaRetreat">
             <h3 className="hover:text-orange-300 transition">YogaRetreat</h3>
           </NavLink>
 
-          <NavLink to="/magazine">
-            <h3 className="hover:text-orange-300 transition">Magazine</h3>
-          </NavLink>
-
-          <NavLink to="/academy">
-            <h3 className="hover:text-orange-300 transition">Academy</h3>
-          </NavLink>
 
           <NavLink to="/about">
             <h3 className="hover:text-orange-300 transition">About</h3>

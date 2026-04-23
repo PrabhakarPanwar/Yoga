@@ -22,3 +22,6 @@ html {
 .carousel .slide {
   transition: all 0.8s ease-in-out !important;
 }
+html {
+  scroll-behavior: smooth;
+}
