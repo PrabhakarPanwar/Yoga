@@ -151,9 +151,9 @@ const Hero = () => {
 
         {/* Centre content */}
         <div className="absolute inset-0 flex flex-col items-center justify-center text-center text-white px-6 z-10">
-          <p className="text-[#f5c98a] text-xs tracking-[0.4em] uppercase mb-4">
+          {/* <p className="text-[#f5c98a] text-xs tracking-[0.4em] uppercase mb-4">
             Est. April 2022
-          </p>
+          </p> */}
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-light leading-tight">
             Where Breath
             <br />
