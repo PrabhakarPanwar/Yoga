@@ -1,5 +1,6 @@
 import React from "react";
 import { shubhPic } from "../assets/product.js";
+import { NavLink } from "react-router-dom";
 import {
   FaUser,
   FaLaptop,
@@ -36,31 +37,37 @@ const programs = [
     title: "Personal Yoga",
     desc:  "One-on-one sessions tailored precisely to your body, breath, and goals.",
     icon:  <FaUser />,
+    slug:  "personal-yoga",
   },
   {
     title: "Online Yoga",
     desc:  "Live guided sessions you can join from anywhere in the world.",
     icon:  <FaLaptop />,
+    slug:  "online-yoga",
   },
   {
     title: "Corporate Yoga",
     desc:  "Structured wellness programs that bring calm and focus to your workplace.",
     icon:  <FaBuilding />,
+    slug:  "corporate-yoga",
   },
   {
     title: "Group Yoga",
     desc:  "Practise alongside others in a warm, encouraging group setting.",
     icon:  <FaUsers />,
+    slug:  "group-yoga",
   },
   {
     title: "Therapeutic Yoga",
     desc:  "Carefully designed sequences for injury recovery and chronic conditions.",
     icon:  <FaHeartbeat />,
+    slug:  "therapeutic-yoga",
   },
   {
     title: "Kids Yoga",
     desc:  "Joyful, age-appropriate yoga that builds focus and confidence in children.",
     icon:  <FaChild />,
+    slug:  "kids-yoga",
   },
 ];
 
@@ -84,18 +91,26 @@ const TESTIMONIALS = [
 
 // ─── Sub-components ───────────────────────────────────────────────────────────
 
-const ProgramCard = ({ title, desc, icon, align = "right" }) => {
+// ProgramCard now accepts a `slug` and wraps itself in a NavLink
+const ProgramCard = ({ title, desc, icon, align = "right", slug }) => {
   const isLeft = align === "left";
   return (
-    <div className={`flex items-start gap-4 ${isLeft ? "flex-row-reverse text-right" : "flex-row text-left"}`}>
-      <div className="w-12 h-12 flex-shrink-0 flex items-center justify-center border-2 border-[#c8763a] rounded-full text-[#c8763a] text-xl mt-1">
+    <NavLink
+      to={`/yoga-programs/${slug}`}
+      className={`flex items-start gap-4 group cursor-pointer ${
+        isLeft ? "flex-row-reverse text-right" : "flex-row text-left"
+      }`}
+    >
+      <div className="w-12 h-12 flex-shrink-0 flex items-center justify-center border-2 border-[#c8763a] rounded-full text-[#c8763a] text-xl mt-1 group-hover:bg-[#c8763a] group-hover:text-white transition-all duration-300">
         {icon}
       </div>
       <div>
-        <h3 className="text-base font-semibold text-[#3b2a1a] tracking-wide">{title}</h3>
+        <h3 className="text-base font-semibold text-[#3b2a1a] tracking-wide group-hover:text-[#c8763a] transition-colors duration-300">
+          {title}
+        </h3>
         <p className="text-sm text-[#7a6352] mt-1 leading-relaxed">{desc}</p>
       </div>
-    </div>
+    </NavLink>
   );
 };
 
@@ -144,16 +159,16 @@ const Hero = () => {
               with Shubham Pundir
             </p>
           </div>
-          <button className="border border-[#f5c98a] text-[#f5c98a] px-5 py-2 text-xs tracking-widest hover:bg-[#f5c98a] hover:text-[#1a0e05] transition-all duration-300">
+          <NavLink
+            to="/reglog"
+            className="border border-[#f5c98a] text-[#f5c98a] px-5 py-2 text-xs tracking-widest hover:bg-[#f5c98a] hover:text-[#1a0e05] transition-all duration-300"
+          >
             BOOK A SESSION
-          </button>
+          </NavLink>
         </nav>
 
         {/* Centre content */}
         <div className="absolute inset-0 flex flex-col items-center justify-center text-center text-white px-6 z-10">
-          {/* <p className="text-[#f5c98a] text-xs tracking-[0.4em] uppercase mb-4">
-            Est. April 2022
-          </p> */}
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-light leading-tight">
             Where Breath
             <br />
@@ -163,9 +178,12 @@ const Hero = () => {
             Founded by Shubham Pundir — M.Sc. Yoga, 7 years of teaching —
             Shubh Yog Shala is a space for every seeker, every stage.
           </p>
-          <button className="mt-8 bg-[#c8763a] text-white px-8 py-3 text-xs tracking-[0.3em] uppercase hover:bg-[#a85e2a] transition-all duration-300">
+          <NavLink
+            to="/yoga-programs/personal-yoga"
+            className="mt-8 bg-[#c8763a] text-white px-8 py-3 text-xs tracking-[0.3em] uppercase hover:bg-[#a85e2a] transition-all duration-300 inline-block"
+          >
             EXPLORE PROGRAMS
-          </button>
+          </NavLink>
         </div>
 
         {/* Scroll indicator */}
@@ -228,9 +246,12 @@ const Hero = () => {
               </p>
             ))}
 
-            <button className="mt-2 bg-[#3b2a1a] text-[#f5c98a] px-7 py-3 text-xs tracking-[0.3em] uppercase rounded-full hover:bg-[#c8763a] hover:text-white transition-all duration-300">
+            <NavLink
+              to="/about"
+              className="mt-2 inline-block bg-[#3b2a1a] text-[#f5c98a] px-7 py-3 text-xs tracking-[0.3em] uppercase rounded-full hover:bg-[#c8763a] hover:text-white transition-all duration-300"
+            >
               LEARN MORE ABOUT SHUBHAM →
-            </button>
+            </NavLink>
           </div>
         </div>
       </section>
@@ -255,7 +276,8 @@ const Hero = () => {
           and shaped by Shubham's 7 years of real teaching experience.
         </p>
 
-        <div className="relative max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-10 items-center">
+        {/* ── DESKTOP: 3-column with centre image ── */}
+        <div className="relative max-w-6xl mx-auto hidden md:grid grid-cols-3 gap-10 items-center">
 
           {/* Left column */}
           <div className="space-y-10">
@@ -278,7 +300,24 @@ const Hero = () => {
               <ProgramCard key={i} {...item} align="right" />
             ))}
           </div>
+        </div>
 
+        {/* ── MOBILE: 2-column grid ── */}
+        <div className="md:hidden grid grid-cols-2 gap-5 max-w-sm mx-auto">
+          {programs.map((item, i) => (
+            <NavLink
+              key={i}
+              to={`/yoga-programs/${item.slug}`}
+              className="flex flex-col items-center gap-3 p-4 bg-[#fffaf5] border border-[#e8d5c0] rounded-2xl shadow-sm hover:shadow-md hover:border-[#c8763a] transition-all duration-300 group"
+            >
+              <div className="w-12 h-12 flex items-center justify-center border-2 border-[#c8763a] rounded-full text-[#c8763a] text-xl group-hover:bg-[#c8763a] group-hover:text-white transition-all duration-300">
+                {item.icon}
+              </div>
+              <p className="text-sm font-semibold text-[#3b2a1a] text-center leading-tight group-hover:text-[#c8763a] transition-colors duration-300">
+                {item.title}
+              </p>
+            </NavLink>
+          ))}
         </div>
       </section>
 
@@ -310,12 +349,24 @@ const Hero = () => {
           and Shubh Yog Shala are here for every stage of your journey.
         </p>
         <div className="flex flex-col sm:flex-row justify-center gap-4">
-          <button className="bg-[#c8763a] text-white px-8 py-3 text-xs tracking-[0.3em] uppercase hover:bg-[#a85e2a] transition-all duration-300">
+          {/* Book a Free Trial → goes to register/login */}
+          <NavLink
+            to="/reglog"
+            className="bg-[#c8763a] text-white px-8 py-3 text-xs tracking-[0.3em] uppercase hover:bg-[#a85e2a] transition-all duration-300 inline-block"
+          >
             BOOK A FREE TRIAL CLASS
-          </button>
-          <button className="border border-[#3b2a1a] text-[#3b2a1a] px-8 py-3 text-xs tracking-[0.3em] uppercase hover:bg-[#3b2a1a] hover:text-white transition-all duration-300">
+          </NavLink>
+          {/* Contact Shubham → opens WhatsApp */}
+          <a
+            href={`https://wa.me/919548648227?text=${encodeURIComponent(
+              "Hello Shubham, I am messaging you from Shubh Yog Shala and I am interested in yoga learning."
+            )}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="border border-[#3b2a1a] text-[#3b2a1a] px-8 py-3 text-xs tracking-[0.3em] uppercase hover:bg-[#3b2a1a] hover:text-white transition-all duration-300 inline-block"
+          >
             CONTACT SHUBHAM
-          </button>
+          </a>
         </div>
       </section>
 

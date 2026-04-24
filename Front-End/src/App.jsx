@@ -17,21 +17,26 @@ function App() {
     <div className="overflow-hidden">
       {location.pathname !== "/reglog" && <Navbar />}
 
-
       <div className="">
         <Routes>
           <Route path="/" element={<Home />} />
+
+          {/* Yoga Programs — individual slug routes */}
+          <Route path="/yoga-programs/:slug" element={<YogaPrograms />} />
+
+          {/* Keep old /teacher route working (backward compat) */}
           <Route path="/teacher" element={<YogaPrograms />} />
-          <Route path = "/YogaRetreat"  element ={<YogaRetreat />}/>
-          <Route path="/about" element= {<About />} />
+
+          <Route path="/YogaRetreat" element={<YogaRetreat />} />
+          <Route path="/about" element={<About />} />
           <Route path="/reglog" element={<LogRes />} />
           <Route path="/admin/dashboard" element={<DashBoard />} />
           <Route path="*" element={<PageNotFound />} />
         </Routes>
       </div>
+
       {location.pathname !== "/reglog" && <Footer />}
       <ToastContainer position="top-right" autoClose={3000} theme="colored" />
-
     </div>
   );
 }
