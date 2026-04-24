@@ -1,237 +1,405 @@
-import React from 'react'
-import { useState } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import personSitting from "../assets/personSitting.jpg"
 import womenYoga from "../assets/womenYoga.jpg"
 import womenYoga2 from "../assets/womenYoga2.jpg"
 import { shubhPic } from '../assets/product.js'
 
+// ── WhatsApp booking link ──
+const WHATSAPP_LINK = "https://wa.me/919548648227?text=Hi%2C%20I%27m%20interested%20in%20booking%20the%20Yoga%20Retreat%20in%20Rishikesh.%20Please%20share%20the%20details."
+
+const tabs = [
+  { id: "exp", label: "Experience" },
+  { id: "whyJoin", label: "Why Join" },
+  { id: "whoFor", label: "Who's It For" },
+  { id: "takeAway", label: "Take Away" },
+]
+
+const tabContent = {
+  exp: [
+    { title: "Holistic Sanctuary", desc: "Escape the digital noise and reconnect with your inner rhythm through daily guided asana, meditation, and restorative silence in a handpicked natural setting." },
+    { title: "Deepened Physical Mastery", desc: "Elevate your practice with expert-led workshops focusing on alignment, energy flow, and the subtle art of breathwork—beyond what any studio offers." },
+    { title: "Curated Soul Nourishment", desc: "Enjoy structured movement and free exploration, complemented by organic, mindful cuisine designed to energize and heal from the inside out." },
+    { title: "Lasting Mental Clarity", desc: "Return home with a practical inner toolkit of mindfulness techniques to maintain your peace long after the retreat ends." },
+  ],
+  whyJoin: [
+    { title: "Expert-Led Transformation", desc: "A curriculum designed by a Master of Yoga Science — technically precise, safe, and tailored to your body's unique needs." },
+    { title: "Deep Mental Detox", desc: "Step away from burnout to reset your nervous system using advanced pranayama and meditation techniques proven to restore long-term clarity." },
+    { title: "Authentic Yogic Wisdom", desc: "Explore the profound philosophy and history of yoga taught by a scholar with years of academic and practical mastery." },
+    { title: "A Sustainable Practice", desc: "Walk away with a personalized wellness blueprint and the confidence to maintain a high-level practice at home." },
+  ],
+  whoFor: [
+    { title: "The Mindful Youth", desc: "Teenagers and students looking to manage academic stress, improve focus, and build a healthy body image through mindful movement." },
+    { title: "The Driven Professional", desc: "High-pressure careers demand a digital detox — science-backed tools to reset your nervous system and prevent burnout." },
+    { title: "The Lifelong Learner", desc: "Practitioners of all levels who want to go beyond the basics and study yoga under a Master's level expert." },
+    { title: "The Active Senior", desc: "A welcoming space for older adults seeking improved mobility, bone density, and balance with safe, anatomically-informed guidance." },
+    { title: "The Soul Seeker", desc: "Anyone who feels a pull toward deep relaxation and wants to explore yoga's spiritual and philosophical roots in a peaceful setting." },
+  ],
+  takeAway: [
+    { title: "A Regular Yoga & Meditation Routine", desc: "Simple practices you can continue at home without special equipment or conditions." },
+    { title: "Understanding of Classical Yoga", desc: "Clear guidance on postures, breathing, relaxation, and the timeless principles behind them." },
+    { title: "Tools to Manage Stress", desc: "Practical techniques to calm the breath, relax the body, and steady the mind." },
+    { title: "Clearer Daily Habits", desc: "Experience a structured routine that can be adapted and sustained in everyday life." },
+  ],
+}
+
+const schedule = [
+  { time: "05:30", activity: "Wake Up & Silent Walk", icon: "🌄" },
+  { time: "06:00", activity: "Morning Meditation", icon: "🧘" },
+  { time: "07:00", activity: "Asana Practice", icon: "🌿" },
+  { time: "09:00", activity: "Organic Sattvic Breakfast", icon: "🥗" },
+  { time: "11:00", activity: "Philosophy & Talks", icon: "📖" },
+  { time: "13:00", activity: "Lunch & Free Time", icon: "☀️" },
+  { time: "16:00", activity: "Pranayama Workshop", icon: "💨" },
+  { time: "18:00", activity: "Evening Asana", icon: "🌙" },
+  { time: "20:00", activity: "Satsang & Kirtan", icon: "🎶" },
+  { time: "21:30", activity: "Lights Out / Rest", icon: "✨" },
+]
+
+const testimonials = [
+  { name: "Priya S.", location: "Mumbai", text: "This retreat changed how I see myself. The mornings by the Ganges, the silence — I found something I didn't know I was looking for.", stars: 5 },
+  { name: "Marco L.", location: "Italy", text: "Shubham's teaching is precise and deeply compassionate. My body and mind feel 10 years younger after just two weeks.", stars: 5 },
+  { name: "Aiko T.", location: "Japan", text: "The philosophy sessions were profound. I came for yoga and left with a completely new perspective on life.", stars: 5 },
+]
+
+function StarRating({ count }) {
+  return (
+    <div className="flex gap-0.5">
+      {Array.from({ length: count }).map((_, i) => (
+        <span key={i} className="text-amber-400 text-sm">★</span>
+      ))}
+    </div>
+  )
+}
+
+function useInView(threshold = 0.15) {
+  const ref = useRef(null)
+  const [inView, setInView] = useState(false)
+  useEffect(() => {
+    const obs = new IntersectionObserver(
+      ([e]) => { if (e.isIntersecting) setInView(true) },
+      { threshold }
+    )
+    if (ref.current) obs.observe(ref.current)
+    return () => obs.disconnect()
+  }, [threshold])
+  return [ref, inView]
+}
+
+function FadeIn({ children, delay = 0, className = "" }) {
+  const [ref, inView] = useInView()
+  return (
+    <div
+      ref={ref}
+      className={`transition-all duration-700 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'} ${className}`}
+      style={{ transitionDelay: `${delay}ms` }}
+    >
+      {children}
+    </div>
+  )
+}
+
 function YogaRetreat() {
   const [tab, setTab] = useState("exp")
+  const [scrolled, setScrolled] = useState(false)
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 80)
+    window.addEventListener('scroll', onScroll)
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
 
   return (
-    <div className='w-full bg-[#f5f3ef] overflow-x-hidden relative scroll-smooth'>
-      
-      {/* NEW FEATURE: Floating CTA Button for better conversions */}
-      <div className='fixed bottom-6 right-6 z-50'>
-        <button className='bg-teal-600 text-white px-6 py-3 rounded-full shadow-2xl font-bold hover:bg-teal-700 hover:scale-105 transition-all duration-300 animate-bounce'>
-          Book Your Spot
-        </button>
-      </div>
-         
-      <div className='w-full max-w-[1440px] mx-auto'>
-        
-        {/* image part */}
-        <div className='flex flex-col w-full min-h-[300px] lg:h-[580px] mt-2 relative border-xl-white'>
-          <div className='z-0 relative border-xl-white overflow-hidden'>
-            {/* Added object-cover to prevent stretching on mobile, and rounded corners */}
-            <img className='h-[350px] lg:h-[600px] w-full object-cover rounded-b-2xl shadow-lg transition-transform duration-700 hover:scale-105' src={shubhPic[16]} alt='asthanga' />
+    <div className='w-full bg-[#f7f5f0] overflow-x-hidden font-serif'>
+
+      {/* ── FLOATING CTA ── */}
+      {/* <div className={`fixed bottom-6 right-4 z-50 transition-all duration-500 ${scrolled ? 'scale-100 opacity-100' : 'scale-75 opacity-0'}`}>
+        <a
+          href={WHATSAPP_LINK}
+          target="_blank"
+          rel="noopener noreferrer"
+          className='flex items-center gap-2 bg-teal-700 text-white px-5 py-3 rounded-full shadow-2xl text-sm font-bold tracking-wide hover:bg-teal-800 hover:shadow-teal-900/40 hover:shadow-xl transition-all duration-300'
+        >
+          <span>💬</span> Book on WhatsApp
+        </a>
+      </div> */}
+
+      {/* ── HERO ── */}
+      <div className='relative w-full h-[100svh] min-h-[560px] max-h-[900px]'>
+        <img
+          src={shubhPic[16]}
+          alt='Yoga Retreat Hero'
+          className='absolute inset-0 w-full h-full object-cover object-center'
+        />
+        <div className='absolute inset-0 bg-gradient-to-b from-black/30 via-black/20 to-black/70' />
+
+        <div className='absolute inset-0 flex flex-col justify-end pb-12 px-5 sm:px-12 max-w-4xl'>
+          <p className='text-amber-300 text-xs sm:text-sm uppercase tracking-[0.3em] mb-3 font-sans'>Shubhyogshala Presents</p>
+          <h1 className='text-white text-4xl sm:text-6xl lg:text-7xl font-bold leading-none mb-4 drop-shadow-xl'>
+            Yoga Retreat<br /><span className='text-amber-300'>Rishikesh</span>
+          </h1>
+          <p className='text-white/80 text-sm sm:text-base max-w-md mb-8 font-sans leading-relaxed'>
+            Relax in Nature · Recharge in Yoga · Grow in Discipline
+          </p>
+          <div className='flex flex-wrap gap-3'>
+            <a href="#expectation" className='bg-white/15 backdrop-blur-sm border border-white/30 text-white text-sm px-5 py-2.5 rounded-full hover:bg-white/25 transition font-sans'>
+              Explore Programme
+            </a>
+            <a
+              href={WHATSAPP_LINK}
+              target="_blank"
+              rel="noopener noreferrer"
+              className='bg-amber-400 text-stone-900 text-sm px-5 py-2.5 rounded-full font-bold hover:bg-amber-300 transition font-sans'
+            >
+              Book on WhatsApp
+            </a>
           </div>
-          {/* <div className='flex flex-col shadow-md p-2 z-10 absolute top-[40px] end-[40px]   shadow-black border-s-teal-400 border-cyan-900 text-black font-semibold'>
-            <p className='text-2xl '>SHUBHYOGSHALA  YOAG VACATION</p>
-            <p className='shadow-xl'>Relax In Nature | Reacharge In Yoga | Grow In Dicipline</p>
-          </div> */}
         </div>
 
-        {/* NEW FEATURE: Inspirational Quote Banner */}
-        <div className='w-full bg-white/50 py-6 text-center shadow-sm mt-4 lg:mt-8'>
-          <p className='text-lg md:text-xl font-serif text-teal-800 italic'>"Yoga is the journey of the self, through the self, to the self."</p>
+        {/* scroll cue */}
+        <div className='absolute bottom-6 right-6 flex flex-col items-center gap-1 text-white/60 font-sans text-xs animate-bounce'>
+          <span>Scroll</span>
+          <span>↓</span>
+        </div>
+      </div>
+
+      {/* ── QUOTE STRIP ── */}
+      <div className='bg-teal-800 text-center py-8 px-4'>
+        <p className='text-amber-200 text-lg sm:text-2xl italic max-w-2xl mx-auto leading-relaxed'>
+          "Yoga is the journey of the self, through the self, to the self."
+        </p>
+        <p className='text-teal-400 text-xs mt-2 font-sans uppercase tracking-widest'>— The Bhagavad Gita</p>
+      </div>
+
+      {/* ── STATS ROW ── */}
+      <div className='bg-white py-10 px-4'>
+        <div className='max-w-4xl mx-auto grid grid-cols-2 sm:grid-cols-4 gap-6 text-center'>
+          {[
+            { n: "14", label: "Days Cycle" },
+            { n: "500+", label: "Retreaters" },
+            { n: "8+", label: "Years Teaching" },
+            { n: "Year-Round", label: "Availability" },
+          ].map((s, i) => (
+            <FadeIn key={i} delay={i * 100}>
+              <p className='text-3xl sm:text-4xl font-bold text-teal-800'>{s.n}</p>
+              <p className='text-xs text-gray-500 mt-1 font-sans uppercase tracking-widest'>{s.label}</p>
+            </FadeIn>
+          ))}
+        </div>
+      </div>
+
+      {/* ── ABOUT / INTRO ── */}
+      <div className='max-w-6xl mx-auto px-4 sm:px-8 py-16 grid lg:grid-cols-2 gap-10 items-center' id='expectation'>
+        <FadeIn className='order-2 lg:order-1'>
+          <p className='text-xs font-sans uppercase tracking-[0.2em] text-teal-600 mb-3'>About The Retreat</p>
+          <h2 className='text-3xl sm:text-4xl font-bold text-stone-800 mb-6 leading-snug'>
+            An Immersive Yogic<br />Experience in India
+          </h2>
+          <div className='space-y-4 text-stone-600 font-sans text-sm sm:text-base leading-relaxed'>
+            <p>Available year-round, the Yoga Vacation programme in India offers the chance to immerse yourself fully in the yogic lifestyle and dive deep into the ancient teachings of India. Leave behind the stresses of daily life to rediscover the joy of living in the idyllic setting of a traditional Indian Ashram.</p>
+            <p>Come to experience the profound benefits yoga brings to mind, body, and spirit. During your stay, discover new ways of thinking and increase your spiritual knowledge through daily talks. Perfect your own practices and clear doubts with individual guidance from our teachers.</p>
+            <p>Based on the Five Points of Yoga, the Yoga Vacation promotes radiant health and inner peace — for beginners and seasoned practitioners alike.</p>
+          </div>
+          <div className='mt-8 flex flex-wrap gap-3'>
+            {["Asana", "Pranayama", "Meditation", "Philosophy", "Sattvic Diet"].map(tag => (
+              <span key={tag} className='bg-teal-50 border border-teal-200 text-teal-700 text-xs font-sans px-3 py-1.5 rounded-full'>{tag}</span>
+            ))}
+          </div>
+        </FadeIn>
+
+        <FadeIn delay={200} className='order-1 lg:order-2'>
+          <div className='relative'>
+            <img src={womenYoga} alt='Yoga practice' className='w-full h-[360px] sm:h-[480px] object-cover rounded-2xl shadow-2xl' />
+            <div className='absolute -bottom-4 -left-4 bg-teal-800 text-white p-4 rounded-xl shadow-xl font-sans text-sm hidden sm:block'>
+              <p className='font-bold text-amber-300'>📍 Narendranagar</p>
+              <p className='text-teal-200 text-xs'>Near Rishikesh, Uttarakhand</p>
+            </div>
+          </div>
+        </FadeIn>
+      </div>
+
+      {/* ── QUICK NAV ── */}
+      <div className='bg-stone-100 border-y border-stone-200 py-5 px-4 overflow-x-auto'>
+        <div className='flex gap-3 justify-center min-w-max mx-auto font-sans'>
+          {[
+            ["#expectation", "What to Expect"],
+            ["#Schedule", "Daily Schedule"],
+            ["#tabs", "Programme"],
+            ["#Accommodations", "Accommodations"],
+            ["#testimonials", "Reviews"],
+          ].map(([href, label]) => (
+            <a key={href} href={href} className='text-xs sm:text-sm text-stone-600 hover:text-teal-700 border border-stone-300 hover:border-teal-500 px-3 py-1.5 rounded-full transition whitespace-nowrap'>
+              {label}
+            </a>
+          ))}
+        </div>
+      </div>
+
+      {/* ── TABS SECTION ── */}
+      <div className='max-w-6xl mx-auto px-4 sm:px-8 py-16' id='tabs'>
+        <FadeIn>
+          <p className='text-xs font-sans uppercase tracking-[0.2em] text-teal-600 mb-2 text-center'>The Programme</p>
+          <h2 className='text-2xl sm:text-3xl font-bold text-stone-800 mb-8 text-center'>Everything You Need to Know</h2>
+        </FadeIn>
+
+        <div className='flex overflow-x-auto gap-2 pb-2 mb-6 scrollbar-hide justify-start sm:justify-center'>
+          {tabs.map(t => (
+            <button
+              key={t.id}
+              onClick={() => setTab(t.id)}
+              className={`whitespace-nowrap px-5 py-2 rounded-full text-sm font-sans font-semibold transition-all duration-300 ${tab === t.id ? 'bg-teal-700 text-white shadow-lg' : 'bg-white text-stone-600 border border-stone-200 hover:border-teal-400'}`}
+            >
+              {t.label}
+            </button>
+          ))}
         </div>
 
-        {/* discription part */}
-        {/* Changed h-[600px] to min-h-fit to prevent text overflow on mobile, added padding */}
-        <div className='flex w-full flex-col lg:flex-row justify-between min-h-fit relative gap-9 my-10 px-4 md:px-8 lg:px-12'>
-          <div className='flex flex-col lg:w-[65%] space-y-4 text-gray-700 text-base md:text-lg leading-relaxed'>
-            <p>Available year-round, the Yoga Vacation programme in India offers the chance to immerse yourself fully in the yogic lifestyle and to dive deep into the ancient teachings of India. You can leave behind the stresses and strains of daily life to rediscover the joy of living in the idyllic setting of a traditional Indian Ashram. Come to experience the profound benefits that yoga brings to mind, body and spirit. During your stay, discover new ways of thinking and increase your spiritual knowledge through daily talks. Perfect your own practices and clear doubts with individual guidance from our teachers.
+        <div className='grid sm:grid-cols-2 gap-4'>
+          {tabContent[tab].map((item, i) => (
+            <FadeIn key={`${tab}-${i}`} delay={i * 80}>
+              <div className='bg-white rounded-2xl p-5 sm:p-6 shadow-sm border border-stone-100 hover:border-teal-300 hover:shadow-md transition-all duration-300 h-full'>
+                <div className='w-8 h-8 rounded-full bg-teal-50 flex items-center justify-center text-teal-700 font-bold text-sm mb-3 font-sans'>{i + 1}</div>
+                <h3 className='text-base sm:text-lg font-bold text-teal-800 mb-2'>{item.title}</h3>
+                <p className='text-sm text-stone-500 font-sans leading-relaxed'>{item.desc}</p>
+              </div>
+            </FadeIn>
+          ))}
+        </div>
+      </div>
+
+      {/* ── DAILY SCHEDULE ── */}
+      <div className='bg-teal-900 text-white py-16 px-4 sm:px-8' id='Schedule'>
+        <div className='max-w-3xl mx-auto'>
+          <FadeIn>
+            <p className='text-xs font-sans uppercase tracking-[0.2em] text-amber-300 mb-2 text-center'>A Typical Day</p>
+            <h2 className='text-2xl sm:text-3xl font-bold mb-10 text-center'>Daily Schedule</h2>
+          </FadeIn>
+          <div className='relative'>
+            <div className='absolute left-[52px] top-0 bottom-0 w-px bg-teal-700 hidden sm:block' />
+            <div className='space-y-4'>
+              {schedule.map((item, i) => (
+                <FadeIn key={i} delay={i * 60}>
+                  <div className='flex items-center gap-4'>
+                    <span className='text-xs font-sans text-teal-400 w-12 shrink-0 text-right'>{item.time}</span>
+                    <div className='w-8 h-8 rounded-full bg-teal-800 border-2 border-teal-600 flex items-center justify-center text-base shrink-0 z-10'>{item.icon}</div>
+                    <div className='bg-teal-800/60 rounded-xl px-4 py-3 flex-1 hover:bg-teal-800 transition'>
+                      <p className='text-sm sm:text-base font-sans'>{item.activity}</p>
+                    </div>
+                  </div>
+                </FadeIn>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* ── WHAT'S INCLUDED ── */}
+      <div className='max-w-6xl mx-auto px-4 sm:px-8 py-16' id='Accommodations'>
+        <FadeIn>
+          <p className='text-xs font-sans uppercase tracking-[0.2em] text-teal-600 mb-2'>Details</p>
+          <h2 className='text-2xl sm:text-3xl font-bold text-stone-800 mb-10'>What's Included</h2>
+        </FadeIn>
+        <div className='grid sm:grid-cols-2 lg:grid-cols-3 gap-5'>
+          {[
+            { icon: "✨", title: "What to Expect", desc: "A balanced Sattvic lifestyle — early morning meditation, daily asana, and immersive nature silence to reset your nervous system." },
+            { icon: "🕒", title: "Daily Schedule", desc: "Guided sunrise practice at 6:00 AM, organic brunch, philosophy talks, and restorative evening sessions before 9:00 PM lights-out." },
+            { icon: "🛏️", title: "Accommodations", desc: "Clean, eco-friendly shared or private rooms for deep rest, located within the peaceful Narendranagar hills near Rishikesh." },
+            { icon: "🥗", title: "Sattvic Meals", desc: "All organic meals included — twice-daily nourishing food designed to complement your practice and energize the body from within." },
+            { icon: "📚", title: "Study Materials", desc: "All course books, handouts, and reference materials are provided throughout your stay at no extra cost." },
+            { icon: "🧑‍🏫", title: "Expert Tuition", desc: "Personal guidance from a Master of Yoga Science with 8+ years of teaching experience across all levels." },
+          ].map((card, i) => (
+            <FadeIn key={i} delay={i * 100}>
+              <div className='bg-white rounded-2xl p-6 shadow-sm border border-stone-100 hover:shadow-lg hover:border-teal-200 transition-all duration-300 flex flex-col gap-3 h-full'>
+                <span className='text-3xl'>{card.icon}</span>
+                <h3 className='font-bold text-stone-800 text-base'>{card.title}</h3>
+                <p className='text-xs sm:text-sm text-stone-500 font-sans leading-relaxed'>{card.desc}</p>
+              </div>
+            </FadeIn>
+          ))}
+        </div>
+      </div>
+
+      {/* ── PHOTO BREAK ── */}
+      <div className='w-full h-[280px] sm:h-[420px] relative overflow-hidden'>
+        <img src={personSitting} alt='Meditation' className='w-full h-full object-cover object-center' />
+        <div className='absolute inset-0 bg-black/40 flex flex-col items-center justify-center text-center px-4'>
+          <p className='text-white/70 text-xs font-sans uppercase tracking-widest mb-3'>The Ashram Life</p>
+          <p className='text-white text-2xl sm:text-4xl font-bold max-w-xl leading-tight'>
+            Silence is not empty — it is full of answers.
+          </p>
+        </div>
+      </div>
+
+      {/* ── LOCATION ── */}
+      <div className='bg-stone-800 text-white py-16 px-4 sm:px-8'>
+        <div className='max-w-4xl mx-auto grid sm:grid-cols-2 gap-10 items-center'>
+          <FadeIn>
+            <p className='text-xs font-sans uppercase tracking-[0.2em] text-amber-300 mb-3'>Getting Here</p>
+            <h2 className='text-2xl sm:text-3xl font-bold mb-4'>Hotel Noor,<br />Narendranagar</h2>
+            <p className='text-stone-300 font-sans text-sm leading-relaxed mb-6'>
+              Nestled in the serene hills of Narendranagar, just minutes from the spiritual heart of Rishikesh. Accessible by road from Dehradun Airport (45 min) or Haridwar (30 min).
             </p>
-
-            <p className='flex'>Immerse yourself in the calming atmosphere of the Ashram, making new friends with like-minded people from all corners of the world. You will begin to discover your true nature and develop skills to improve the health of body and mind. The programme will help you to establish a solid foundation for living a life of peace and happiness.</p>
-
-            <p className='flex'>Based on the Five Points of Yoga of Swami Vishnudevananda, the Yoga Vacation promotes radiant health and inner peace. Whether you are a beginner or a seasoned practitioner, you will increase your vitality, positivity, and ease of being as a result of daily yoga practice, a healthy vegetarian diet, silent meditation sessions, and uplifting teachings. You will experience some of the devotional practices, traditional to India, that are an integral part of your stay here. Your mind will expand and your heart will open.</p>
-          </div>
-
-          <div className='lg:w-[35%] relative flex justify-center items-start mt-8 lg:mt-0'>
-            {/* Adjusted sticky behavior for mobile */}
-            <div className='lg:sticky top-[100px] flex flex-col w-full max-w-[350px] min-h-[250px] items-center justify-center rounded-xl shadow-xl p-6 bg-slate-100 border-t-4 border-teal-500 hover:shadow-2xl transition-all duration-300'>
-              <h3 className='text-xl font-bold mb-4 text-teal-900 border-b-2 border-teal-200 pb-2 w-full text-center'>Quick Links</h3>
-              <ul className="space-y-4 text-center flex flex-col w-full">
-                <li><a href="#expectation" className="font-semibold text-gray-700 hover:text-teal-600 hover:underline transition-colors block w-full bg-white p-2 rounded-md shadow-sm">What to Expect</a></li>
-                <li><a href="#Schedule" className="font-semibold text-gray-700 hover:text-teal-600 hover:underline transition-colors block w-full bg-white p-2 rounded-md shadow-sm">Daily Schedule</a></li>
-                <li><a href="#Accommodations" className="font-semibold text-gray-700 hover:text-teal-600 hover:underline transition-colors block w-full bg-white p-2 rounded-md shadow-sm">Accommodations</a></li>
-                {/* <li><a href="#Pricing" className="hover:underline">How to Get Here</a></li> */}
-                <li><a href="#Pricing" className="font-semibold text-gray-700 hover:text-teal-600 hover:underline transition-colors block w-full bg-white p-2 rounded-md shadow-sm">Pricing</a></li>
-              </ul>
+            <div className='space-y-2 font-sans text-sm text-stone-300'>
+              {[
+                "✈️  Nearest Airport: Jolly Grant, Dehradun",
+                "🚆  Nearest Railway: Rishikesh / Haridwar",
+                "🚌  Local cabs & buses available",
+              ].map(line => <p key={line}>{line}</p>)}
             </div>
-          </div>
+          </FadeIn>
+          <FadeIn delay={200}>
+            <img src={womenYoga2} alt='Location' className='w-full h-[280px] sm:h-[360px] object-cover rounded-2xl shadow-2xl' />
+          </FadeIn>
         </div>
-
-        {/* about part */}
-
-        {/* outside the div switching part */}
-        {/* Added padding for mobile */}
-        <div className='flex flex-col lg:flex-row gap-[30px] py-10 px-4 md:px-8 lg:px-12'>
-          <div className='flex flex-col md:flex-col justify-center items-center lg:block w-full lg:w-[60%]'>
-            {/* Enhanced Buttons with dynamic active state */}
-            <div className='flex flex-wrap lg:flex-nowrap gap-4 mb-8 justify-center lg:justify-start w-full'>
-              <button onClick={() => setTab("exp")} className={`px-6 py-2 rounded-full font-bold transition-all duration-300 ${tab === 'exp' ? 'bg-teal-600 text-white shadow-lg scale-105' : 'bg-white text-teal-700 border-2 border-teal-600 hover:bg-teal-50'}`}>EXPERIENCE</button>
-              <button onClick={() => setTab("whyJoin")} className={`px-6 py-2 rounded-full font-bold transition-all duration-300 ${tab === 'whyJoin' ? 'bg-teal-600 text-white shadow-lg scale-105' : 'bg-white text-teal-700 border-2 border-teal-600 hover:bg-teal-50'}`}>WHY JOIN</button>
-              <button onClick={() => setTab("whoFor")} className={`px-6 py-2 rounded-full font-bold transition-all duration-300 ${tab === 'whoFor' ? 'bg-teal-600 text-white shadow-lg scale-105' : 'bg-white text-teal-700 border-2 border-teal-600 hover:bg-teal-50'}`}>WHO THIS IS FOR</button>
-              <button onClick={() => setTab("takeAway")} className={`px-6 py-2 rounded-full font-bold transition-all duration-300 ${tab === 'takeAway' ? 'bg-teal-600 text-white shadow-lg scale-105' : 'bg-white text-teal-700 border-2 border-teal-600 hover:bg-teal-50'}`}>TAKE AWAY</button>
-            </div>
-            
-            {/* Changed <list> to <ul> for valid HTML, added smooth fade-in animation */}
-            <div className='min-h-[300px] bg-white p-6 md:p-8 rounded-2xl shadow-lg border border-gray-100'>
-              {tab === "exp" ? <div className='retreatTabs animate-[fadeIn_0.5s_ease-in-out]'>
-                <ul className='space-y-6 list-none'>
-                  <li className='flex flex-col gap-1'><span className='font-bold text-xl text-teal-800'>Holistic Sanctuary</span>
-                    <span className='text-gray-600'>Escape the digital noise and reconnect with your inner rhythm through daily guided asana, meditation, and restorative silence in a handpicked natural setting.</span></li>
-                  <li className='flex flex-col gap-1'>
-                    <span className='font-bold text-xl text-teal-800'>Deepened Physical Mastery</span>
-                    <span className='text-gray-600'>Elevate your practice with expert-led workshops that go beyond the studio, focusing on alignment, energy flow, and the subtle art of breathwork.</span>
-                  </li>
-                  <li className='flex flex-col gap-1'>
-                    <span className='font-bold text-xl text-teal-800'>Curated Soul Nourishment</span>
-                    <span className='text-gray-600'>Enjoy a balance of structured movement and free exploration, complemented by organic, mindful cuisine designed to energize and heal from the inside out.</span>
-                  </li>
-                  <li className='flex flex-col gap-1'><span className='font-bold text-xl text-teal-800'>Lasting Mental Clarity</span>
-                    <span className='text-gray-600'>Return home with more than just memories—gain a practical "inner toolkit" of mindfulness techniques to maintain your peace long after the retreat ends..</span></li>
-                </ul>
-              </div> : ""}
-
-              {tab === "whyJoin" ? <div className='retreatTabs animate-[fadeIn_0.5s_ease-in-out]'>
-                <ul className='space-y-6 list-none'>
-                  <li className='flex flex-col gap-1'><span className='font-bold text-xl text-teal-800'>Expert-Led Transformation</span>
-                    <span className='text-gray-600'>Join a curriculum designed by a Master of Yoga Science, ensuring every session is technically precise, safe, and tailored to your body's unique needs.</span></li>
-                  <li className='flex flex-col gap-1'>
-                    <span className='font-bold text-xl text-teal-800'>Deep Mental Detox</span>
-                    <span className='text-gray-600'>Step away from daily burnout to reset your nervous system using advanced pranayama and meditation techniques proven to restore long-term clarity.</span>
-                  </li>
-                  <li className='flex flex-col gap-1'>
-                    <span className='font-bold text-xl text-teal-800'>Authentic Yogic Wisdom</span>
-                    <span className='text-gray-600'>Move beyond physical exercise; join us to explore the profound philosophy and history of yoga taught by a scholar with years of academic and practical mastery.</span>
-                  </li>
-                  <li className='flex flex-col gap-1'> <span className='font-bold text-xl text-teal-800'>A Sustainable Practice</span>
-                    <span className='text-gray-600'>Gain more than just a vacation—walk away with a personalized wellness blueprint and the confidence to maintain a high-level practice at home..</span></li>
-                </ul>
-              </div> : ""}
-
-              {tab === "whoFor" ? <div className='retreatTabs animate-[fadeIn_0.5s_ease-in-out]'>
-                <ul className='space-y-6 list-none'>
-                  <li className='flex flex-col gap-1'><span className='font-bold text-xl text-teal-800'>The Mindful Youth</span>
-                    <span className='text-gray-600'>Perfect for teenagers and students looking to manage academic stress, improve focus, and build a healthy body image through mindful movement.</span></li>
-                  <li className='flex flex-col gap-1'>
-                    <span className='font-bold text-xl text-teal-800'>The Driven Professional</span>
-                    <span className='text-gray-600'>Designed for those facing high-pressure careers who need a digital detox and science-backed tools to reset their nervous system and prevent burnout</span>
-                  </li>
-                  <li className='flex flex-col gap-1'>
-                    <span className='font-bold text-xl text-teal-800'>The Lifelong Learner</span>
-                    <span className='text-gray-600'>Ideal for practitioners of all levels—from beginners to advanced—who want to go beyond the basics and study yoga under a Master’s level expert.</span>
-                  </li>
-                  <li className='flex flex-col gap-1'><span className='font-bold text-xl text-teal-800'>The Active Senior</span>
-                    <span className='text-gray-600'>A welcoming space for older adults seeking to improve mobility, bone density, and balance with safe, anatomically-informed guidance.</span></li>
-                  <li className='flex flex-col gap-1'><span className='font-bold text-xl text-teal-800'>The Soul Seeker</span>
-                    <span className='text-gray-600'>For anyone, regardless of age, who feels a pull toward deep relaxation and wants to explore the spiritual and philosophical roots of yoga in a peaceful setting.</span></li>
-                </ul>
-              </div> : ""}
-
-              {tab === "takeAway" ? <div className='retreatTabs animate-[fadeIn_0.5s_ease-in-out]'>
-                <ul className='space-y-6 list-none'>
-                  <li className='flex flex-col gap-1'><span className='font-bold text-xl text-teal-800'>A regular yoga and meditation routine</span>
-                    <span className='text-gray-600'>Simple practices you can continue at home without special equipment or conditions.</span></li>
-                  <li className='flex flex-col gap-1'>
-                    <span className='font-bold text-xl text-teal-800'>Better understanding of classical yoga</span>
-                    <span className='text-gray-600'>Clear guidance on postures, breathing, relaxation, and the principles behind them.</span>
-                  </li>
-                  <li className='flex flex-col gap-1'>
-                    <span className='font-bold text-xl text-teal-800'>Tools to manage stress</span>
-                    <span className='text-gray-600'>Practical techniques to calm the breath, relax the body, and steady the mind.</span>
-                  </li>
-                  <li className='flex flex-col gap-1'> <span className='font-bold text-xl text-teal-800'>Clearer daily habits</span>
-                    <span className='text-gray-600'>Experience of a structured routine that can be adapted to everyday life.</span></li>
-                </ul>
-              </div> : ""}
-            </div>
-          </div>
-          
-          {/* Made image section responsive and stylish */}
-          <div className='mx-auto w-full lg:w-[40%] flex justify-center items-center mt-8 lg:mt-0'>
-            <img className='w-full max-w-[400px] lg:max-w-full rounded-2xl shadow-xl object-cover hover:rotate-1 transition-all duration-500' src={womenYoga} alt='Yoga' />
-          </div>
-        </div>
-
-        {/* redirection part - Detailed FAQ */}
-        <div className='mx-4 md:mx-8 lg:mx-12 bg-white shadow-xl rounded-2xl p-6 md:p-8 my-10 lg:my-16 border-l-8 border-teal-500 hover:shadow-2xl transition-shadow duration-300' id='expectation'>
-          <div className='grid grid-cols-1 md:grid-cols-2 gap-8'>
-            
-            {/* What to Expect */}
-            <div className='flex flex-col gap-2'>
-              <h4 className='font-bold text-teal-800 text-sm md:text-base uppercase tracking-widest flex items-center gap-2'>
-                <span className='bg-teal-100 p-2 rounded-full'>✨</span> What to Expect
-              </h4>
-              <p className='text-gray-600 text-sm md:text-base leading-relaxed pl-10'>
-                A balanced Sattvic lifestyle involving early morning meditation, daily asana, and immersive nature silence to reset your nervous system.
-              </p>
-            </div>
-
-            {/* Daily Schedule - FIXED ID */}
-            <div className='flex flex-col gap-2' id='Schedule'>
-              <h4 className='font-bold text-teal-800 text-sm md:text-base uppercase tracking-widest flex items-center gap-2'>
-                <span className='bg-teal-100 p-2 rounded-full'>🕒</span> Daily Schedule
-              </h4>
-              <p className='text-gray-600 text-sm md:text-base leading-relaxed pl-10'>
-                Guided sunrise practice at 6:00 AM, followed by organic brunch, philosophy talks, and restorative evening sessions before 9:00 PM lights-out.
-              </p>
-            </div>
-
-            {/* Accommodations - FIXED ID */}
-            <div className='flex flex-col gap-2' id='Accommodations'>
-              <h4 className='font-bold text-teal-800 text-sm md:text-base uppercase tracking-widest flex items-center gap-2'>
-                <span className='bg-teal-100 p-2 rounded-full'>🛏️</span> Accommodations
-              </h4>
-              <p className='text-gray-600 text-sm md:text-base leading-relaxed pl-10'>
-                Simple, clean, and eco-friendly shared or private rooms designed for deep rest, located within the peaceful sounds of the Rishikesh hills.
-              </p>
-            </div>
-
-            {/* Pricing - FIXED ID AND TYPO */}
-            <div className='flex flex-col gap-2' id='Pricing'>
-              <h4 className='font-bold text-teal-800 text-sm md:text-base uppercase tracking-widest flex items-center gap-2'>
-                <span className='bg-teal-100 p-2 rounded-full'>💳</span> Pricing
-              </h4>
-              <p className='text-gray-600 text-sm md:text-base leading-relaxed pl-10'>
-                Transparent all-inclusive rates covering your stay, twice-daily organic meals, study materials, and expert-led tuition for the 14-day cycle.
-              </p>
-            </div>
-
-          </div>
-        </div>
-
-        {/* date and price part */}
-        <div className='mt-[30px] flex flex-col bg-white p-5 md:p-10 mx-4 md:mx-8 lg:mx-12 rounded-2xl shadow-md mb-20'>
-          <div className='flex flex-col items-center justify-center gap-[20px]'>
-            <h1 className='text-2xl md:text-3xl font-bold h-auto md:h-[55px] w-full max-w-[280px] bg-teal-800 text-white rounded-lg shadow-xl text-center flex justify-center items-center p-3'>Dates & Prices</h1>
-            <p className='w-full md:w-[70%] text-center text-gray-600 leading-relaxed text-sm md:text-base'>Yoga Vacation is a 14-day cycle. You can come and leave any day, respecting minimum stay guidelines.
-              Beginners are advised to join at the beginning of the cycle.</p>
-          </div>
-          
-          {/* Changed to flex-col on mobile, flex-row on desktop */}
-          <div className='flex flex-col lg:flex-row w-full mt-[40px] md:mt-[70px] mb-[30px] gap-[30px] md:gap-[50px] items-center'>
-            <div className='flex-1 flex flex-col mt-4 w-full'>
-              {/* Changed <list> to <ul> */}
-              <ul className='flex flex-col justify-center items-center lg:items-start text-base md:text-xl space-y-4 w-full'>
-                <li className='bg-slate-50 p-4 rounded-lg shadow-sm border border-slate-100 w-full text-center lg:text-left hover:border-teal-500 transition-colors'>Hotel Noor, NarendaraNagar Near rishikesh</li>
-                <li className='bg-slate-50 p-4 rounded-lg shadow-sm border border-slate-100 w-full text-center lg:text-left hover:border-teal-500 transition-colors'>Hotel Noor, NarendaraNagar Near rishikesh</li>
-                <li className='bg-slate-50 p-4 rounded-lg shadow-sm border border-slate-100 w-full text-center lg:text-left hover:border-teal-500 transition-colors'>Hotel Noor, NarendaraNagar Near rishikesh</li>
-                <li className='bg-slate-50 p-4 rounded-lg shadow-sm border border-slate-100 w-full text-center lg:text-left hover:border-teal-500 transition-colors'>Hotel Noor, NarendaraNagar Near rishikesh</li>
-              </ul>
-            </div>
-            <div className='flex-1 flex w-full justify-center'>
-              <img src={womenYoga2} alt='Yoga' className='w-full max-w-[400px] lg:max-w-full rounded-2xl shadow-xl object-cover hover:scale-105 transition-transform duration-500' />
-            </div>
-          </div>
-        </div>
-
       </div>
+
+      {/* ── TESTIMONIALS ── */}
+      <div className='max-w-5xl mx-auto px-4 sm:px-8 py-16' id='testimonials'>
+        <FadeIn>
+          <p className='text-xs font-sans uppercase tracking-[0.2em] text-teal-600 mb-2 text-center'>Stories</p>
+          <h2 className='text-2xl sm:text-3xl font-bold text-stone-800 mb-10 text-center'>What Retreaters Say</h2>
+        </FadeIn>
+        <div className='grid sm:grid-cols-3 gap-5'>
+          {testimonials.map((t, i) => (
+            <FadeIn key={i} delay={i * 100}>
+              <div className='bg-white rounded-2xl p-6 shadow-sm border border-stone-100 hover:shadow-md transition h-full flex flex-col gap-3'>
+                <StarRating count={t.stars} />
+                <p className='text-stone-600 font-sans text-sm leading-relaxed italic flex-1'>"{t.text}"</p>
+                <div>
+                  <p className='font-bold text-stone-800 text-sm'>{t.name}</p>
+                  <p className='text-stone-400 text-xs font-sans'>{t.location}</p>
+                </div>
+              </div>
+            </FadeIn>
+          ))}
+        </div>
+      </div>
+
+      {/* ── FINAL CTA ── */}
+      <div className='bg-amber-50 border-t border-amber-100 py-16 px-4 text-center'>
+        <FadeIn>
+          <p className='text-4xl mb-4'>🌿</p>
+          <h2 className='text-2xl sm:text-3xl font-bold text-stone-800 mb-3'>Ready to Transform?</h2>
+          <p className='text-stone-500 font-sans text-sm max-w-md mx-auto mb-8'>
+            Spaces are limited. Join us in Rishikesh and begin the journey back to yourself. Reach out on WhatsApp to reserve your place today.
+          </p>
+          <div className='flex flex-wrap gap-3 justify-center'>
+            <a
+              href={WHATSAPP_LINK}
+              target="_blank"
+              rel="noopener noreferrer"
+              className='bg-teal-700 text-white px-8 py-3 rounded-full font-bold font-sans text-sm hover:bg-teal-800 transition shadow-lg hover:shadow-teal-900/30 flex items-center gap-2'
+            >
+              <span>💬</span> Reserve on WhatsApp
+            </a>
+            <a href="#expectation" className='border-2 border-stone-300 text-stone-600 px-8 py-3 rounded-full font-sans text-sm hover:border-teal-500 hover:text-teal-700 transition'>
+              Learn More
+            </a>
+          </div>
+          <p className='text-stone-400 font-sans text-xs mt-5'>📞 +91 95486 48227</p>
+        </FadeIn>
+      </div>
+
     </div>
   )
 }
