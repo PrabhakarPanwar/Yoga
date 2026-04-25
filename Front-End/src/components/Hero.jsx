@@ -303,22 +303,59 @@ const Hero = () => {
         </div>
 
         {/* ── MOBILE: 2-column grid ── */}
-        <div className="md:hidden grid grid-cols-2 gap-5 max-w-sm mx-auto">
-          {programs.map((item, i) => (
-            <NavLink
-              key={i}
-              to={`/yoga-programs/${item.slug}`}
-              className="flex flex-col items-center gap-3 p-4 bg-[#fffaf5] border border-[#e8d5c0] rounded-2xl shadow-sm hover:shadow-md hover:border-[#c8763a] transition-all duration-300 group"
-            >
-              <div className="w-12 h-12 flex items-center justify-center border-2 border-[#c8763a] rounded-full text-[#c8763a] text-xl group-hover:bg-[#c8763a] group-hover:text-white transition-all duration-300">
-                {item.icon}
-              </div>
-              <p className="text-sm font-semibold text-[#3b2a1a] text-center leading-tight group-hover:text-[#c8763a] transition-colors duration-300">
-                {item.title}
-              </p>
-            </NavLink>
-          ))}
+        {/* ── MOBILE: Image centre + programs right layout ── */}
+<div className="md:hidden w-full max-w-sm mx-auto">
+  
+  {/* Top 3 programs */}
+  <div className="flex flex-col gap-3 mb-4">
+    {programs.slice(0, 3).map((item, i) => (
+      <NavLink
+        key={i}
+        to={`/yoga-programs/${item.slug}`}
+        className="flex items-center gap-3 p-3 bg-[#fffaf5] border border-[#e8d5c0] rounded-2xl shadow-sm hover:shadow-md hover:border-[#c8763a] transition-all duration-300 group"
+      >
+        <div className="w-10 h-10 flex-shrink-0 flex items-center justify-center border-2 border-[#c8763a] rounded-full text-[#c8763a] text-lg group-hover:bg-[#c8763a] group-hover:text-white transition-all duration-300">
+          {item.icon}
         </div>
+        <div className="text-left">
+          <p className="text-sm font-semibold text-[#3b2a1a] leading-tight group-hover:text-[#c8763a] transition-colors duration-300">
+            {item.title}
+          </p>
+          <p className="text-xs text-[#7a6352] mt-0.5 leading-snug">{item.desc}</p>
+        </div>
+      </NavLink>
+    ))}
+  </div>
+
+  {/* Centre image */}
+  <div className="flex justify-center my-4">
+    <div
+      className="w-[180px] h-[180px] rounded-full bg-cover bg-center shadow-2xl border-4 border-[#c8763a]"
+      style={{ backgroundImage: `url(${shubhPic[13]})`, backgroundPosition: "center 60%" }}
+    />
+  </div>
+
+  {/* Bottom 3 programs */}
+  <div className="flex flex-col gap-3 mt-4">
+    {programs.slice(3, 6).map((item, i) => (
+      <NavLink
+        key={i}
+        to={`/yoga-programs/${item.slug}`}
+        className="flex items-center gap-3 p-3 bg-[#fffaf5] border border-[#e8d5c0] rounded-2xl shadow-sm hover:shadow-md hover:border-[#c8763a] transition-all duration-300 group"
+      >
+        <div className="w-10 h-10 flex-shrink-0 flex items-center justify-center border-2 border-[#c8763a] rounded-full text-[#c8763a] text-lg group-hover:bg-[#c8763a] group-hover:text-white transition-all duration-300">
+          {item.icon}
+        </div>
+        <div className="text-left">
+          <p className="text-sm font-semibold text-[#3b2a1a] leading-tight group-hover:text-[#c8763a] transition-colors duration-300">
+            {item.title}
+          </p>
+          <p className="text-xs text-[#7a6352] mt-0.5 leading-snug">{item.desc}</p>
+        </div>
+      </NavLink>
+    ))}
+  </div>
+</div>
       </section>
 
       {/* ── TESTIMONIALS SECTION ── */}
