@@ -289,6 +289,8 @@ export default function Footer() {
         <p style={{ margin: 0, fontSize: "11px", color: "#6b5a4e" }}>
           Founded by Shubham Pundir · M.Sc. Yoga Science
         </p>
+
+        <p> Developed by Nitin Chauhan</p>
       </div>
     </footer>
   );
