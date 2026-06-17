@@ -1,0 +1,440 @@
+import React from "react";
+import { shubhPic } from "../assets/product.js";
+import { NavLink } from "react-router-dom";
+import heroVideo from "../assets/herovideo.mp4"; // Mobile Portrait Video
+import heroVideoDesktop from "../assets/herovideodesktop.mp4"; // Desktop Landscape Video
+import {
+  FaUser,
+  FaLaptop,
+  FaBuilding,
+  FaUsers,
+  FaHeartbeat,
+  FaChild,
+} from "react-icons/fa";
+
+// ─── Data ─────────────────────────────────────────────────────────────────────
+
+const FOUNDER = {
+  name: "Shubham Pundir",
+  title: "Founder & Lead Yoga Instructor",
+  founded: "April 2022",
+  experience: "7+ Years",
+  qualifications: ["B.Sc. in Yoga Science", "M.Sc. in Yoga Science"],
+  bio: [
+    `Shubh YogShala was born from a singular conviction — that yoga is not a trend, it is a way of life. Founded in May 2026 by Shubham Pundir, the shala carries his name and his purpose: to share the ancient science of yoga with every kind of seeker.`,
+    `Shubham holds a Bachelor's and Master's degree in Yoga Science and brings over 7 years of hands-on teaching experience. He does not teach yoga as exercise — he teaches it as a dialogue between the self and stillness. Every session at Shubh YogShala reflects his belief that transformation begins with a single breath taken with full awareness.`,
+    `Whether you are a complete beginner stepping onto the mat for the first time, a working professional seeking calm in chaos, or someone healing through therapeutic practice — Shubham and Shubh YogShala welcome you exactly as you are.`,
+  ],
+};
+
+const STATS = [
+  { value: "7+",   label: "Years of Experience" },
+  { value: "2026", label: "Year Founded"         },
+  { value: "500+", label: "Lives Transformed"    },
+  { value: "6",    label: "Programs Offered"     },
+];
+
+const programs = [
+  {
+    title: "Personal Yoga Program",
+    desc:  "One-on-one sessions tailored precisely to your body, breath, and goals.",
+    icon:  <FaUser />,
+    slug:  "personal-yoga-program",
+  },
+  {
+    title: "Online Yoga Program",
+    desc:  "Live guided sessions you can join from anywhere in the world.",
+    icon:  <FaLaptop />,
+    slug:  "online-yoga-program",
+  },
+  {
+    title: "Corporate Yoga Program",
+    desc:  "Structured wellness programs that bring calm and focus to your workplace.",
+    icon:  <FaBuilding />,
+    slug:  "corporate-yoga-program",
+  },
+  {
+    title: "Group Yoga Program",
+    desc:  "Practise alongside others in a warm, encouraging group setting.",
+    icon:  <FaUsers />,
+    slug:  "group-yoga-program",
+  },
+  {
+    title: "Therapeutic Yoga Program",
+    desc:  "Carefully designed sequences for injury recovery and chronic conditions.",
+    icon:  <FaHeartbeat />,
+    slug:  "therapeutic-yoga-program",
+  },
+  {
+    title: "Kids Yoga Program",
+    desc:  "Joyful, age-appropriate yoga that builds focus and confidence in children.",
+    icon:  <FaChild />,
+    slug:  "kids-yoga-program",
+  },
+];
+
+const TESTIMONIALS = [
+  {
+    quote: "Shubham's teaching is unlike any class I have attended. He doesn't just correct your posture — he helps you understand why.",
+    name:  "Priya M.",
+    tag:   "Personal Yoga Student",
+  },
+  {
+    quote: "After three months at Shubh YogShala, my chronic back pain reduced significantly. I feel stronger and calmer every single day.",
+    name:  "Rajesh K.",
+    tag:   "Therapeutic Yoga",
+  },
+  {
+    quote: "We enrolled our entire office team. The corporate sessions transformed Monday mornings completely.",
+    name:  "Sneha T.",
+    tag:   "Corporate Program",
+  },
+];
+
+// ─── Sub-components ───────────────────────────────────────────────────────────
+
+const ProgramCard = ({ title, desc, icon, align = "right", slug }) => {
+  const isLeft = align === "left";
+  return (
+    <NavLink
+      to={`/yoga-programs/${slug}`}
+      className={`flex items-start gap-4 group cursor-pointer ${
+        isLeft ? "flex-row-reverse text-right" : "flex-row text-left"
+      }`}
+    >
+      <div className="w-12 h-12 flex-shrink-0 flex items-center justify-center border-2 border-[#c8763a] rounded-full text-[#c8763a] text-xl mt-1 group-hover:bg-[#c8763a] group-hover:text-white transition-all duration-300">
+        {icon}
+      </div>
+      <div>
+        <h3 className="text-base font-semibold text-[#3b2a1a] tracking-wide group-hover:text-[#c8763a] transition-colors duration-300">
+          {title}
+        </h3>
+        <p className="text-sm text-[#7a6352] mt-1 leading-relaxed">{desc}</p>
+      </div>
+    </NavLink>
+  );
+};
+
+const StatBlock = ({ value, label }) => (
+  <div className="text-center px-4">
+    <p className="text-2xl md:text-3xl font-bold text-[#c8763a]">{value}</p>
+    <p className="text-xs text-[#c8a882] mt-1 tracking-wide uppercase">{label}</p>
+  </div>
+);
+
+const TestimonialCard = ({ quote, name, tag }) => (
+  <div className="bg-[#fffaf5] border border-[#e8d5c0] rounded-2xl p-6 shadow-sm flex flex-col gap-4">
+    <p className="text-[#4a3728] text-sm leading-relaxed italic">"{quote}"</p>
+    <div>
+      <p className="text-[#3b2a1a] font-semibold text-sm">{name}</p>
+      <p className="text-[#c8763a] text-xs tracking-wide">{tag}</p>
+    </div>
+  </div>
+);
+
+// ─── Main Component ───────────────────────────────────────────────────────────
+
+const Hero = () => {
+  return (
+    <div className="w-full mt-5" style={{ fontFamily: "'Georgia', 'Times New Roman', serif" }}>
+
+      {/* ── RESPONSIVE DUAL VIDEO HERO SECTION ── */}
+      {/* ── RESPONSIVE DUAL VIDEO HERO SECTION ── */}
+      <section className="relative w-full h-[85vh] md:h-screen overflow-hidden bg-[#1a0e05]">
+        
+        {/* 1. DESKTOP LANDSCAPE VIDEO (Shows from 'sm' breakpoint (640px) and all larger screens) */}
+        <video
+          src={heroVideoDesktop}
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="hidden sm:block absolute inset-0 w-full h-full object-cover"
+        />
+
+        {/* 2. MOBILE PORTRAIT VIDEO (Only visible on screens smaller than 'sm' layout) */}
+        <video
+          src={heroVideo}
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="sm:hidden absolute inset-0 w-full h-full object-cover"
+        />
+
+        {/* Cinematic Background Gradient Overlays */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[#1a0e05]/60 via-[#3b1e08]/20 to-[#1a0e05]/70 z-10" />
+
+        {/* ── CONTACT BAR ── */}
+        <div className="absolute top-0 left-0 w-full bg-[#1a0e05]/80 text-[#f5c98a] text-xs px-6 md:px-14 py-2 flex justify-end gap-6 z-30">
+          <a
+            href="mailto:pundirshubham487@gmail.com"
+            className="flex items-center gap-1.5 hover:text-white transition-colors duration-200"
+          >
+            ✉ pundirshubham487@gmail.com
+          </a>
+          <a
+            href="tel:+918532064201"
+            className="flex items-center gap-1.5 hover:text-white transition-colors duration-200"
+          >
+            📞 +91 85320 64201
+          </a>
+        </div>
+
+        {/* ── NAVIGATION ELEMENT ── */}
+        <nav className="absolute top-0 left-0 w-full flex justify-between items-center px-6 md:px-14 pt-10 pb-6 text-white z-20">
+          <div className="mt-6">
+            <h1 className="text-lg md:text-2xl tracking-[0.2em] font-normal">
+              SHUBH YOGSHALA
+            </h1>
+            <p className="text-[10px] tracking-[0.3em] text-[#f5c98a] opacity-80 uppercase mt-0.5">
+              with Shubham Pundir
+            </p>
+          </div>
+          <NavLink
+            to="/reglog"
+            className="border border-[#f5c98a] text-[#f5c98a] px-5 py-2 text-xs tracking-widest hover:bg-[#f5c98a] hover:text-[#1a0e05] transition-all duration-300"
+          >
+            BOOK A SESSION
+          </NavLink>
+        </nav>
+
+      
+
+        {/* Animated Drop Indicator Arrow */}
+        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 text-[#f5c98a] text-lg animate-bounce z-20">
+          ↓
+        </div>
+      </section>
+
+      {/* ── STATS STRIP ── */}
+      <section className="w-full bg-[#3b2a1a] py-5">
+        <div className="max-w-4xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-6 divide-x divide-[#5a3e2b]">
+          {STATS.map((s, i) => <StatBlock key={i} {...s} />)}
+        </div>
+      </section>
+
+      {/* ── FOUNDER / ABOUT SECTION ── */}
+      <section className="w-full bg-[#fdf8f2] py-20 md:py-28 px-6 md:px-16">
+        <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-14 items-center">
+
+          <div className="relative">
+            <div
+              className="w-full h-[350px] md:h-[480px] bg-cover bg-center rounded-2xl shadow-xl"
+              style={{ backgroundImage: `url(${shubhPic[4]})`, backgroundPosition: "center 70%" }}
+            />
+            <div className="absolute -bottom-5 right-4 md:right-6 bg-[#c8763a] text-white px-5 py-4 rounded-xl shadow-lg text-center">
+              <p className="text-2xl font-bold">7+</p>
+              <p className="text-xs tracking-wide">Years Teaching</p>
+            </div>
+          </div>
+
+          <div className="space-y-6">
+            <p className="text-[#c8763a] text-xs tracking-[0.4em] uppercase">
+              The Founder's Story
+            </p>
+            <h2 className="text-3xl md:text-4xl font-light text-[#3b2a1a] leading-snug">
+              Meet{" "}
+              <span className="italic font-normal text-[#c8763a]">
+                Shubham Pundir
+              </span>
+            </h2>
+            <div className="flex gap-3 flex-wrap">
+              {FOUNDER.qualifications.map((q, i) => (
+                <span key={i} className="text-xs bg-[#f5e8d8] text-[#7a4f2a] px-3 py-1 rounded-full tracking-wide">
+                  {q}
+                </span>
+              ))}
+              <span className="text-xs bg-[#f5e8d8] text-[#7a4f2a] px-3 py-1 rounded-full tracking-wide">
+                Founded April 2022
+              </span>
+            </div>
+            {FOUNDER.bio.map((para, i) => (
+              <p key={i} className="text-[#5a3e2b] text-sm md:text-base leading-relaxed">
+                {para}
+              </p>
+            ))}
+            <NavLink
+              to="/about"
+              className="mt-2 inline-block bg-[#3b2a1a] text-[#f5c98a] px-7 py-3 text-xs tracking-[0.3em] uppercase rounded-full hover:bg-[#c8763a] hover:text-white transition-all duration-300"
+            >
+              LEARN MORE ABOUT SHUBHAM →
+            </NavLink>
+          </div>
+        </div>
+      </section>
+
+      {/* ── PHILOSOPHY STRIP ── */}
+      <section className="w-full bg-[#c8763a] py-14 px-6 text-center">
+        <p className="text-white/70 text-xs tracking-[0.4em] uppercase mb-3">
+          The Philosophy at Shubh YogShala
+        </p>
+        <blockquote className="text-white text-2xl md:text-4xl font-light italic max-w-3xl mx-auto leading-snug">
+          "Yoga is not about touching your toes. It is about what you learn on the way down."
+        </blockquote>
+        <p className="mt-4 text-white/60 text-sm">— Shubham Pundir</p>
+      </section>
+
+      {/* ── PROGRAMS SECTION ── */}
+      <section className="w-full bg-[#fdf8f2] py-20 md:py-28 px-6 md:px-16 text-center">
+        <p className="text-[#c8763a] text-xs tracking-[0.4em] uppercase mb-3">What We Offer</p>
+        <h2 className="text-3xl md:text-5xl font-light text-[#3b2a1a] mb-4">Our Programs</h2>
+        <p className="text-[#7a6352] text-sm max-w-xl mx-auto mb-16 leading-relaxed">
+          Six thoughtfully designed programs, each rooted in classical yoga principles
+          and shaped by Shubham's 7 years of real teaching experience.
+        </p>
+
+        {/* ── DESKTOP PROGRAMS ── */}
+        <div className="relative max-w-6xl mx-auto hidden md:grid grid-cols-3 gap-10 items-center">
+          <div className="space-y-10">
+            {programs.slice(0, 3).map((item, i) => (
+              <ProgramCard key={i} {...item} align="left" />
+            ))}
+          </div>
+          <div className="flex justify-center">
+            <div
+              className="w-[240px] h-[240px] md:w-[300px] md:h-[300px] rounded-full bg-cover bg-center shadow-2xl border-4 border-[#c8763a]"
+              style={{ backgroundImage: `url(${shubhPic[22]})`, backgroundPosition: "center 90%" }}
+            />
+          </div>
+          <div className="space-y-10">
+            {programs.slice(3, 6).map((item, i) => (
+              <ProgramCard key={i} {...item} align="right" />
+            ))}
+          </div>
+        </div>
+
+        {/* ── MOBILE PROGRAMS ── */}
+        <div className="md:hidden w-full max-w-sm mx-auto">
+          <div className="flex flex-col gap-3 mb-4">
+            {programs.slice(0, 3).map((item, i) => (
+              <NavLink
+                key={i}
+                to={`/yoga-programs/${item.slug}`}
+                className="flex items-center gap-3 p-3 bg-[#fffaf5] border border-[#e8d5c0] rounded-2xl shadow-sm hover:shadow-md hover:border-[#c8763a] transition-all duration-300 group"
+              >
+                <div className="w-10 h-10 flex-shrink-0 flex items-center justify-center border-2 border-[#c8763a] rounded-full text-[#c8763a] text-lg group-hover:bg-[#c8763a] group-hover:text-white transition-all duration-300">
+                  {item.icon}
+                </div>
+                <div className="text-left">
+                  <p className="text-sm font-semibold text-[#3b2a1a] leading-tight group-hover:text-[#c8763a] transition-colors duration-300">
+                    {item.title}
+                  </p>
+                  <p className="text-xs text-[#7a6352] mt-0.5 leading-snug">{item.desc}</p>
+                </div>
+              </NavLink>
+            ))}
+          </div>
+          <div className="flex justify-center my-4">
+            <div
+              className="w-[180px] h-[180px] rounded-full bg-cover bg-center shadow-2xl border-4 border-[#c8763a]"
+              style={{ backgroundImage: `url(${shubhPic[22]})`, backgroundPosition: "center 90%" }}
+            />
+          </div>
+          <div className="flex flex-col gap-3 mt-4">
+            {programs.slice(3, 6).map((item, i) => (
+              <NavLink
+                key={i}
+                to={`/yoga-programs/${item.slug}`}
+                className="flex items-center gap-3 p-3 bg-[#fffaf5] border border-[#e8d5c0] rounded-2xl shadow-sm hover:shadow-md hover:border-[#c8763a] transition-all duration-300 group"
+              >
+                <div className="w-10 h-10 flex-shrink-0 flex items-center justify-center border-2 border-[#c8763a] rounded-full text-[#c8763a] text-lg group-hover:bg-[#c8763a] group-hover:text-white transition-all duration-300">
+                  {item.icon}
+                </div>
+                <div className="text-left">
+                  <p className="text-sm font-semibold text-[#3b2a1a] leading-tight group-hover:text-[#c8763a] transition-colors duration-300">
+                    {item.title}
+                  </p>
+                  <p className="text-xs text-[#7a6352] mt-0.5 leading-snug">{item.desc}</p>
+                </div>
+              </NavLink>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── TESTIMONIALS SECTION ── */}
+      <section className="w-full bg-[#3b2a1a] py-20 px-6 md:px-16">
+        <div className="text-center mb-12">
+          <p className="text-[#f5c98a] text-xs tracking-[0.4em] uppercase mb-3">Student Stories</p>
+          <h2 className="text-3xl md:text-4xl font-light text-white">
+            Lives Changed at{" "}
+            <span className="italic text-[#f5c98a]">Shubh YogShala</span>
+          </h2>
+        </div>
+        <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6">
+          {TESTIMONIALS.map((t, i) => <TestimonialCard key={i} {...t} />)}
+        </div>
+      </section>
+
+      {/* ── LOCATION SECTION ── */}
+      <section className="w-full bg-[#fdf8f2] py-16 px-6 md:px-16">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-8">
+            <p className="text-[#c8763a] text-xs tracking-[0.4em] uppercase mb-2">Find Us</p>
+            <h2 className="text-2xl md:text-3xl font-light text-[#3b2a1a]">
+              Visit <span className="italic text-[#c8763a]">Shubh YogShala</span>
+            </h2>
+          </div>
+          <a
+            href="https://maps.app.goo.gl/Ptj6xcxrBcPagHsk9"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block mx-auto rounded-2xl overflow-hidden border-2 border-[#c8763a] shadow-lg"
+            style={{ maxWidth: "640px", height: "360px" }}
+            aria-label="Open Shubh YogShala location in Google Maps"
+          >
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3888.5!2d77.6761082!3d12.9029804!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae136b681d1aff%3A0x994d339f68434e7d!2sKidzee+Kasavanahalli!5e0!3m2!1sen!2sin!4v1717000000000"
+              width="100%"
+              height="100%"
+              style={{ border: 0, pointerEvents: "none" }}
+              allowFullScreen=""
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              title="Shubh YogShala Location"
+            />
+          </a>
+          <p className="text-center text-[#7a6352] text-xs mt-4 tracking-wide">
+            📍 Click the map to open directions in Google Maps
+          </p>
+        </div>
+      </section>
+
+      {/* ── CALL TO ACTION ── */}
+      <section className="w-full bg-[#fdf8f2] py-20 px-6 text-center">
+        <p className="text-[#c8763a] text-xs tracking-[0.4em] uppercase mb-3">Begin Today</p>
+        <h2 className="text-3xl md:text-5xl font-light text-[#3b2a1a] mb-6">
+          Your First Step
+          <br />
+          <span className="italic text-[#c8763a]">Starts with One Breath</span>
+        </h2>
+        <p className="text-[#7a6352] text-sm max-w-md mx-auto mb-10 leading-relaxed">
+          Whether you are curious, committed, or coming back to yoga — Shubham
+          and Shubh YogShala are here for every stage of your journey.
+        </p>
+        <div className="flex flex-col sm:flex-row justify-center gap-4">
+          <NavLink
+            to="/reglog"
+            className="bg-[#c8763a] text-white px-8 py-3 text-xs tracking-[0.3em] uppercase hover:bg-[#a85e2a] transition-all duration-300 inline-block"
+          >
+            BOOK A FREE TRIAL SESSION
+          </NavLink>
+          <a
+            href={`https://wa.me/918532064201?text=${encodeURIComponent(
+              "Hello Shubham, I am messaging you from Shubh YogShala and I am interested in yoga learning."
+            )}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="border border-[#3b2a1a] text-[#3b2a1a] px-8 py-3 text-xs tracking-[0.3em] uppercase hover:bg-[#3b2a1a] hover:text-white transition-all duration-300 inline-block"
+          >
+            CONTACT SHUBHAM
+          </a>
+        </div>
+      </section>
+
+    </div>
+  );
+};
+
+export default Hero;
