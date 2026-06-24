@@ -330,7 +330,7 @@ export default function Footer() {
           © 2026 Shubh YogShala. All Rights Reserved.
         </p>
         <p style={{ margin: 0, fontSize: "11px", color: "#6b5a4e" }}>
-          Founded by Shubham Pundir · M.Sc. Yoga Science
+          Founded by Shubham Pundir  M.A. Yoga Science
         </p>
         <p style={{ margin: 0, fontSize: "11px", color: "#6b5a4e" }}>
           Developed by Nitin Chauhan

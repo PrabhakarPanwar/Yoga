@@ -176,7 +176,7 @@ function YogaRetreat() {
       <div className='bg-white py-10 px-4'>
         <div className='max-w-4xl mx-auto grid grid-cols-2 sm:grid-cols-4 gap-6 text-center'>
           {[
-            { n: "14", label: "Days Cycle" },
+            { n: "3-5", label: "Days Cycle" },
             { n: "500+", label: "Retreaters" },
             { n: "7+", label: "Years Teaching" },
             { n: "Year-Round", label: "Availability" },
