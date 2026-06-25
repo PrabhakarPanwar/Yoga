@@ -137,7 +137,7 @@ export default function Footer() {
 
           <p style={{ fontSize: "13px", lineHeight: 1.8, color: "#a89885", margin: "0 0 1.25rem" }}>
             Yoga is a journey back to yourself — through breath, movement, and stillness.
-            Founded in 2022 by Shubham Pundir, M.Sc. Yoga Science.
+            Founded in 2022 by Shubham Pundir, M.A. Yoga Science.
           </p>
 
           {/* Social */}
