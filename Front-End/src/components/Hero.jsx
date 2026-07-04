@@ -1,8 +1,6 @@
 import React from "react";
 import { shubhPic } from "../assets/product.js";
 import { NavLink } from "react-router-dom";
-import heroVideo from "../assets/herovideo.mp4"; // Mobile Portrait Video
-import heroVideoDesktop from "../assets/herovideodesktop.mp4"; // Desktop Landscape Video
 import {
   FaUser,
   FaLaptop,
@@ -13,6 +11,15 @@ import {
   FaBaby,
   FaHeart,
 } from "react-icons/fa";
+
+// ─── Cloudinary Hero Videos ───────────────────────────────────────────────────
+const CLOUD_NAME = "dtxglqboa";
+
+const heroVideoDesktop = `https://res.cloudinary.com/${CLOUD_NAME}/video/upload/f_auto,q_auto/v1782661934/herovideodesktop3_iyhrht.mp4`;
+const heroVideoDesktopPoster = `https://res.cloudinary.com/${CLOUD_NAME}/video/upload/so_0,f_auto,q_auto/v1782661934/herovideodesktop3_iyhrht.jpg`;
+
+const heroVideo = `https://res.cloudinary.com/${CLOUD_NAME}/video/upload/f_auto,q_auto/v1782491324/auth_craft_videos/w3cuthwlvasefdmdbhuq.mp4`;
+const heroVideoPoster = `https://res.cloudinary.com/${CLOUD_NAME}/video/upload/so_0,f_auto,q_auto/v1782491324/auth_craft_videos/w3cuthwlvasefdmdbhuq.jpg`;
 
 // ─── Data ─────────────────────────────────────────────────────────────────────
 
@@ -155,23 +162,27 @@ const Hero = () => {
       {/* ── RESPONSIVE DUAL VIDEO HERO SECTION ── */}
       <section className="relative w-full h-[85vh] md:h-screen overflow-hidden bg-[#1a0e05]">
 
-        {/* 1. DESKTOP LANDSCAPE VIDEO */}
+        {/* 1. DESKTOP LANDSCAPE VIDEO (Cloudinary) */}
         <video
           src={heroVideoDesktop}
+          poster={heroVideoDesktopPoster}
           autoPlay
           loop
           muted
           playsInline
+          preload="auto"
           className="hidden sm:block absolute inset-0 w-full h-full object-cover"
         />
 
-        {/* 2. MOBILE PORTRAIT VIDEO */}
+        {/* 2. MOBILE PORTRAIT VIDEO (Cloudinary) */}
         <video
           src={heroVideo}
+          poster={heroVideoPoster}
           autoPlay
           loop
           muted
           playsInline
+          preload="auto"
           className="sm:hidden absolute inset-0 w-full h-full object-cover"
         />
 
