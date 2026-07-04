@@ -26,7 +26,7 @@ const SOCIAL = [
     label: "Facebook" 
   },
   { 
-    Icon: FaEnvelope,  // Updated icon with your original link intact
+    Icon: FaEnvelope,  
     href: "mailto:pundirshubham487@gmail.com", 
     label: "Gmail" 
   },
@@ -40,12 +40,14 @@ const NAV_LINKS = [
 ];
 
 const PROGRAMS = [
-  { label: "Personal Yoga Classes",    slug: "personal-yoga-program" },
-  { label: "Online Yoga Classes",      slug: "online-yoga-program" },
-  { label: "Corporate Yoga Classes",   slug: "corporate-yoga-program" },
-  { label: "Group Yoga Classes",       slug: "group-yoga-program" },
-  { label: "Therapeutic Yoga Classes", slug: "therapeutic-yoga-program" },
-  { label: "Kids Yoga Classes",        slug: "kids-yoga-program" },
+  { label: "Personal Yoga Classes",    slug: "personal-yoga" },
+  { label: "Online Yoga Classes",      slug: "online-yoga" },
+  { label: "Corporate Yoga Classes",   slug: "corporate-yoga" },
+  { label: "Group Yoga Classes",       slug: "group-yoga" },
+  { label: "Therapeutic Yoga Classes", slug: "therapeutic-yoga" },
+  { label: "Prenatal Yoga Classes",    slug: "prenatal-yoga" },
+  { label: "Postnatal Yoga Classes",   slug: "postnatal-yoga" },
+  { label: "Kids Yoga Classes",        slug: "kids-yoga" },
 ];
 
 export default function Footer() {

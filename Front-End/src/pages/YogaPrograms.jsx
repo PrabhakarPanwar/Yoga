@@ -3,6 +3,7 @@ import { useParams, NavLink } from "react-router-dom";
 import {
   FaUser, FaLaptop, FaBuilding, FaUsers, FaHeartbeat, FaChild,
   FaWhatsapp, FaCheckCircle, FaStar, FaClock, FaMapMarkerAlt, FaPhoneAlt,
+  FaBaby, FaHeart,
 } from "react-icons/fa";
 
 // ── WhatsApp — ALL CTAs go here, zero /reglog redirects ────────────────────
@@ -233,6 +234,92 @@ const PROGRAMS = [
     lightColor: "#e0f5f0",
   },
   {
+    slug: "prenatal-yoga Classes",
+    title: "Prenatal Yoga Classes",
+    subtitle: "For Expecting Mothers",
+    icon: <FaBaby />,
+    emoji: "🤰",
+    tagline: "Two hearts, one breath.",
+    heroLine: "Safe, nurturing yoga designed specifically for every trimester of your pregnancy.",
+    description: [
+      "Prenatal Yoga at Shubh YogShala is built around a simple truth: pregnancy is not an illness to manage, but a profound physical and emotional journey to be supported. Shubham designs every session around your trimester, your energy levels, and any specific concerns your doctor has flagged.",
+      "Sessions focus on gentle strength-building, pelvic floor awareness, breathwork for labour preparation, and safe stretches that ease the common discomforts of pregnancy — back pain, swelling, and shortness of breath. Nothing is forced, nothing is rushed.",
+      "Beyond the physical, prenatal yoga offers something many expecting mothers don't expect — a quiet, protected space to connect with their changing body and their baby, away from the noise of advice and expectation.",
+    ],
+    benefits: [
+      "Trimester-specific sequences (safe for all 3 stages)",
+      "Pelvic floor & core awareness training",
+      "Breathwork for labour preparation",
+      "Relief from back pain, swelling & fatigue",
+      "Gentle strength & flexibility maintenance",
+      "Available online — ideal for late-term comfort",
+    ],
+    whoIsItFor: [
+      "First-time mothers wanting a safe start to yoga",
+      "Experienced yogis adapting practice for pregnancy",
+      "Women experiencing pregnancy-related back pain",
+      "Anyone wanting active labour preparation",
+      "Mothers seeking calm amid pregnancy anxiety",
+    ],
+    process: [
+      { step: "01", title: "Medical Check-In", desc: "Shubham reviews your trimester, doctor's notes, and any precautions before your first session." },
+      { step: "02", title: "Gentle Assessment", desc: "A soft first session to understand your current comfort, mobility, and energy levels." },
+      { step: "03", title: "Personalised Plan", desc: "A trimester-appropriate sequence that evolves with you as your pregnancy progresses." },
+      { step: "04", title: "Ongoing Support", desc: "Regular sessions with adjustments made week to week as your body changes." },
+    ],
+    faqs: [
+      { q: "Is prenatal yoga safe in the first trimester?", a: "Yes, with the right modifications. Shubham always checks for medical clearance and adapts accordingly." },
+      { q: "Do I need prior yoga experience?", a: "Not at all. Many mothers start yoga for the first time during pregnancy." },
+      { q: "Can this help with labour?", a: "The breathwork and pelvic awareness practised here are widely used to support easier, more informed labour." },
+      { q: "Is online prenatal yoga effective?", a: "Yes — many mothers, especially in later trimesters, prefer the comfort of practising from home." },
+    ],
+    color: "#9c5f7a",
+    lightColor: "#f7e9ee",
+  },
+  {
+    slug: "postnatal-yoga Classes",
+    title: "Postnatal Yoga Classes",
+    subtitle: "Recovery After Birth",
+    icon: <FaHeart />,
+    emoji: "🍼",
+    tagline: "Healing, at your own pace.",
+    heroLine: "Gentle, restorative yoga to help your body and mind recover after childbirth.",
+    description: [
+      "Postnatal Yoga at Shubh YogShala meets new mothers exactly where they are — physically recovering, emotionally adjusting, and often exhausted. Shubham's approach is patient and progressive, never pushing the body faster than it's ready to heal.",
+      "Sessions focus on safely rebuilding core and pelvic floor strength, easing tension in the neck and shoulders from feeding and carrying, and gently restoring energy. Equal attention is given to emotional wellbeing — postnatal yoga is one of the most effective, natural supports for the exhaustion and mood shifts that follow birth.",
+      "Whether it has been six weeks or six months since delivery, it is never too late to begin. Shubham tailors every session to how far along you are in recovery, C-section or natural delivery, and your current energy.",
+    ],
+    benefits: [
+      "Safe core & pelvic floor rebuilding",
+      "Relief for neck, shoulder & back tension",
+      "Suitable for both C-section & natural delivery",
+      "Supports emotional wellbeing & energy levels",
+      "Flexible timing around feeding schedules",
+      "Baby-friendly online sessions available",
+    ],
+    whoIsItFor: [
+      "New mothers cleared for gentle movement",
+      "Women recovering from C-section delivery",
+      "Mothers dealing with postpartum fatigue or low mood",
+      "Anyone wanting to safely rebuild core strength",
+      "Mothers who want a calm hour that's just for them",
+    ],
+    process: [
+      { step: "01", title: "Recovery Check-In", desc: "Shubham discusses your delivery type, recovery timeline, and any medical clearance you've received." },
+      { step: "02", title: "Gentle First Session", desc: "A slow, restorative introduction focused on breath and the most basic core reconnection." },
+      { step: "03", title: "Progressive Plan", desc: "A recovery-paced program that rebuilds strength safely over weeks, not days." },
+      { step: "04", title: "Ongoing Practice", desc: "Regular sessions that grow with your recovery, energy, and confidence." },
+    ],
+    faqs: [
+      { q: "How soon after delivery can I start?", a: "Typically after your doctor's clearance — usually around 6 weeks for natural delivery, longer for C-section. Shubham will guide you." },
+      { q: "Can I bring my baby to sessions?", a: "Yes — in-person sessions are baby-friendly, and online sessions offer the same flexibility from home." },
+      { q: "Will this help with diastasis recti?", a: "Shubham's core-rebuilding sequences are specifically designed to safely address ab separation." },
+      { q: "I feel low and exhausted — can yoga really help?", a: "Many new mothers find postnatal yoga meaningfully improves mood and energy. It's not a replacement for medical care, but a strong complement to it." },
+    ],
+    color: "#5b7a6b",
+    lightColor: "#eaf2ee",
+  },
+  {
     slug: "kids-yoga Classes",
     title: "Kids Yoga Classes",
     subtitle: "Ages 5 to 15",
@@ -302,6 +389,16 @@ const TESTIMONIALS = {
     { name: "Rajesh K.", text: "Chronic back pain for 6 years. After 8 weeks with Shubham's therapeutic protocol, I reduced my pain medication by half.", stars: 5 },
     { name: "Sunita A.", text: "Managing PCOD. Shubham's targeted sequences have made a real difference — my cycles have regulated significantly.", stars: 5 },
     { name: "Dr. Pawan M.", text: "As a physician, I'm skeptical of wellness claims. Shubham's approach is evidence-informed and genuinely effective.", stars: 5 },
+  ],
+  "prenatal-yoga Classes": [
+    { name: "Ananya G.", text: "I was terrified to move at all during my pregnancy. Shubham made me feel safe every single session.", stars: 5 },
+    { name: "Divya S.", text: "The breathing techniques he taught me were genuinely useful during labour. I still think about it.", stars: 5 },
+    { name: "Ishita P.", text: "My back pain in the third trimester disappeared almost completely after a few weeks of these sessions.", stars: 5 },
+  ],
+  "postnatal-yoga Classes": [
+    { name: "Ritika N.", text: "Six months post C-section, Shubham helped me rebuild strength I thought I'd lost forever.", stars: 5 },
+    { name: "Simran K.", text: "This was the one hour a week that felt entirely mine again. It helped more than I expected, emotionally too.", stars: 5 },
+    { name: "Preeti J.", text: "He was so patient with my pace. Never once did I feel rushed or judged for how slow I was recovering.", stars: 5 },
   ],
   "kids-yoga Classes": [
     { name: "Pooja S. (Parent)", text: "My son's concentration in school improved noticeably after 6 weeks. His teacher asked what changed. It was yoga.", stars: 5 },

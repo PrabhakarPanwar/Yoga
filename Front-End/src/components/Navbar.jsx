@@ -10,6 +10,8 @@ import {
   FaChild,
   FaWhatsapp,
   FaPhone,
+  FaBaby,
+  FaHeart,
 } from "react-icons/fa";
 import { SiGmail } from "react-icons/si";
 
@@ -46,6 +48,18 @@ const YOGA_PROGRAMS = [
     slug: "therapeutic-yoga",
   },
   {
+    title: "Prenatal Yoga",
+    desc: "Safe practice for expecting mothers",
+    icon: <FaBaby />,
+    slug: "prenatal-yoga",
+  },
+  {
+    title: "Postnatal Yoga",
+    desc: "Gentle recovery after birth",
+    icon: <FaHeart />,
+    slug: "postnatal-yoga",
+  },
+  {
     title: "Kids Yoga",
     desc: "Joyful yoga for children",
     icon: <FaChild />,
@@ -64,7 +78,7 @@ function Navbar() {
   const { assets } = useContext(UserContext);
   const navigate = useNavigate();
   const [open, setOpen] = useState(false);
-  
+
   // Initialize state based on actual auth status so refreshes don't break it
   const [isLoggedIn, setIsLoggedIn] = useState(!!localStorage.getItem("token"));
   const [programsOpen, setProgramsOpen] = useState(false);
@@ -90,7 +104,7 @@ function Navbar() {
     clearTimeout(hoverTimeout.current);
     setProgramsOpen(true);
   };
-  
+
   const handleMouseLeave = () => {
     hoverTimeout.current = setTimeout(() => setProgramsOpen(false), 150);
   };
@@ -146,7 +160,7 @@ function Navbar() {
         style={{ top: "32px" }}
       >
         <main className="flex justify-between items-center px-4 md:px-10 py-1 relative">
-          
+
           {/* LOGO */}
           <NavLink to="/" onClick={handleClose} className="flex items-center h-full py-1">
             {assets?.logo ? (

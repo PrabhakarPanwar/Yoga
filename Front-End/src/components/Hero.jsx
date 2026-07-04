@@ -10,6 +10,8 @@ import {
   FaUsers,
   FaHeartbeat,
   FaChild,
+  FaBaby,
+  FaHeart,
 } from "react-icons/fa";
 
 // ─── Data ─────────────────────────────────────────────────────────────────────
@@ -17,9 +19,9 @@ import {
 const FOUNDER = {
   name: "Shubham Pundir",
   title: "Founder & Lead Yoga Instructor",
-  founded: "April 2022",
+  founded: "2026",
   experience: "7+ Years",
-  qualifications: ["B.Sc. in Yoga Science", "M.Sc. in Yoga Science"],
+  qualifications: ["B.A. in Yoga Science", "M.A. in Yoga Science"],
   bio: [
     `Shubh YogShala was born from a singular conviction — that yoga is not a trend, it is a way of life. Founded in May 2026 by Shubham Pundir, the shala carries his name and his purpose: to share the ancient science of yoga with every kind of seeker.`,
     `Shubham holds a Bachelor's and Master's degree in Yoga Science and brings over 7 years of hands-on teaching experience. He does not teach yoga as exercise — he teaches it as a dialogue between the self and stillness. Every session at Shubh YogShala reflects his belief that transformation begins with a single breath taken with full awareness.`,
@@ -31,7 +33,7 @@ const STATS = [
   { value: "7+",   label: "Years of Experience" },
   { value: "2026", label: "Year Founded"         },
   { value: "500+", label: "Lives Transformed"    },
-  { value: "6",    label: "Programs Offered"     },
+  { value: "8",    label: "Programs Offered"     },
 ];
 
 const programs = [
@@ -39,37 +41,49 @@ const programs = [
     title: "Personal Yoga Program",
     desc:  "One-on-one sessions tailored precisely to your body, breath, and goals.",
     icon:  <FaUser />,
-    slug:  "personal-yoga-program",
+    slug:  "personal-yoga",
   },
   {
     title: "Online Yoga Program",
     desc:  "Live guided sessions you can join from anywhere in the world.",
     icon:  <FaLaptop />,
-    slug:  "online-yoga-program",
+    slug:  "online-yoga",
   },
   {
     title: "Corporate Yoga Program",
     desc:  "Structured wellness programs that bring calm and focus to your workplace.",
     icon:  <FaBuilding />,
-    slug:  "corporate-yoga-program",
+    slug:  "corporate-yoga",
   },
   {
     title: "Group Yoga Program",
     desc:  "Practise alongside others in a warm, encouraging group setting.",
     icon:  <FaUsers />,
-    slug:  "group-yoga-program",
+    slug:  "group-yoga",
   },
   {
     title: "Therapeutic Yoga Program",
     desc:  "Carefully designed sequences for injury recovery and chronic conditions.",
     icon:  <FaHeartbeat />,
-    slug:  "therapeutic-yoga-program",
+    slug:  "therapeutic-yoga",
+  },
+  {
+    title: "Prenatal Yoga Program",
+    desc:  "Safe, nurturing sessions designed for every trimester of pregnancy.",
+    icon:  <FaBaby />,
+    slug:  "prenatal-yoga",
+  },
+  {
+    title: "Postnatal Yoga Program",
+    desc:  "Gentle, restorative practice to help new mothers recover and heal.",
+    icon:  <FaHeart />,
+    slug:  "postnatal-yoga",
   },
   {
     title: "Kids Yoga Program",
     desc:  "Joyful, age-appropriate yoga that builds focus and confidence in children.",
     icon:  <FaChild />,
-    slug:  "kids-yoga-program",
+    slug:  "kids-yoga",
   },
 ];
 
@@ -139,10 +153,9 @@ const Hero = () => {
     <div className="w-full mt-5" style={{ fontFamily: "'Georgia', 'Times New Roman', serif" }}>
 
       {/* ── RESPONSIVE DUAL VIDEO HERO SECTION ── */}
-      {/* ── RESPONSIVE DUAL VIDEO HERO SECTION ── */}
       <section className="relative w-full h-[85vh] md:h-screen overflow-hidden bg-[#1a0e05]">
-        
-        {/* 1. DESKTOP LANDSCAPE VIDEO (Shows from 'sm' breakpoint (640px) and all larger screens) */}
+
+        {/* 1. DESKTOP LANDSCAPE VIDEO */}
         <video
           src={heroVideoDesktop}
           autoPlay
@@ -152,7 +165,7 @@ const Hero = () => {
           className="hidden sm:block absolute inset-0 w-full h-full object-cover"
         />
 
-        {/* 2. MOBILE PORTRAIT VIDEO (Only visible on screens smaller than 'sm' layout) */}
+        {/* 2. MOBILE PORTRAIT VIDEO */}
         <video
           src={heroVideo}
           autoPlay
@@ -162,7 +175,7 @@ const Hero = () => {
           className="sm:hidden absolute inset-0 w-full h-full object-cover"
         />
 
-        {/* Cinematic Background Gradient Overlays */}
+        {/* Background Overlay */}
         <div className="absolute inset-0 bg-gradient-to-b from-[#1a0e05]/60 via-[#3b1e08]/20 to-[#1a0e05]/70 z-10" />
 
         {/* ── CONTACT BAR ── */}
@@ -198,8 +211,6 @@ const Hero = () => {
             BOOK A SESSION
           </NavLink>
         </nav>
-
-      
 
         {/* Animated Drop Indicator Arrow */}
         <div className="absolute bottom-6 left-1/2 -translate-x-1/2 text-[#f5c98a] text-lg animate-bounce z-20">
@@ -280,14 +291,14 @@ const Hero = () => {
         <p className="text-[#c8763a] text-xs tracking-[0.4em] uppercase mb-3">What We Offer</p>
         <h2 className="text-3xl md:text-5xl font-light text-[#3b2a1a] mb-4">Our Programs</h2>
         <p className="text-[#7a6352] text-sm max-w-xl mx-auto mb-16 leading-relaxed">
-          Six thoughtfully designed programs, each rooted in classical yoga principles
+          Eight thoughtfully designed programs, each rooted in classical yoga principles
           and shaped by Shubham's 7 years of real teaching experience.
         </p>
 
         {/* ── DESKTOP PROGRAMS ── */}
         <div className="relative max-w-6xl mx-auto hidden md:grid grid-cols-3 gap-10 items-center">
           <div className="space-y-10">
-            {programs.slice(0, 3).map((item, i) => (
+            {programs.slice(0, 4).map((item, i) => (
               <ProgramCard key={i} {...item} align="left" />
             ))}
           </div>
@@ -298,7 +309,7 @@ const Hero = () => {
             />
           </div>
           <div className="space-y-10">
-            {programs.slice(3, 6).map((item, i) => (
+            {programs.slice(4, 8).map((item, i) => (
               <ProgramCard key={i} {...item} align="right" />
             ))}
           </div>
@@ -307,7 +318,7 @@ const Hero = () => {
         {/* ── MOBILE PROGRAMS ── */}
         <div className="md:hidden w-full max-w-sm mx-auto">
           <div className="flex flex-col gap-3 mb-4">
-            {programs.slice(0, 3).map((item, i) => (
+            {programs.slice(0, 4).map((item, i) => (
               <NavLink
                 key={i}
                 to={`/yoga-programs/${item.slug}`}
@@ -332,7 +343,7 @@ const Hero = () => {
             />
           </div>
           <div className="flex flex-col gap-3 mt-4">
-            {programs.slice(3, 6).map((item, i) => (
+            {programs.slice(4, 8).map((item, i) => (
               <NavLink
                 key={i}
                 to={`/yoga-programs/${item.slug}`}
@@ -376,6 +387,7 @@ const Hero = () => {
               Visit <span className="italic text-[#c8763a]">Shubh YogShala</span>
             </h2>
           </div>
+          
           <a
             href="https://maps.app.goo.gl/Ptj6xcxrBcPagHsk9"
             target="_blank"
@@ -420,6 +432,7 @@ const Hero = () => {
           >
             BOOK A FREE TRIAL SESSION
           </NavLink>
+          
           <a
             href={`https://wa.me/918532064201?text=${encodeURIComponent(
               "Hello Shubham, I am messaging you from Shubh YogShala and I am interested in yoga learning."
