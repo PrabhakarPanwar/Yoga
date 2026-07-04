@@ -15,8 +15,9 @@ import {
 // ─── Cloudinary Hero Videos ───────────────────────────────────────────────────
 const CLOUD_NAME = "dtxglqboa";
 
-const heroVideoDesktop = `https://res.cloudinary.com/${CLOUD_NAME}/video/upload/f_auto,q_auto/v1782661934/herovideodesktop3_iyhrht.mp4`;
-const heroVideoDesktopPoster = `https://res.cloudinary.com/${CLOUD_NAME}/video/upload/so_0,f_auto,q_auto/v1782661934/herovideodesktop3_iyhrht.jpg`;
+// Updated with your latest working desktop video link and matching poster image
+const heroVideoDesktop = `https://res.cloudinary.com/${CLOUD_NAME}/video/upload/f_auto,q_auto/v1783179978/desktopvideo_fhatfc.mp4`;
+const heroVideoDesktopPoster = `https://res.cloudinary.com/${CLOUD_NAME}/video/upload/so_0,f_auto,q_auto/v1783179978/desktopvideo_fhatfc.jpg`;
 
 const heroVideo = `https://res.cloudinary.com/${CLOUD_NAME}/video/upload/f_auto,q_auto/v1782491324/auth_craft_videos/w3cuthwlvasefdmdbhuq.mp4`;
 const heroVideoPoster = `https://res.cloudinary.com/${CLOUD_NAME}/video/upload/so_0,f_auto,q_auto/v1782491324/auth_craft_videos/w3cuthwlvasefdmdbhuq.jpg`;

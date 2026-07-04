@@ -19,7 +19,7 @@ const waLink = (program = "") =>
 // ── Programs Data ──────────────────────────────────────────────────────────
 const PROGRAMS = [
   {
-    slug: "personal-yoga Classes",
+    slug: "personal-yoga",
     title: "Personal Yoga Classes",
     subtitle: "One-on-One Training",
     icon: <FaUser />,
@@ -62,7 +62,7 @@ const PROGRAMS = [
     lightColor: "#fdf1e6",
   },
   {
-    slug: "online-yoga Classes ",
+    slug: "online-yoga",
     title: "Online Yoga Classes",
     subtitle: "Live Sessions Anywhere",
     icon: <FaLaptop />,
@@ -105,7 +105,7 @@ const PROGRAMS = [
     lightColor: "#e0f5ec",
   },
   {
-    slug: "corporate-yoga Classes",
+    slug: "corporate-yoga",
     title: "Corporate Yoga Classes",
     subtitle: "Workplace Wellness Programs",
     icon: <FaBuilding />,
@@ -148,7 +148,7 @@ const PROGRAMS = [
     lightColor: "#e0eaf5",
   },
   {
-    slug: "group-yoga Classes",
+    slug: "group-yoga",
     title: "Group Yoga Classes",
     subtitle: "Small Batch Classes",
     icon: <FaUsers />,
@@ -191,7 +191,7 @@ const PROGRAMS = [
     lightColor: "#f5ece4",
   },
   {
-    slug: "therapeutic-yoga Classes",
+    slug: "therapeutic-yoga",
     title: "Therapeutic Yoga Classes",
     subtitle: "Healing Through Yoga",
     icon: <FaHeartbeat />,
@@ -234,7 +234,7 @@ const PROGRAMS = [
     lightColor: "#e0f5f0",
   },
   {
-    slug: "prenatal-yoga Classes",
+    slug: "prenatal-yoga",
     title: "Prenatal Yoga Classes",
     subtitle: "For Expecting Mothers",
     icon: <FaBaby />,
@@ -277,7 +277,7 @@ const PROGRAMS = [
     lightColor: "#f7e9ee",
   },
   {
-    slug: "postnatal-yoga Classes",
+    slug: "postnatal-yoga",
     title: "Postnatal Yoga Classes",
     subtitle: "Recovery After Birth",
     icon: <FaHeart />,
@@ -320,7 +320,7 @@ const PROGRAMS = [
     lightColor: "#eaf2ee",
   },
   {
-    slug: "kids-yoga Classes",
+    slug: "kids-yoga",
     title: "Kids Yoga Classes",
     subtitle: "Ages 5 to 15",
     icon: <FaChild />,
@@ -365,42 +365,42 @@ const PROGRAMS = [
 ];
 
 const TESTIMONIALS = {
-  "personal-yoga Classes": [
+  "personal-yoga": [
     { name: "Priya M.", text: "Shubham sees things in your practice that you can't see yourself. Three months in, I feel like a completely different person.", stars: 5 },
     { name: "Arjun S.", text: "I tried three different yoga classes before this. Personal sessions with Shubham are on a different level entirely.", stars: 5 },
     { name: "Reena K.", text: "He doesn't just correct posture — he explains the why. That understanding changes everything.", stars: 5 },
   ],
-  "online-yoga Classes": [
+  "online-yoga": [
     { name: "Nisha V. (Dubai)", text: "Living abroad, I thought good yoga instruction was out of reach. Shubham's online sessions are as good as in-person, if not better.", stars: 5 },
     { name: "Sameer T.", text: "I travel for work constantly. Online sessions with Shubham have kept my practice consistent across 6 countries.", stars: 5 },
     { name: "Kavya R.", text: "The connection and attention you get over video surprised me. Very real, very personal.", stars: 5 },
   ],
-  "corporate-yoga Classes": [
+  "corporate-yoga": [
     { name: "Sneha T. (HR Manager)", text: "We enrolled our entire 40-person team. Monday mornings transformed. Productivity metrics actually improved.", stars: 5 },
     { name: "Vikram P. (CEO)", text: "Best wellness investment we've made as a company. Measurable impact on team morale and focus.", stars: 5 },
     { name: "Anita M.", text: "Lunch-break sessions mean I don't have to sacrifice personal time. Shubham's format is brilliantly designed for corporate life.", stars: 5 },
   ],
-  "group-yoga Classes": [
+  "group-yoga": [
     { name: "Rahul D.", text: "The group energy is incredible. Shubham still corrects everyone individually despite the class size. Incredible teacher.", stars: 5 },
     { name: "Meera L.", text: "I've been in this batch for 8 months. The community aspect keeps me coming back even when my motivation dips.", stars: 5 },
     { name: "Tarun B.", text: "Started group because it was affordable. Now I see it's also the most fun way to practice yoga.", stars: 5 },
   ],
-  "therapeutic-yoga Classes": [
+  "therapeutic-yoga": [
     { name: "Rajesh K.", text: "Chronic back pain for 6 years. After 8 weeks with Shubham's therapeutic protocol, I reduced my pain medication by half.", stars: 5 },
     { name: "Sunita A.", text: "Managing PCOD. Shubham's targeted sequences have made a real difference — my cycles have regulated significantly.", stars: 5 },
     { name: "Dr. Pawan M.", text: "As a physician, I'm skeptical of wellness claims. Shubham's approach is evidence-informed and genuinely effective.", stars: 5 },
   ],
-  "prenatal-yoga Classes": [
+  "prenatal-yoga": [
     { name: "Ananya G.", text: "I was terrified to move at all during my pregnancy. Shubham made me feel safe every single session.", stars: 5 },
     { name: "Divya S.", text: "The breathing techniques he taught me were genuinely useful during labour. I still think about it.", stars: 5 },
     { name: "Ishita P.", text: "My back pain in the third trimester disappeared almost completely after a few weeks of these sessions.", stars: 5 },
   ],
-  "postnatal-yoga Classes": [
+  "postnatal-yoga": [
     { name: "Ritika N.", text: "Six months post C-section, Shubham helped me rebuild strength I thought I'd lost forever.", stars: 5 },
     { name: "Simran K.", text: "This was the one hour a week that felt entirely mine again. It helped more than I expected, emotionally too.", stars: 5 },
     { name: "Preeti J.", text: "He was so patient with my pace. Never once did I feel rushed or judged for how slow I was recovering.", stars: 5 },
   ],
-  "kids-yoga Classes": [
+  "kids-yoga": [
     { name: "Pooja S. (Parent)", text: "My son's concentration in school improved noticeably after 6 weeks. His teacher asked what changed. It was yoga.", stars: 5 },
     { name: "Anjali R. (Parent)", text: "My daughter (8) now asks to do yoga herself. That says everything about how much she enjoys Shubham's teaching.", stars: 5 },
     { name: "Ravi K. (Parent)", text: "My teenage son was reluctant. Now he credits yoga for helping him through board exam stress. Life-changing.", stars: 5 },
@@ -555,7 +555,7 @@ function YogaPrograms() {
               <div className="w-14 h-14 rounded-full flex items-center justify-center text-2xl text-white flex-shrink-0" style={{ backgroundColor: active.color }}>🧘</div>
               <div>
                 <p className="text-[#3b2a1a] font-semibold text-sm">Shubham Pundir</p>
-                <p className="text-[#7a6352] text-xs mt-0.5">M.Sc. Yoga Science · 7+ Years Teaching</p>
+                <p className="text-[#7a6352] text-xs mt-0.5">M.A. Yoga Science · 7+ Years Teaching</p>
                 <p className="text-xs mt-1" style={{ color: active.color }}>Lead Instructor — {active.title}</p>
               </div>
             </div>
