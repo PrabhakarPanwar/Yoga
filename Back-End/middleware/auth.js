@@ -5,7 +5,7 @@ function verifyToken(req, res, next) {
   const token = req.headers.token;
 
   if (!token) {
-    return res.status(401).json({ success: false, msg: "No token. Please login." });
+    return res.status(401).json({ success: false, msg: " Please login." });
   }
 
   try {
@@ -13,7 +13,7 @@ function verifyToken(req, res, next) {
     req.user = decoded.user;
     next();
   } catch (err) {
-    return res.status(401).json({ success: false, msg: "Token invalid or expired." });
+    return res.status(401).json({ success: false, msg: "Token  expired." });
   }
 }
 
