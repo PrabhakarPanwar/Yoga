@@ -17,4 +17,4 @@ app.use("/uploads", express.static("uploads"));
 app.use("/auth", authRoutes);   // /auth/register  /auth/login
 app.use("/blog", blogRoutes);   // /blog/...
 
-app.listen(8000, () => console.log("🚀 Server running on port 8000"));
+app.listen(8000, () => console.log(" will create this full backend again 8000"));
