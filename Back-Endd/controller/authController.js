@@ -36,5 +36,14 @@ exports.login = async(req,res)=>
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
+  // 2. REQUEST OTP FOR VERIFICATION
+exports.requestOTP = async (req, res) => {
+  try {
+    const { email } = req.body;
+    let user = await User.findOne({ email });
+
+    // Generate random 6-digit OTP
+    const otp = Math.floor(100000 + Math.random() * 900000).toString();
+    const otpExpires = Date.now() + 10 * 60 * 1000; // 10 mins expiration
 };
   
