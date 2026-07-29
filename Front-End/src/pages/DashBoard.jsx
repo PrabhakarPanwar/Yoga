@@ -26,12 +26,16 @@ function DashBoard() {
       else toast.error(res.data.msg);
     } catch (err) {
       console.error("fetchBlogs error:", err);
+      toast.error(err.response?.data?.msg || "Failed to load blogs.");
     }
   };
 
   useEffect(() => {
     const role = localStorage.getItem("role");
-    if (role !== "admin") { window.location.href = "/"; return; }
+    if (role !== "admin") { 
+      window.location.href = "/"; 
+      return; 
+    }
     fetchBlogs();
   }, []);
 
@@ -81,20 +85,11 @@ function DashBoard() {
       data.append("status",  form.status);
       if (image) data.append("coverImage", image);
 
-      // Log what we're sending
-      console.log("Sending token:", token);
-      console.log("Sending to:", editBlog
-        ? `${API}/blog/admin/update/${editBlog._id}`
-        : `${API}/blog/admin/create`
-      );
-
       const config = { headers: { token } };
 
       const res = editBlog
         ? await axios.put(`${API}/blog/admin/update/${editBlog._id}`, data, config)
         : await axios.post(`${API}/blog/admin/create`, data, config);
-
-      console.log("Response:", res.data);
 
       if (res.data.success) {
         toast.success(editBlog ? "Blog updated!" : "Blog published!");
@@ -103,26 +98,30 @@ function DashBoard() {
         setPreview("");
         fetchBlogs();
       } else {
-        toast.error(res.data.msg || "Failed.");
+        toast.error(res.data.msg || "Failed to save blog.");
       }
     } catch (err) {
       console.error("handleSubmit error:", err.response?.data || err.message);
-      toast.error("Something went wrong. Check console.");
+      toast.error(err.response?.data?.msg || "Something went wrong.");
+    } finally {
+      setLoading(false);
     }
-
-    setLoading(false);
   };
 
   const handleDelete = async (id) => {
-    if (!window.confirm("Delete this blog?")) return;
+    if (!window.confirm("Are you sure you want to delete this blog?")) return;
     try {
       const res = await axios.delete(`${API}/blog/admin/delete/${id}`, {
         headers: { token },
       });
-      if (res.data.success) { toast.success("Deleted."); fetchBlogs(); }
-      else toast.error(res.data.msg);
+      if (res.data.success) { 
+        toast.success("Blog deleted."); 
+        fetchBlogs(); 
+      } else {
+        toast.error(res.data.msg);
+      }
     } catch (err) {
-      toast.error("Failed to delete.");
+      toast.error("Failed to delete blog.");
     }
   };
 
@@ -131,10 +130,14 @@ function DashBoard() {
       const res = await axios.patch(`${API}/blog/admin/toggle/${id}`, {}, {
         headers: { token },
       });
-      if (res.data.success) { toast.success(res.data.msg); fetchBlogs(); }
-      else toast.error(res.data.msg);
+      if (res.data.success) { 
+        toast.success(res.data.msg); 
+        fetchBlogs(); 
+      } else {
+        toast.error(res.data.msg);
+      }
     } catch (err) {
-      toast.error("Failed to toggle.");
+      toast.error("Failed to change blog status.");
     }
   };
 
@@ -150,7 +153,7 @@ function DashBoard() {
         </div>
         <button
           onClick={openNew}
-          className="bg-[#c8763a] text-white px-6 py-2.5 text-sm tracking-widest uppercase hover:bg-[#a85e2a] transition"
+          className="bg-[#c8763a] text-white px-6 py-2.5 text-sm tracking-widest uppercase hover:bg-[#a85e2a] transition rounded-lg shadow-sm"
         >
           + New Blog
         </button>
@@ -186,7 +189,7 @@ function DashBoard() {
                 />
                 {preview && (
                   <img src={preview} alt="preview"
-                    className="mt-3 w-full h-48 object-cover rounded-xl" />
+                    className="mt-3 w-full h-48 object-cover rounded-xl border border-[#e8d5c0]" />
                 )}
               </div>
 
@@ -260,44 +263,48 @@ function DashBoard() {
           <p className="text-lg">No blogs yet. Write your first one!</p>
         </div>
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 pb-12">
           {blogs.map((blog) => (
             <div key={blog._id}
-              className="bg-white rounded-2xl shadow-sm border border-[#e8d5c0] overflow-hidden hover:shadow-md transition">
+              className="bg-white rounded-2xl shadow-sm border border-[#e8d5c0] overflow-hidden hover:shadow-md transition flex flex-col justify-between">
 
-              {blog.coverImage ? (
-                <img
-                  src={`${API}/uploads/${blog.coverImage}`}
-                  alt={blog.title}
-                  className="w-full h-44 object-cover"
-                />
-              ) : (
-                <div className="w-full h-44 bg-[#f5e8d8] flex items-center justify-center text-4xl">
-                  🧘
+              <div>
+                {blog.coverImage ? (
+                  <img
+                    src={`${API}/uploads/${blog.coverImage}`}
+                    alt={blog.title}
+                    className="w-full h-44 object-cover"
+                  />
+                ) : (
+                  <div className="w-full h-44 bg-[#f5e8d8] flex items-center justify-center text-4xl">
+                    🧘
+                  </div>
+                )}
+
+                <div className="p-5">
+                  <span className={`text-[10px] tracking-widest uppercase px-2 py-1 rounded-full font-bold ${
+                    blog.status === "published"
+                      ? "bg-green-100 text-green-700"
+                      : "bg-yellow-100 text-yellow-700"
+                  }`}>
+                    {blog.status}
+                  </span>
+
+                  <h3 className="text-[#3b2a1a] font-semibold mt-2 mb-1 leading-snug line-clamp-2">
+                    {blog.title}
+                  </h3>
+                  <p className="text-[#a89885] text-xs mb-4 line-clamp-2">
+                    {blog.excerpt || blog.content}
+                  </p>
                 </div>
-              )}
+              </div>
 
-              <div className="p-5">
-                <span className={`text-[10px] tracking-widest uppercase px-2 py-1 rounded-full ${
-                  blog.status === "published"
-                    ? "bg-green-100 text-green-700"
-                    : "bg-yellow-100 text-yellow-700"
-                }`}>
-                  {blog.status}
-                </span>
-
-                <h3 className="text-[#3b2a1a] font-semibold mt-2 mb-1 leading-snug line-clamp-2">
-                  {blog.title}
-                </h3>
-                <p className="text-[#a89885] text-xs mb-4 line-clamp-2">
-                  {blog.excerpt}
-                </p>
-
+              <div className="p-5 pt-0">
                 <div className="flex items-center justify-between text-xs text-[#c8a882] mb-4">
                   <span>{new Date(blog.createdAt).toLocaleDateString("en-IN", {
                     day: "numeric", month: "short", year: "numeric"
                   })}</span>
-                  <span>👁 {blog.views}</span>
+                  <span>👁 {blog.views || 0}</span>
                 </div>
 
                 <div className="flex gap-2">
@@ -315,6 +322,7 @@ function DashBoard() {
                   </button>
                 </div>
               </div>
+
             </div>
           ))}
         </div>

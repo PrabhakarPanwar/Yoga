@@ -12,11 +12,10 @@ app.use(cors());
 app.use(express.json());
 
 // Uncomment when MongoDB URI is ready
-// connectDB();
-
+connectDB(); 
 // Routes
 app.use('/api/auth', authRoutes);
-app.use('/api/blog', blogRoutes);
+app.use('/api/blogs', blogRoutes); // Changed /api/blog to /api/blogs
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {

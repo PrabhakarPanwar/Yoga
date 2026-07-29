@@ -4,24 +4,36 @@ const blogSchema = new mongoose.Schema(
   {
     title: {
       type: String,
-      required: true,
+      required: [true, 'Blog title is required'],
       trim: true,
     },
-    description: {
+    slug: {
       type: String,
       required: true,
+      unique: true,
+      lowercase: true,
+      trim: true,
     },
-    imageUrl: {
+    content: {
       type: String,
-      required: true, // Cloudinary secure URL
+      required: [true, 'Blog content is required'],
     },
-    imagePublicId: {
-      type: String, // Stored to delete/replace image on Cloudinary when edited or removed
+    excerpt: {
+      type: String,
+      trim: true,
+    },
+    coverImage: {
+      type: String,
+      default: '',
     },
     author: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'User',
-      required: true,
+      type: String,
+      default: 'Admin',
+    },
+    tags: [String],
+    isPublished: {
+      type: Boolean,
+      default: true,
     },
   },
   { timestamps: true }

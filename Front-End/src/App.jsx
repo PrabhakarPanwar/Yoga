@@ -10,23 +10,27 @@ import PageNotFound from "./pages/PageNotFound";
 import YogaRetreat from "./pages/YogaRetreat";
 import About from "./pages/About";
 import YogaPrograms from "./pages/YogaPrograms";
-// Highlight-start
-import Blog from "./pages/Blog";         // Moved to the top where imports belong
-import BlogPost from "./pages/BlogPost"; // Moved to the top where imports belong
-// Highlight-end
+import Blog from "./pages/Blog";
+import BlogPost from "./pages/BlogPost";
+import ProtectedRoute from "./components/ProtectedRoute"; // Imported ProtectedRoute
 
 function App() {
   const location = useLocation();
   
+  // Hide Navbar/Footer on login page and admin dashboard
+  const isAuthOrAdminPage = 
+    location.pathname === "/reglog" || 
+    location.pathname.startsWith("/admin");
+
   return (
     <div className="overflow-hidden">
-      {location.pathname !== "/reglog" && <Navbar />}
+      {!isAuthOrAdminPage && <Navbar />}
 
       <div>
         <Routes>
           <Route path="/" element={<Home />} />
 
-          {/* Yoga Programs — individual slug routes */}
+          {/* Yoga Programs */}
           <Route path="/yoga-programs/:slug" element={<YogaPrograms />} />
           
           {/* Blog Routes */}
@@ -36,12 +40,17 @@ function App() {
           <Route path="/YogaRetreat" element={<YogaRetreat />} />
           <Route path="/about" element={<About />} />
           <Route path="/reglog" element={<LogRes />} />
-          <Route path="/admin/dashboard" element={<DashBoard />} />
+
+          {/* Protected Admin Routes */}
+          <Route element={<ProtectedRoute allowedRoles={["admin"]} />}>
+            <Route path="/admin/dashboard" element={<DashBoard />} />
+          </Route>
+
           <Route path="*" element={<PageNotFound />} />
         </Routes>
       </div>
 
-      {location.pathname !== "/reglog" && <Footer />}
+      {!isAuthOrAdminPage && <Footer />}
       <ToastContainer position="top-right" autoClose={3000} theme="colored" />
     </div>
   );

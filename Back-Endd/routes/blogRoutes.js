@@ -2,21 +2,17 @@ const express = require('express');
 const router = express.Router();
 const {
   getAllBlogs,
-  getBlogById,
+  getBlogBySlug,
   createBlog,
-  updateBlog,
   deleteBlog,
 } = require('../controllers/blogController');
-const { protect, requireAdmin } = require('../middleware/authMiddleware');
-const upload = require('../middleware/upload');
 
-// Public routes (anyone can read blogs)
+// Public Routes
 router.get('/', getAllBlogs);
-router.get('/:id', getBlogById);
+router.get('/:slug', getBlogBySlug);
 
-// Admin-only routes (protected)
-router.post('/', protect, requireAdmin, upload.single('image'), createBlog);
-router.put('/:id', protect, requireAdmin, upload.single('image'), updateBlog);
-router.delete('/:id', protect, requireAdmin, deleteBlog);
+// Protected Admin Routes (Requires Auth)
+router.post('/', createBlog);
+router.delete('/:id', deleteBlog);
 
 module.exports = router;

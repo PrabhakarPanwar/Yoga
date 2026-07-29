@@ -1,47 +1,33 @@
-require('dotenv').config();
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 const User = require('../models/User');
-const connectDB = require('../config/db');
+require('dotenv').config();
 
 const seedAdmin = async () => {
   try {
-    await connectDB();
+    await mongoose.connect(process.env.MONGO_URI);
 
-    const adminEmail = process.env.ADMIN_EMAIL;
-    const adminPassword = process.env.ADMIN_PASSWORD;
+    const email = 'chauhanji84331@gmail.com';
+    const plainPassword = 'Nitin123';
 
-    if (!adminEmail || !adminPassword) {
-      console.error('Error: ADMIN_EMAIL and ADMIN_PASSWORD must be defined in .env');
-      process.exit(1);
-    }
+    await User.deleteOne({ email });
 
-    // Check if admin already exists
-    const existingAdmin = await User.findOne({ email: adminEmail });
+    // Explicitly hash password here
+    const hashedPassword = await bcrypt.hash(plainPassword, 10);
 
-    if (existingAdmin) {
-      console.log('Admin user already exists. Skipping seed.');
-      process.exit(0);
-    }
-
-    // Hash admin password
-    const salt = await bcrypt.genSalt(10);
-    const hashedPassword = await bcrypt.hash(adminPassword, salt);
-
-    // Create Admin User
-    const adminUser = new User({
-      name: 'System Admin',
-      email: adminEmail,
+    const admin = new User({
+      name: 'Admin',
+      email: email,
       password: hashedPassword,
       role: 'admin',
-      isVerified: true, // Admin is auto-verified
+      isVerified: true,
     });
 
-    await adminUser.save();
-    console.log(`Admin account created successfully! (${adminEmail})`);
+    await admin.save();
+    console.log('✅ Fresh Admin created successfully!');
     process.exit(0);
-  } catch (error) {
-    console.error(`Error seeding admin: ${error.message}`);
+  } catch (err) {
+    console.error('❌ Error seeding admin:', err.message);
     process.exit(1);
   }
 };

@@ -4,26 +4,35 @@ const jwt = require('jsonwebtoken');
 const crypto = require('crypto');
 const { sendOTPEmail, sendResetPasswordEmail } = require('../services/emailService');
 
-// Helper function to generate JWT Token
+// Helper to generate JWT
 const generateToken = (id, role) => {
   return jwt.sign({ id, role }, process.env.JWT_SECRET, { expiresIn: '7d' });
 };
 
-// 1. STANDARD LOGIN (Admin / Verified Users)
+// 1. LOGIN
+// Inside controllers/authController.js
+
 exports.login = async (req, res) => {
   try {
     const { email, password } = req.body;
+    console.log("--> Login attempt for:", email);
 
     const user = await User.findOne({ email });
-    if (!user) return res.status(400).json({ message: 'Invalid credentials' });
-
-    // Check if account is verified
-    if (!user.isVerified) {
-      return res.status(403).json({ message: 'Please verify your email/phone first via OTP.' });
+    if (!user) {
+      console.log("--> User NOT found!");
+      return res.status(400).json({ message: 'Invalid credentials' });
     }
 
+    console.log("--> User found! Hashed stored password:", user.password);
+
     const isMatch = await bcrypt.compare(password, user.password);
-    if (!isMatch) return res.status(400).json({ message: 'Invalid credentials' });
+    console.log("--> Password match:", isMatch);
+
+    if (!isMatch) {
+      return res.status(400).json({ message: 'Invalid credentials' });
+    }
+
+    // Rest of your login code...
 
     const token = generateToken(user._id, user.role);
 
@@ -33,22 +42,21 @@ exports.login = async (req, res) => {
       user: { id: user._id, name: user.name, email: user.email, role: user.role }
     });
   } catch (error) {
+    console.error("Login Error:", error);
     res.status(500).json({ message: error.message });
   }
 };
 
-// 2. REQUEST OTP FOR VERIFICATION
+// 2. REQUEST OTP
 exports.requestOTP = async (req, res) => {
   try {
     const { email } = req.body;
     let user = await User.findOne({ email });
 
-    // Generate random 6-digit OTP
     const otp = Math.floor(100000 + Math.random() * 900000).toString();
-    const otpExpires = Date.now() + 10 * 60 * 1000; // 10 mins expiration
+    const otpExpires = Date.now() + 10 * 60 * 1000;
 
     if (!user) {
-      // Create new unverified user if doesn't exist
       user = new User({ email, otpCode: otp, otpExpires });
     } else {
       user.otpCode = otp;
@@ -74,7 +82,6 @@ exports.verifyOTP = async (req, res) => {
       return res.status(400).json({ message: 'Invalid or expired OTP' });
     }
 
-    // Mark as verified & clear OTP fields
     user.isVerified = true;
     user.otpCode = null;
     user.otpExpires = null;
@@ -87,7 +94,7 @@ exports.verifyOTP = async (req, res) => {
   }
 };
 
-// 4. FORGOT PASSWORD (Generate Reset Token)
+// 4. FORGOT PASSWORD
 exports.forgotPassword = async (req, res) => {
   try {
     const { email } = req.body;
@@ -95,12 +102,10 @@ exports.forgotPassword = async (req, res) => {
 
     if (!user) return res.status(404).json({ message: 'No user found with this email' });
 
-    // Create unhashed random token to send in URL
     const resetToken = crypto.randomBytes(32).toString('hex');
 
-    // Save hashed version in database for security
     user.resetPasswordToken = crypto.createHash('sha256').update(resetToken).digest('hex');
-    user.resetPasswordExpires = Date.now() + 15 * 60 * 1000; // 15 mins expiry
+    user.resetPasswordExpires = Date.now() + 15 * 60 * 1000;
 
     await user.save();
     await sendResetPasswordEmail(email, resetToken);
@@ -116,7 +121,6 @@ exports.resetPassword = async (req, res) => {
   try {
     const { token, newPassword } = req.body;
 
-    // Hash incoming URL token to compare with DB
     const hashedToken = crypto.createHash('sha256').update(token).digest('hex');
 
     const user = await User.findOne({
@@ -126,14 +130,13 @@ exports.resetPassword = async (req, res) => {
 
     if (!user) return res.status(400).json({ message: 'Invalid or expired reset token' });
 
-    // Hash new password & clear reset token fields
     const salt = await bcrypt.genSalt(10);
     user.password = await bcrypt.hash(newPassword, salt);
     user.resetPasswordToken = null;
     user.resetPasswordExpires = null;
 
     await user.save();
-    res.json({ message: 'Password reset successful! You can now log in with your new password.' });
+    res.json({ message: 'Password reset successful!' });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
