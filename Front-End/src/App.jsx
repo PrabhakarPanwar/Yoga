@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, Routes, useLocation } from "react-router-dom";
+import { Route, Routes, useLocation, Navigate } from "react-router-dom";
 import Home from "./pages/Home";
 import LogRes from "./pages/LogRes";
 import Navbar from "./components/Navbar";
@@ -12,14 +12,15 @@ import About from "./pages/About";
 import YogaPrograms from "./pages/YogaPrograms";
 import Blog from "./pages/Blog";
 import BlogPost from "./pages/BlogPost";
-import ProtectedRoute from "./components/ProtectedRoute"; // Imported ProtectedRoute
+import ProtectedRoute from "./components/ProtectedRoute";
 
 function App() {
   const location = useLocation();
-  
+
   // Hide Navbar/Footer on login page and admin dashboard
-  const isAuthOrAdminPage = 
-    location.pathname === "/reglog" || 
+  const isAuthOrAdminPage =
+    location.pathname === "/reglog" ||
+    location.pathname === "/login" ||
     location.pathname.startsWith("/admin");
 
   return (
@@ -32,14 +33,18 @@ function App() {
 
           {/* Yoga Programs */}
           <Route path="/yoga-programs/:slug" element={<YogaPrograms />} />
-          
+
           {/* Blog Routes */}
           <Route path="/blog" element={<Blog />} />
           <Route path="/blog/:slug" element={<BlogPost />} />
 
           <Route path="/YogaRetreat" element={<YogaRetreat />} />
           <Route path="/about" element={<About />} />
+
+          {/* Auth Routes */}
           <Route path="/reglog" element={<LogRes />} />
+          {/* Alias /login to /reglog so navigate("/login") works everywhere */}
+          <Route path="/login" element={<Navigate to="/reglog" replace />} />
 
           {/* Protected Admin Routes */}
           <Route element={<ProtectedRoute allowedRoles={["admin"]} />}>

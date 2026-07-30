@@ -11,13 +11,17 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// Uncomment when MongoDB URI is ready
+// Database connection
 connectDB(); 
-// Routes
-app.use('/api/auth', authRoutes);
-app.use('/api/blogs', blogRoutes); // Changed /api/blog to /api/blogs
 
-const PORT = process.env.PORT || 5000;
+// Serve static upload folder for cover images
+app.use('/uploads', express.static('uploads'));
+
+// Routes (Matching frontend expectations)
+app.use('/auth', authRoutes);
+app.use('/blog', blogRoutes);
+
+const PORT = process.env.PORT || 8000; // Aligned port with frontend
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
