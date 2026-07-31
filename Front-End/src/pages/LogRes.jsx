@@ -1,11 +1,15 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 function LogRes() {
   const [reglog, setReglog] = useState(true);
-  // Changed "pwd" to "password" to match backend authController
   const [formData, setFormData] = useState({ password: "", name: "", email: "" });
+  const navigate = useNavigate();
+
+  // Centralized API Base URL matching server.js (Port 8000, no /api prefix)
+  const API = "http://localhost:8000";
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.id]: e.target.value });
@@ -13,35 +17,37 @@ function LogRes() {
 
   const handleRegister = async () => {
     try {
-      // Updated port to 5000 and added /api prefix
-      const res = await axios.post("http://localhost:5000/api/auth/register", formData);
-      toast.success(res.data.message || "Registered! Please login.");
+      const res = await axios.post(`${API}/auth/register`, formData);
+      toast.success(res.data.msg || "Account created successfully! Please login.");
       setReglog(true);
     } catch (err) {
-      toast.error(err.response?.data?.message || "Registration failed!");
+      toast.error(err.response?.data?.msg || "Registration failed!");
     }
   };
 
   const handleLogin = async () => {
     try {
-      // Updated port to 5000 and endpoint to /api/auth/login
-      const res = await axios.post("http://localhost:5000/api/auth/login", {
+      const res = await axios.post(`${API}/auth/login`, {
         email: formData.email,
-        password: formData.password
+        password: formData.password,
       });
 
-      toast.success(res.data.message || "Logged in!");
+      toast.success(res.data.msg || "Logged in successfully!");
 
-      // Save JWT token and user info returned by authController
+      // Store JWT token and user info returned by authRoutes
       localStorage.setItem("token", res.data.token);
-      localStorage.setItem("role", res.data.user?.role);
+      localStorage.setItem("role", res.data.role);
       localStorage.setItem("name", res.data.user?.name);
 
       setTimeout(() => {
-        window.location.href = res.data.user?.role === "admin" ? "/admin/dashboard" : "/";
+        if (res.data.role === "admin") {
+          navigate("/admin/dashboard");
+        } else {
+          navigate("/");
+        }
       }, 1000);
     } catch (err) {
-      toast.error(err.response?.data?.message || "Invalid credentials!");
+      toast.error(err.response?.data?.msg || "Invalid email or password!");
     }
   };
 
@@ -56,30 +62,30 @@ function LogRes() {
           {reglog ? (
             <>
               <section className="flex flex-col gap-3">
-                <input 
-                  className="p-2 border-b-2" 
-                  type="email" 
-                  placeholder="Email" 
-                  id="email" 
-                  onChange={handleChange} 
+                <input
+                  className="p-2 border-b-2"
+                  type="email"
+                  placeholder="Email"
+                  id="email"
+                  onChange={handleChange}
                 />
-                <input 
-                  className="p-2 border-b-2" 
-                  type="password" 
-                  placeholder="Password" 
-                  id="password" 
-                  onChange={handleChange} 
+                <input
+                  className="p-2 border-b-2"
+                  type="password"
+                  placeholder="Password"
+                  id="password"
+                  onChange={handleChange}
                 />
               </section>
               <section className="flex flex-col gap-4">
-                <button 
-                  className="bg-slate-900 text-white rounded-full font-bold w-[60%] p-2" 
+                <button
+                  className="bg-slate-900 text-white rounded-full font-bold w-[60%] p-2"
                   onClick={handleLogin}
                 >
                   Log In
                 </button>
-                <button 
-                  onClick={() => setReglog(false)} 
+                <button
+                  onClick={() => setReglog(false)}
                   className="text-left font-bold bg-gradient-to-r bg-clip-text text-transparent from-blue-600 to-red-600"
                 >
                   Create an Account
@@ -89,37 +95,37 @@ function LogRes() {
           ) : (
             <>
               <section className="flex flex-col gap-3">
-                <input 
-                  className="p-2 border-b-2" 
-                  type="text"     
-                  id="name"  
-                  placeholder="Name"     
-                  onChange={handleChange} 
+                <input
+                  className="p-2 border-b-2"
+                  type="text"
+                  id="name"
+                  placeholder="Name"
+                  onChange={handleChange}
                 />
-                <input 
-                  className="p-2 border-b-2" 
-                  type="email"    
-                  id="email" 
-                  placeholder="Email"    
-                  onChange={handleChange} 
+                <input
+                  className="p-2 border-b-2"
+                  type="email"
+                  id="email"
+                  placeholder="Email"
+                  onChange={handleChange}
                 />
-                <input 
-                  className="p-2 border-b-2" 
-                  type="password" 
-                  id="password"   
-                  placeholder="Password" 
-                  onChange={handleChange} 
+                <input
+                  className="p-2 border-b-2"
+                  type="password"
+                  id="password"
+                  placeholder="Password"
+                  onChange={handleChange}
                 />
               </section>
               <section className="flex flex-col gap-4">
-                <button 
-                  className="bg-slate-900 text-white rounded-full font-bold w-[60%] p-2" 
+                <button
+                  className="bg-slate-900 text-white rounded-full font-bold w-[60%] p-2"
                   onClick={handleRegister}
                 >
                   Register
                 </button>
-                <button 
-                  onClick={() => setReglog(true)} 
+                <button
+                  onClick={() => setReglog(true)}
                   className="text-left font-bold bg-gradient-to-r bg-clip-text text-transparent from-blue-600 to-red-600"
                 >
                   Have an Account
