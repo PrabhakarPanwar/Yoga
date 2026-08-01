@@ -1,33 +1,51 @@
-const mongoose = require('mongoose');
-const bcrypt = require('bcryptjs');
-const User = require('../models/User');
-require('dotenv').config();
+const mongoose = require("mongoose");
+const bcrypt = require("bcryptjs");
+const dotenv = require("dotenv");
+const path = require("path");
+
+// Load .env from backend root folder
+dotenv.config({ path: path.join(__dirname, "../.env") });
+
+const User = require("../models/User");
+
+const MONGO_URI = process.env.MONGO_URI || "mongodb://127.0.0.1:27017/shubhyogshala";
+const ADMIN_EMAIL = process.env.ADMIN_EMAIL || "chauhanji84331@gmail.com";
+const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || "Nitin123";
 
 const seedAdmin = async () => {
   try {
-    await mongoose.connect(process.env.MONGO_URI);
+    await mongoose.connect(MONGO_URI);
+    console.log("Connected to MongoDB for seeding...");
 
-    const email = 'chauhanji84331@gmail.com';
-    const plainPassword = 'Nitin123';
+    const cleanEmail = ADMIN_EMAIL.trim().toLowerCase();
+    const cleanPassword = ADMIN_PASSWORD.trim();
 
-    await User.deleteOne({ email });
+    // Hash password
+    const hashedPassword = await bcrypt.hash(cleanPassword, 10);
 
-    // Explicitly hash password here
-    const hashedPassword = await bcrypt.hash(plainPassword, 10);
+    // Upsert admin user
+    const updatedUser = await User.findOneAndUpdate(
+      { email: cleanEmail },
+      {
+        name: "Admin",
+        email: cleanEmail,
+        password: hashedPassword,
+        role: "admin",
+      },
+      { upsert: true, new: true }
+    );
 
-    const admin = new User({
-      name: 'Admin',
-      email: email,
-      password: hashedPassword,
-      role: 'admin',
-      isVerified: true,
-    });
+    console.log("-----------------------------------------");
+    console.log("✅ ADMIN USER SUCCESSFULLY CREATED / RESET!");
+    console.log(`📧 Email:    ${updatedUser.email}`);
+    console.log(`🔑 Password: ${cleanPassword}`);
+    console.log(`🛡️ Role:     ${updatedUser.role}`);
+    console.log("-----------------------------------------");
 
-    await admin.save();
-    console.log('✅ Fresh Admin created successfully!');
+    mongoose.disconnect();
     process.exit(0);
   } catch (err) {
-    console.error('❌ Error seeding admin:', err.message);
+    console.error("❌ Error seeding admin user:", err);
     process.exit(1);
   }
 };
