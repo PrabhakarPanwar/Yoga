@@ -2,39 +2,15 @@ const mongoose = require('mongoose');
 
 const blogSchema = new mongoose.Schema(
   {
-    title: {
-      type: String,
-      required: [true, 'Blog title is required'],
-      trim: true,
-    },
-    slug: {
-      type: String,
-      required: true,
-      unique: true,
-      lowercase: true,
-      trim: true,
-    },
-    content: {
-      type: String,
-      required: [true, 'Blog content is required'],
-    },
-    excerpt: {
-      type: String,
-      trim: true,
-    },
-    coverImage: {
-      type: String,
-      default: '',
-    },
-    author: {
-      type: String,
-      default: 'Admin',
-    },
+    title: { type: String, required: [true, 'Blog title is required'], trim: true },
+    slug: { type: String, required: true, unique: true, lowercase: true, trim: true },
+    content: { type: String, required: [true, 'Blog content is required'] },
+    excerpt: { type: String, trim: true },
+    coverImage: { type: String, default: '' },
+    author: { type: String, default: 'Admin' },
     tags: [String],
-    isPublished: {
-      type: Boolean,
-      default: true,
-    },
+    isPublished: { type: Boolean, default: true },
+    views: { type: Number, default: 0 },
   },
   { timestamps: true }
 );

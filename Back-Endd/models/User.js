@@ -5,9 +5,11 @@ const userSchema = new mongoose.Schema(
     name: {
       type: String,
       trim: true,
+      required: [true, 'Name is required'],
     },
     email: {
       type: String,
+      required: [true, 'Email is required'],
       unique: true,
       sparse: true, // Allows null if logging in via phone
       lowercase: true,
@@ -22,6 +24,7 @@ const userSchema = new mongoose.Schema(
     password: {
       type: String,
       required: true,
+      select: false, // Never return password hash by default — must .select('+password') explicitly
     },
     role: {
       type: String,
@@ -32,24 +35,10 @@ const userSchema = new mongoose.Schema(
       type: Boolean,
       default: false,
     },
-    // Temporary fields for Email OTP Verification
-    otpCode: {
-      type: String,
-      default: null,
-    },
-    otpExpires: {
-      type: Date,
-      default: null,
-    },
-    // Temporary fields for Password Reset
-    resetPasswordToken: {
-      type: String,
-      default: null,
-    },
-    resetPasswordExpires: {
-      type: Date,
-      default: null,
-    },
+    otpCode: { type: String, default: null },
+    otpExpires: { type: Date, default: null },
+    resetPasswordToken: { type: String, default: null },
+    resetPasswordExpires: { type: Date, default: null },
   },
   { timestamps: true }
 );

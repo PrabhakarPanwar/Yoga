@@ -1,33 +1,48 @@
-import axios from "axios";
 import React, { useState } from "react";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import api from "../api/axios";
 
 function LogRes() {
   const [reglog, setReglog] = useState(true);
-  const [formData, setFormData] = useState({ password: "", name: "", email: "", role: "user" });
+  const [formData, setFormData] = useState({ password: "", name: "", email: "" });
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
-
-  // Matched to process.env.PORT = 5000 from your .env
-  const API = "http://localhost:5000";
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.id]: e.target.value });
   };
 
   const handleRegister = async () => {
+    if (!formData.name || !formData.email || !formData.password) {
+      toast.error("Please fill in all fields.");
+      return;
+    }
+    setLoading(true);
     try {
-      const res = await axios.post(`${API}/auth/register`, formData);
+      const res = await api.post("/auth/register", {
+        name: formData.name,
+        email: formData.email,
+        password: formData.password,
+      });
       toast.success(res.data.msg || "Account created successfully! Please login.");
       setReglog(true);
+      setFormData({ password: "", name: "", email: "" });
     } catch (err) {
       toast.error(err.response?.data?.msg || "Registration failed!");
+    } finally {
+      setLoading(false);
     }
   };
 
   const handleLogin = async () => {
+    if (!formData.email || !formData.password) {
+      toast.error("Please enter email and password.");
+      return;
+    }
+    setLoading(true);
     try {
-      const res = await axios.post(`${API}/auth/login`, {
+      const res = await api.post("/auth/login", {
         email: formData.email,
         password: formData.password,
       });
@@ -36,17 +51,15 @@ function LogRes() {
 
       localStorage.setItem("token", res.data.token);
       localStorage.setItem("role", res.data.role);
-      localStorage.setItem("name", res.data.user?.name);
+      localStorage.setItem("name", res.data.user?.name || "");
 
       setTimeout(() => {
-        if (res.data.role === "admin") {
-          navigate("/admin/dashboard");
-        } else {
-          navigate("/");
-        }
-      }, 1000);
+        navigate(res.data.role === "admin" ? "/admin/dashboard" : "/");
+      }, 800);
     } catch (err) {
       toast.error(err.response?.data?.msg || "Invalid email or password!");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -80,10 +93,11 @@ function LogRes() {
               </section>
               <section className="flex flex-col gap-4">
                 <button
-                  className="bg-slate-900 text-white rounded-full font-bold w-[60%] p-2 hover:bg-slate-800 transition"
+                  className="bg-slate-900 text-white rounded-full font-bold w-[60%] p-2 hover:bg-slate-800 transition disabled:opacity-50"
                   onClick={handleLogin}
+                  disabled={loading}
                 >
-                  Log In
+                  {loading ? "Logging in..." : "Log In"}
                 </button>
                 <button
                   onClick={() => setReglog(false)}
@@ -120,27 +134,14 @@ function LogRes() {
                   value={formData.password}
                   onChange={handleChange}
                 />
-                <div className="flex items-center gap-2 pt-2">
-                  <label htmlFor="role" className="text-sm font-semibold text-gray-600">
-                    Register As:
-                  </label>
-                  <select
-                    id="role"
-                    value={formData.role}
-                    onChange={handleChange}
-                    className="p-1 border rounded text-sm outline-none"
-                  >
-                    <option value="user">User</option>
-                    <option value="admin">Admin</option>
-                  </select>
-                </div>
               </section>
               <section className="flex flex-col gap-4">
                 <button
-                  className="bg-slate-900 text-white rounded-full font-bold w-[60%] p-2 hover:bg-slate-800 transition"
+                  className="bg-slate-900 text-white rounded-full font-bold w-[60%] p-2 hover:bg-slate-800 transition disabled:opacity-50"
                   onClick={handleRegister}
+                  disabled={loading}
                 >
-                  Register
+                  {loading ? "Creating..." : "Register"}
                 </button>
                 <button
                   onClick={() => setReglog(true)}
