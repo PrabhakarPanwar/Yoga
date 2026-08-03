@@ -3,7 +3,6 @@ const bcrypt = require("bcryptjs");
 const dotenv = require("dotenv");
 const path = require("path");
 
-// Load .env from backend root folder
 dotenv.config({ path: path.join(__dirname, "../.env") });
 
 const User = require("../models/User");
@@ -19,11 +18,8 @@ const seedAdmin = async () => {
 
     const cleanEmail = ADMIN_EMAIL.trim().toLowerCase();
     const cleanPassword = ADMIN_PASSWORD.trim();
-
-    // Hash password
     const hashedPassword = await bcrypt.hash(cleanPassword, 10);
 
-    // Upsert admin user
     const updatedUser = await User.findOneAndUpdate(
       { email: cleanEmail },
       {
@@ -31,6 +27,7 @@ const seedAdmin = async () => {
         email: cleanEmail,
         password: hashedPassword,
         role: "admin",
+        isVerified: true, // Admin bypasses OTP verification entirely
       },
       { upsert: true, new: true }
     );

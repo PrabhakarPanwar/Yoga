@@ -9,7 +9,7 @@ const blogSchema = new mongoose.Schema(
     coverImage: { type: String, default: '' },
     author: { type: String, default: 'Admin' },
     tags: [String],
-    isPublished: { type: Boolean, default: true },
+    status: { type: String, enum: ['published', 'draft'], default: 'published' },
     views: { type: Number, default: 0 },
   },
   { timestamps: true }

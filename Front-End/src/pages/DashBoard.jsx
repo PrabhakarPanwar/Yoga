@@ -92,7 +92,7 @@ function DashBoard() {
       tags:    blog.tags?.join(", ") || "",
       status:  blog.status  || "draft",
     });
-    setPreview(blog.coverImage ? `${API}/uploads/${blog.coverImage}` : "");
+    setPreview(blog.coverImage || "");
     setImage(null);
     setShowForm(true);
   };
@@ -357,7 +357,7 @@ function DashBoard() {
                 <div>
                   {blog.coverImage ? (
                     <img
-                      src={`${API}/uploads/${blog.coverImage}`}
+                      src={blog.coverImage}
                       alt={blog.title}
                       className="w-full h-44 object-cover"
                     />

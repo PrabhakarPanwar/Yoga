@@ -1,41 +1,35 @@
 const jwt = require('jsonwebtoken');
 
-// Middleware to protect routes (checks if user is logged in)
+// Accepts either "Authorization: Bearer <token>" or a raw "token" header —
+// your frontend uses both patterns in different files.
 const protect = (req, res, next) => {
   let token;
 
-  // Check if Authorization header exists and starts with "Bearer"
-  if (
-    req.headers.authorization &&
-    req.headers.authorization.startsWith('Bearer')
-  ) {
-    try {
-      // Extract the token from "Bearer <token>"
-      token = req.headers.authorization.split(' ')[1];
-
-      // Verify token signature using secret key
-      const decoded = jwt.verify(token, process.env.JWT_SECRET);
-
-      // Attach user ID and role to the request object
-      req.user = decoded; // Contains { id: '...', role: 'admin' | 'user' }
-
-      next(); // Proceed to the next middleware or controller
-    } catch (error) {
-      return res.status(401).json({ message: 'Not authorized, token invalid or expired' });
-    }
+  const authHeader = req.headers.authorization;
+  if (authHeader && authHeader.startsWith('Bearer')) {
+    token = authHeader.split(' ')[1];
+  } else if (req.headers.token) {
+    token = req.headers.token;
   }
 
   if (!token) {
-    return res.status(401).json({ message: 'Not authorized, no token provided' });
+    return res.status(401).json({ message: 'Not authorized, no token provided', msg: 'Not authorized, no token provided' });
+  }
+
+  try {
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    req.user = decoded; // { id, role }
+    next();
+  } catch (error) {
+    return res.status(401).json({ message: 'Not authorized, token invalid or expired', msg: 'Not authorized, token invalid or expired' });
   }
 };
 
-// Middleware to restrict access strictly to Admin accounts
 const requireAdmin = (req, res, next) => {
   if (req.user && req.user.role === 'admin') {
-    next(); // Access granted
+    next();
   } else {
-    return res.status(403).json({ message: 'Access denied. Admin privileges required.' });
+    return res.status(403).json({ message: 'Access denied. Admin privileges required.', msg: 'Access denied. Admin privileges required.' });
   }
 };
 
