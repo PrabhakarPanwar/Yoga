@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
 import { Link } from "react-router-dom";
+import api from "../api/axios";
 
 function Blog() {
   const [blogs, setBlogs] = useState([]);
@@ -9,7 +9,7 @@ function Blog() {
   useEffect(() => {
     const fetchBlogs = async () => {
       try {
-        const res = await axios.get("http://localhost:5000/api/blogs");
+        const res = await api.get("/blog");
         setBlogs(res.data);
       } catch (err) {
         console.error("Error fetching blogs:", err);
@@ -33,17 +33,28 @@ function Blog() {
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {blogs.map((blog) => (
-            <div key={blog._id} className="border rounded-2xl p-5 shadow-lg flex flex-col justify-between">
-              <div>
-                <h2 className="text-2xl font-bold mb-2">{blog.title}</h2>
-                <p className="text-gray-600 mb-4">{blog.excerpt || blog.content.substring(0, 100) + "..."}</p>
+            <div key={blog._id} className="border rounded-2xl overflow-hidden shadow-lg flex flex-col justify-between">
+              {blog.coverImage && (
+                <img
+                  src={blog.coverImage}
+                  alt={blog.title}
+                  className="w-full h-44 object-cover"
+                />
+              )}
+              <div className="p-5 flex flex-col justify-between flex-1">
+                <div>
+                  <h2 className="text-2xl font-bold mb-2">{blog.title}</h2>
+                  <p className="text-gray-600 mb-4">
+                    {blog.excerpt || blog.content.substring(0, 100) + "..."}
+                  </p>
+                </div>
+                <Link
+                  to={`/blog/${blog.slug}`}
+                  className="text-blue-600 font-semibold hover:underline mt-2 inline-block"
+                >
+                  Read More →
+                </Link>
               </div>
-              <Link
-                to={`/blog/${blog.slug}`}
-                className="text-blue-600 font-semibold hover:underline mt-2 inline-block"
-              >
-                Read More →
-              </Link>
             </div>
           ))}
         </div>
