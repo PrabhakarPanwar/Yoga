@@ -15,7 +15,6 @@ import {
 // ─── Cloudinary Hero Videos ───────────────────────────────────────────────────
 const CLOUD_NAME = "dtxglqboa";
 
-// Updated with your latest working desktop video link and matching poster image
 const heroVideoDesktop = `https://res.cloudinary.com/${CLOUD_NAME}/video/upload/f_auto,q_auto/v1783179978/desktopvideo_fhatfc.mp4`;
 const heroVideoDesktopPoster = `https://res.cloudinary.com/${CLOUD_NAME}/video/upload/so_0,f_auto,q_auto/v1783179978/desktopvideo_fhatfc.jpg`;
 
@@ -38,79 +37,27 @@ const FOUNDER = {
 };
 
 const STATS = [
-  { value: "7+",   label: "Years of Experience" },
-  { value: "2026", label: "Year Founded"         },
-  { value: "500+", label: "Lives Transformed"    },
-  { value: "8",    label: "Programs Offered"     },
+  { value: "7+", label: "Years of Experience" },
+  { value: "2026", label: "Year Founded" },
+  { value: "500+", label: "Lives Transformed" },
+  { value: "8", label: "Programs Offered" },
 ];
 
 const programs = [
-  {
-    title: "Personal Yoga Program",
-    desc:  "One-on-one sessions tailored precisely to your body, breath, and goals.",
-    icon:  <FaUser />,
-    slug:  "personal-yoga",
-  },
-  {
-    title: "Online Yoga Program",
-    desc:  "Live guided sessions you can join from anywhere in the world.",
-    icon:  <FaLaptop />,
-    slug:  "online-yoga",
-  },
-  {
-    title: "Corporate Yoga Program",
-    desc:  "Structured wellness programs that bring calm and focus to your workplace.",
-    icon:  <FaBuilding />,
-    slug:  "corporate-yoga",
-  },
-  {
-    title: "Group Yoga Program",
-    desc:  "Practise alongside others in a warm, encouraging group setting.",
-    icon:  <FaUsers />,
-    slug:  "group-yoga",
-  },
-  {
-    title: "Therapeutic Yoga Program",
-    desc:  "Carefully designed sequences for injury recovery and chronic conditions.",
-    icon:  <FaHeartbeat />,
-    slug:  "therapeutic-yoga",
-  },
-  {
-    title: "Prenatal Yoga Program",
-    desc:  "Safe, nurturing sessions designed for every trimester of pregnancy.",
-    icon:  <FaBaby />,
-    slug:  "prenatal-yoga",
-  },
-  {
-    title: "Postnatal Yoga Program",
-    desc:  "Gentle, restorative practice to help new mothers recover and heal.",
-    icon:  <FaHeart />,
-    slug:  "postnatal-yoga",
-  },
-  {
-    title: "Kids Yoga Program",
-    desc:  "Joyful, age-appropriate yoga that builds focus and confidence in children.",
-    icon:  <FaChild />,
-    slug:  "kids-yoga",
-  },
+  { title: "Personal Yoga Program", desc: "One-on-one sessions tailored precisely to your body, breath, and goals.", icon: <FaUser />, slug: "personal-yoga" },
+  { title: "Online Yoga Program", desc: "Live guided sessions you can join from anywhere in the world.", icon: <FaLaptop />, slug: "online-yoga" },
+  { title: "Corporate Yoga Program", desc: "Structured wellness programs that bring calm and focus to your workplace.", icon: <FaBuilding />, slug: "corporate-yoga" },
+  { title: "Group Yoga Program", desc: "Practise alongside others in a warm, encouraging group setting.", icon: <FaUsers />, slug: "group-yoga" },
+  { title: "Therapeutic Yoga Program", desc: "Carefully designed sequences for injury recovery and chronic conditions.", icon: <FaHeartbeat />, slug: "therapeutic-yoga" },
+  { title: "Prenatal Yoga Program", desc: "Safe, nurturing sessions designed for every trimester of pregnancy.", icon: <FaBaby />, slug: "prenatal-yoga" },
+  { title: "Postnatal Yoga Program", desc: "Gentle, restorative practice to help new mothers recover and heal.", icon: <FaHeart />, slug: "postnatal-yoga" },
+  { title: "Kids Yoga Program", desc: "Joyful, age-appropriate yoga that builds focus and confidence in children.", icon: <FaChild />, slug: "kids-yoga" },
 ];
 
 const TESTIMONIALS = [
-  {
-    quote: "Shubham's teaching is unlike any class I have attended. He doesn't just correct your posture — he helps you understand why.",
-    name:  "Priya M.",
-    tag:   "Personal Yoga Student",
-  },
-  {
-    quote: "After three months at Shubh YogShala, my chronic back pain reduced significantly. I feel stronger and calmer every single day.",
-    name:  "Rajesh K.",
-    tag:   "Therapeutic Yoga",
-  },
-  {
-    quote: "We enrolled our entire office team. The corporate sessions transformed Monday mornings completely.",
-    name:  "Sneha T.",
-    tag:   "Corporate Program",
-  },
+  { quote: "Shubham's teaching is unlike any class I have attended. He doesn't just correct your posture — he helps you understand why.", name: "Priya M.", tag: "Personal Yoga Student" },
+  { quote: "After three months at Shubh YogShala, my chronic back pain reduced significantly. I feel stronger and calmer every single day.", name: "Rajesh K.", tag: "Therapeutic Yoga" },
+  { quote: "We enrolled our entire office team. The corporate sessions transformed Monday mornings completely.", name: "Sneha T.", tag: "Corporate Program" },
 ];
 
 // ─── Sub-components ───────────────────────────────────────────────────────────
@@ -163,7 +110,6 @@ const Hero = () => {
       {/* ── RESPONSIVE DUAL VIDEO HERO SECTION ── */}
       <section className="relative w-full h-[85vh] md:h-screen overflow-hidden bg-[#1a0e05]">
 
-        {/* 1. DESKTOP LANDSCAPE VIDEO (Cloudinary) */}
         <video
           src={heroVideoDesktop}
           poster={heroVideoDesktopPoster}
@@ -175,7 +121,6 @@ const Hero = () => {
           className="hidden sm:block absolute inset-0 w-full h-full object-cover"
         />
 
-        {/* 2. MOBILE PORTRAIT VIDEO (Cloudinary) */}
         <video
           src={heroVideo}
           poster={heroVideoPoster}
@@ -187,7 +132,6 @@ const Hero = () => {
           className="sm:hidden absolute inset-0 w-full h-full object-cover"
         />
 
-        {/* Background Overlay */}
         <div className="absolute inset-0 bg-gradient-to-b from-[#1a0e05]/60 via-[#3b1e08]/20 to-[#1a0e05]/70 z-10" />
 
         {/* ── CONTACT BAR ── */}
@@ -217,14 +161,13 @@ const Hero = () => {
             </p>
           </div>
           <NavLink
-            to="/reglog"
+            to="/yoga-programs/personal-yoga"
             className="border border-[#f5c98a] text-[#f5c98a] px-5 py-2 text-xs tracking-widest hover:bg-[#f5c98a] hover:text-[#1a0e05] transition-all duration-300"
           >
             BOOK A SESSION
           </NavLink>
         </nav>
 
-        {/* Animated Drop Indicator Arrow */}
         <div className="absolute bottom-6 left-1/2 -translate-x-1/2 text-[#f5c98a] text-lg animate-bounce z-20">
           ↓
         </div>
@@ -307,7 +250,6 @@ const Hero = () => {
           and shaped by Shubham's 7 years of real teaching experience.
         </p>
 
-        {/* ── DESKTOP PROGRAMS ── */}
         <div className="relative max-w-6xl mx-auto hidden md:grid grid-cols-3 gap-10 items-center">
           <div className="space-y-10">
             {programs.slice(0, 4).map((item, i) => (
@@ -327,7 +269,6 @@ const Hero = () => {
           </div>
         </div>
 
-        {/* ── MOBILE PROGRAMS ── */}
         <div className="md:hidden w-full max-w-sm mx-auto">
           <div className="flex flex-col gap-3 mb-4">
             {programs.slice(0, 4).map((item, i) => (
@@ -439,7 +380,7 @@ const Hero = () => {
         </p>
         <div className="flex flex-col sm:flex-row justify-center gap-4">
           <NavLink
-            to="/reglog"
+            to="/yoga-programs/personal-yoga"
             className="bg-[#c8763a] text-white px-8 py-3 text-xs tracking-[0.3em] uppercase hover:bg-[#a85e2a] transition-all duration-300 inline-block"
           >
             BOOK A FREE TRIAL SESSION

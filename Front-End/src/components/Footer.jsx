@@ -5,31 +5,11 @@ import { SiGmail } from "react-icons/si";
 import { FaLocationDot, FaPhone } from "react-icons/fa6";
 
 const SOCIAL = [
-  { 
-    Icon: FaInstagram, 
-    href: "https://www.instagram.com/shubh.yogshala?igsh=MTM1eDQ4c2NlNHoyZg%3D%3D&utm_source=qr", 
-    label: "Instagram" 
-  },
-  { 
-    Icon: FaWhatsapp,  
-    href: "https://wa.me/918532064201", 
-    label: "WhatsApp" 
-  },
-  { 
-    Icon: FaYoutube,   
-    href: "https://www.youtube.com/@Shubh.yogshala", 
-    label: "YouTube" 
-  },
-  { 
-    Icon: FaFacebookF, 
-    href: "https://www.facebook.com/share/1DW9egtanT/?mibextid=wwXIfr", 
-    label: "Facebook" 
-  },
-  { 
-    Icon: FaEnvelope,  
-    href: "mailto:pundirshubham487@gmail.com", 
-    label: "Gmail" 
-  },
+  { Icon: FaInstagram, href: "https://www.instagram.com/shubh.yogshala?igsh=MTM1eDQ4c2NlNHoyZg%3D%3D&utm_source=qr", label: "Instagram" },
+  { Icon: FaWhatsapp,  href: "https://wa.me/918532064201", label: "WhatsApp" },
+  { Icon: FaYoutube,   href: "https://www.youtube.com/@Shubh.yogshala", label: "YouTube" },
+  { Icon: FaFacebookF, href: "https://www.facebook.com/share/1DW9egtanT/?mibextid=wwXIfr", label: "Facebook" },
+  { Icon: FaEnvelope,  href: "mailto:pundirshubham487@gmail.com", label: "Gmail" },
 ];
 
 const NAV_LINKS = [
@@ -40,14 +20,14 @@ const NAV_LINKS = [
 ];
 
 const PROGRAMS = [
-  { label: "Personal Yoga Classes",    slug: "personal-yoga" },
-  { label: "Online Yoga Classes",      slug: "online-yoga" },
-  { label: "Corporate Yoga Classes",   slug: "corporate-yoga" },
-  { label: "Group Yoga Classes",       slug: "group-yoga" },
+  { label: "Personal Yoga Classes",  slug: "personal-yoga" },
+  { label: "Online Yoga Classes",    slug: "online-yoga" },
+  { label: "Corporate Yoga Classes", slug: "corporate-yoga" },
+  { label: "Group Yoga Classes",     slug: "group-yoga" },
   { label: "Therapeutic Yoga Classes", slug: "therapeutic-yoga" },
-  { label: "Prenatal Yoga Classes",    slug: "prenatal-yoga" },
-  { label: "Postnatal Yoga Classes",   slug: "postnatal-yoga" },
-  { label: "Kids Yoga Classes",        slug: "kids-yoga" },
+  { label: "Prenatal Yoga Classes",  slug: "prenatal-yoga" },
+  { label: "Postnatal Yoga Classes", slug: "postnatal-yoga" },
+  { label: "Kids Yoga Classes",      slug: "kids-yoga" },
 ];
 
 export default function Footer() {
@@ -88,7 +68,7 @@ export default function Footer() {
           <span style={{ fontStyle: "italic", color: "#c8763a" }}>with One Breath</span>
         </h2>
         <NavLink
-          to="/reglog"
+          to="/yoga-programs/personal-yoga"
           style={{
             display: "inline-block",
             border: "1px solid #c8763a",
@@ -142,7 +122,6 @@ export default function Footer() {
             Founded in 2022 by Shubham Pundir, M.A. Yoga Science.
           </p>
 
-          {/* Social */}
           <div style={{ display: "flex", gap: "10px", flexWrap: "wrap" }}>
             {SOCIAL.map(({ Icon, href, label }) => (
               <a
@@ -332,7 +311,7 @@ export default function Footer() {
           © 2026 Shubh YogShala. All Rights Reserved.
         </p>
         <p style={{ margin: 0, fontSize: "11px", color: "#6b5a4e" }}>
-          Founded by Shubham Pundir  M.A. Yoga Science
+          Founded by Shubham Pundir M.A. Yoga Science
         </p>
         <p style={{ margin: 0, fontSize: "11px", color: "#6b5a4e" }}>
           Developed by Nitin Chauhan
